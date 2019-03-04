@@ -109,7 +109,7 @@ class Resourcesform extends Component {
         })
             .then(response => response.json())
             .then(res => {
-                    console.log(res);
+                    //console.log(res);
                 }
             );
 
@@ -128,7 +128,7 @@ class Resourcesform extends Component {
     factorsById(id) {
 
         const x =  this.state.allFactorNames.find(f => f.id == id);
-        console.log(x);
+        //console.log(x);
         return x;
     }
 
@@ -165,21 +165,18 @@ class Resourcesform extends Component {
     };
 
     isDisabled() {
-
-        if(this.state.createdFactor) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     delete(rowId) {
+        //console.log(rowId);
         const { factorNames, actualFactorNames } = this.state;
         const id = this.factorsById(rowId).id;
         const toAdd = this.factorsById(rowId);
         const index = factorNames.findIndex(f =>
-            f.id == id);
+            f.factorId == id);
 
+      //  console.log(toAdd);
         factorNames.splice(index,1);
         actualFactorNames.push(toAdd);
 
@@ -220,10 +217,6 @@ class Resourcesform extends Component {
             <MenuItem value={name.id}>{name.title}</MenuItem>
         ));
 
-        console.log("XD")
-        actualFactorNames.forEach((s) => console.log(s.id));
-
-
         return (
             <div>
                 <h1>Wprowadzanie surowca</h1>
@@ -250,16 +243,6 @@ class Resourcesform extends Component {
                                    onChange={this.onChange} name="descEn"/>
 
                         <br/>
-                        {/*<InputLabel htmlFor="base-unit">Jednostka bazowa</InputLabel>*/}
-                        {/*<Select*/}
-                            {/*value={this.state.baseUnit}*/}
-                            {/*style={{width:'20%'}}*/}
-                            {/*onChange={this.onChange}*/}
-                            {/*placeholder="Jednostka bazowa"*/}
-                            {/*input={<Input name="baseUnit" id="base-unit"/>}*/}
-                        {/*>*/}
-                            {/*{unitsItems}*/}
-                        {/*</Select>*/}
 
                         <br/>
                         <h3>Współczynniki: </h3>
@@ -285,7 +268,7 @@ class Resourcesform extends Component {
                                                     variant="contained"
                                                     color="primary" className={classes.button}
                                                     onClick={() => this.delete(row.factorId)}>
-                                                    Usuń
+                                                    Usuń 
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
