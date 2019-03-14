@@ -43,6 +43,8 @@ import FactorSources from "../factors/FactorSources";
 import FactorSourcesform from "../factors/FactorSourcesform";
 import Resources from '../resources/Resources';
 import Resourcesform from '../resources/Resourcesform';
+import EnergyResources from '../energyresources/EnergyResources';
+import EnergyResourcesForm from '../energyresources/EnergyResourcesform';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DrawerListItem from '../view/Drawerlistitem';
@@ -373,6 +375,24 @@ class MyDrawer extends Component {
                     </ExpansionPanel>
 
 
+                    <ExpansionPanel>
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
+                            <Typography style={{fontSize: '25px',color:'#1565c0'}}>Energy Resources</Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                            <ListItem key="list1" button component={Link} to={'/energyresources/energyresources/list'} onClick={this.handleOnClickDrawer}>
+                                <ListItemIcon><InboxIcon /></ListItemIcon>
+                                <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                            </ListItem>
+
+                            <ListItem key="list2" button component={Link} to={'/energyresources/energyresources/create'} onClick={this.handleOnClickDrawer}>
+                                <ListItemIcon><InboxIcon/></ListItemIcon>
+                                <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                            </ListItem>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+
+
 
                 </List>
 
@@ -402,6 +422,8 @@ class MyDrawer extends Component {
                     <Route path='/factors/factorsources/create' component={FactorSourcesform} />
                     <Route path='/resources/resources/list' component={Resources} />
                     <Route path='/resources/resources/create' component={Resourcesform} />
+                    <Route path='/energyresources/energyresources/list' component={EnergyResources} />
+                    <Route path='/energyresources/energyresources/create' component={EnergyResourcesForm} />
                 </Switch>
             </main>
         </div>

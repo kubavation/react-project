@@ -268,7 +268,7 @@ class Resourcesform extends Component {
                                                     variant="contained"
                                                     color="primary" className={classes.button}
                                                     onClick={() => this.delete(row.factorId)}>
-                                                    Usuń 
+                                                    Usuń
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
