@@ -109,7 +109,7 @@ class FactorNamesForm extends Component {
 
         return (
             <div>
-                <h1>Dodawanie nowego współczynnika</h1>
+                <h1 style={{color:'#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
                 <Paper style={{marginLeft:'20%',width:'60%'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 

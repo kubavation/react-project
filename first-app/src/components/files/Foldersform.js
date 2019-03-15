@@ -128,7 +128,7 @@ class Foldersform extends Component {
 
         return (
             <div>
-                <h1>Wprowadzanie folderu</h1>
+                <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie folderu</h1>
                 <Paper style={{marginLeft:'20%',width:'60%'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 

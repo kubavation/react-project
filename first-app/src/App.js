@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import MyDrawer from './components/appbars/Drawer';
+import video from './bvideo4.mp4';
 
 //remove
 
@@ -49,6 +50,14 @@ class App extends Component {
       <Router>
       <div className="App">
           <MyDrawer/>
+          <video autoPlay muted loop id="myVideo">
+              <source src={video} type="video/mp4"/>
+          </video>
+          <h1 className="header">Knowledge Bank</h1>
+          <div className="content">
+              <p>This website was created to store information about carbon footprint.</p>
+              <p>Help us to make it bigger and insert new data.</p>
+          </div>
       </div>
       </Router>
     );

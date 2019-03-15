@@ -31,3 +31,29 @@
     transform: rotate(360deg);
   }
 }
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -10;
+}
+
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 45px;
+  z-index: -10;
+}
+.header{
+  position:fixed;
+  padding-left: 40%;
+  color: #86C232;
+  font-size: 52px;
+  font-family: Jazz LET, fantasy;
+  z-index: -10;
+}

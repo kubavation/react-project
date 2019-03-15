@@ -48,6 +48,8 @@ import EnergyResourcesForm from '../energyresources/EnergyResourcesform';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DrawerListItem from '../view/Drawerlistitem';
+import MenuBG from '../../menu_background5.jpg';
+
 
 const drawerWidth = 240;
 
@@ -60,6 +62,7 @@ const styles = theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        backgroundColor: '#222629',
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -72,6 +75,7 @@ const styles = theme => ({
     menuButton: {
         marginLeft: 12,
         marginRight: 20,
+        color: '#61892F',
     },
     hide: {
         display: 'none',
@@ -82,13 +86,20 @@ const styles = theme => ({
     },
     drawerPaper: {
         width: drawerWidth,
+        backgroundImage: 'url("' + MenuBG +'")',
+    },
+    panel:{
+        background: '0,0,0,0',
+        color: '#61892F',
     },
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
         padding: '0 8px',
         ...theme.mixins.toolbar,
+        position: 'static',
         justifyContent: 'flex-end',
+        backgroundColor: '0,0,0,0',
     },
     content: {
         flexGrow: 1,
@@ -98,6 +109,9 @@ const styles = theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         marginLeft: -drawerWidth,
+    },
+    whiteText:{
+      color:'#CCC',
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -154,7 +168,7 @@ class MyDrawer extends Component {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" color="inherit" noWrap>
-                        Aplikacja
+                        KnowledgeBank
                     </Typography>
                     <Typography variant="h6" color="inherit"  style={{marginLeft:'80%'}}>
                         Login
@@ -171,24 +185,24 @@ class MyDrawer extends Component {
                 }}
             >
                 <div className={classes.drawerHeader}>
-                    <h2 style={{marginRight:'20%'}}>MENU</h2>
+                    <h2 style={{marginRight:'20%', color:'#86C232'}}>MENU</h2>
                     <IconButton onClick={this.handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
 
-                <List>
-                    <ExpansionPanel >
+                <List >
+                    <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
-                            <Typography style={{fontSize: '25px',color:'#1565c0'}} >Units</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}} >Units</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column',padding: '0px'}} >
-
                             <ExpansionPanel>
-                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#3f51b5'}}>
-                                    <Typography style={{fontSize: '16px',color: '#fff'}}>Quantities</Typography>
+                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
+                                    <Typography style={{fontSize: '16px',color: '#000'}}>Quantities</Typography>
                                 </ExpansionPanelSummary>
-                                <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                                {/*Zmienione bo nie mogłem dodać koloru czcionki*/}
+                                {/*<ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
 
                                     <DrawerListItem key="list1" path="/units/quantities/list"
                                     type="LIST" name="Lista" onClick={this.handleOnClickDrawer}/>
@@ -196,39 +210,50 @@ class MyDrawer extends Component {
                                     <DrawerListItem key="list2" path="/units/quantities/create"
                                         type="ADD" name="Dodaj" onClick={this.handleOnClickDrawer}/>
 
+                                </ExpansionPanelDetails>*/}
+                                <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
+                                    <ListItem key="list1" button component={Link} to={'/units/quantities/list'} onClick={this.handleOnClickDrawer}>
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
+                                    </ListItem>
+
+                                    <ListItem key="list2" button component={Link} to={'/units/quantities/create'} onClick={this.handleOnClickDrawer}>
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
+                                    </ListItem>
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
 
-                            <ExpansionPanel >
-                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#3f51b5'}}>
-                                    <Typography style={{fontSize: '16px',color: '#fff'}}>Units</Typography>
+                            <ExpansionPanel className={classes.panel}  >
+                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
+                                    <Typography style={{fontSize: '16px',color: '#000'}}>Units</Typography>
                                 </ExpansionPanelSummary>
-                                <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                                <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
                                     <ListItem key="list1" button component={Link} to={'/units/units/list'} onClick={this.handleOnClickDrawer}>
-                                        <ListItemIcon><InboxIcon /></ListItemIcon>
-                                        <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                                     </ListItem>
 
                                     <ListItem key="list2" button component={Link} to={'/units/units/create'} onClick={this.handleOnClickDrawer}>
-                                        <ListItemIcon><InboxIcon/></ListItemIcon>
-                                        <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                                     </ListItem>
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
 
-                            <ExpansionPanel>
-                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#3f51b5'}}>
-                                    <Typography style={{fontSize: '16px',color: '#fff'}}>Base units</Typography>
+                            <ExpansionPanel className={classes.panel} >
+                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
+                                    <Typography style={{fontSize: '16px',color: '#000'}}>Base units</Typography>
                                 </ExpansionPanelSummary>
-                                <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                                <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
                                     <ListItem key="list1" button component={Link} to={'/units/baseunits/list'} onClick={this.handleOnClickDrawer}>
-                                        <ListItemIcon><InboxIcon /></ListItemIcon>
-                                        <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                                     </ListItem>
 
                                     <ListItem key="list2" button component={Link} to={'/units/baseunits/create'} onClick={this.handleOnClickDrawer}>
-                                        <ListItemIcon><InboxIcon/></ListItemIcon>
-                                        <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                                     </ListItem>
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
@@ -238,17 +263,18 @@ class MyDrawer extends Component {
 
 
 
-                    <ExpansionPanel >
+                    <ExpansionPanel className={classes.panel}  >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography style={{fontSize: '25px',color:'#1565c0'}} >Files</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}} >Files</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column',padding: '0px'}} >
 
                             <ExpansionPanel>
-                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#3f51b5'}}>
-                                    <Typography style={{fontSize: '16px',color: '#fff'}}>Files</Typography>
+                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
+                                    <Typography style={{fontSize: '16px',color: '#000'}}>Files</Typography>
                                 </ExpansionPanelSummary>
-                                <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                                {/*Zmienione bo nie mogłem dodać koloru czcionki*/}
+                                {/*<ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
 
                                     <DrawerListItem key="list5" path="/files/files/list"
                                                     type="LIST" name="Lista" onClick={this.handleOnClickDrawer}/>
@@ -256,22 +282,33 @@ class MyDrawer extends Component {
                                     <DrawerListItem key="list2" path="/files/files/create"
                                                     type="ADD" name="Dodaj" onClick={this.handleOnClickDrawer}/>
 
+                                </ExpansionPanelDetails>*/}
+                                <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
+                                    <ListItem key="list5" button component={Link} to={'/files/files/list'} onClick={this.handleOnClickDrawer}>
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
+                                    </ListItem>
+
+                                    <ListItem key="list2" button component={Link} to={'/files/files/create'} onClick={this.handleOnClickDrawer}>
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
+                                    </ListItem>
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
 
                             <ExpansionPanel >
-                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#3f51b5'}}>
-                                    <Typography style={{fontSize: '16px',color: '#fff'}}>Folders</Typography>
+                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
+                                    <Typography style={{fontSize: '16px',color: '#000'}}>Folders</Typography>
                                 </ExpansionPanelSummary>
-                                <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                                <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
                                     <ListItem key="list1" button component={Link} to={'/files/folders/list'} onClick={this.handleOnClickDrawer}>
-                                        <ListItemIcon><InboxIcon /></ListItemIcon>
-                                        <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                                     </ListItem>
 
                                     <ListItem key="list2" button component={Link} to={'/files/folders/create'} onClick={this.handleOnClickDrawer}>
-                                        <ListItemIcon><InboxIcon/></ListItemIcon>
-                                        <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                                        <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                        <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                                     </ListItem>
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
@@ -280,76 +317,76 @@ class MyDrawer extends Component {
 
                     </ExpansionPanel>
 
-                    <ExpansionPanel>
+                    <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
-                            <Typography style={{fontSize: '25px',color:'#1565c0'}}>Categories</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Categories</Typography>
                         </ExpansionPanelSummary>
-                        <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                        <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
                             <ListItem key="list8" button component={Link} to={'/categories/categories/list'} onClick={this.handleOnClickDrawer}>
-                                <ListItemIcon><InboxIcon /></ListItemIcon>
-                                <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                                <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                             </ListItem>
 
                             <ListItem key="list9" button component={Link} to={'/categories/categories/create'} onClick={this.handleOnClickDrawer}>
-                                <ListItemIcon><InboxIcon/></ListItemIcon>
-                                <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                                <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                             </ListItem>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
 
-                    <ExpansionPanel>
+                    <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
-                            <Typography style={{fontSize: '25px',color:'#1565c0'}}>Atrybuty</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Atrybuty</Typography>
                         </ExpansionPanelSummary>
-                        <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                        <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
                             <ListItem key="list8" button component={Link} to={'/categories/categories/list'} onClick={this.handleOnClickDrawer}>
-                                <ListItemIcon><InboxIcon /></ListItemIcon>
-                                <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                                <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                             </ListItem>
 
                             <ListItem key="list9" button component={Link} to={'/categories/categories/create'} onClick={this.handleOnClickDrawer}>
-                                <ListItemIcon><InboxIcon/></ListItemIcon>
-                                <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                                <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                             </ListItem>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
 
-                    <ExpansionPanel>
+                    <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
-                            <Typography style={{fontSize: '25px',color:'#1565c0'}}>Factors</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Factors</Typography>
                         </ExpansionPanelSummary>
 
                         <ExpansionPanel>
-                            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#3f51b5'}}>
-                                <Typography style={{fontSize: '16px',color: '#fff'}}>Współczynniki</Typography>
+                            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
+                                <Typography style={{fontSize: '16px',color: '#000'}}>Współczynniki</Typography>
                             </ExpansionPanelSummary>
-                            <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                            <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
                                 <ListItem key="list1" button component={Link} to={'/factors/factornames/list'} onClick={this.handleOnClickDrawer}>
-                                    <ListItemIcon><InboxIcon /></ListItemIcon>
-                                    <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                                    <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                    <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                                 </ListItem>
 
                                 <ListItem key="list2" button component={Link} to={'/factors/factornames/create'} onClick={this.handleOnClickDrawer}>
-                                    <ListItemIcon><InboxIcon/></ListItemIcon>
-                                    <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                                    <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                    <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                                 </ListItem>
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
 
 
                         <ExpansionPanel>
-                            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#3f51b5'}}>
-                                <Typography style={{fontSize: '16px',color: '#fff'}}>Źródła</Typography>
+                            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
+                                <Typography style={{fontSize: '16px',color: '#000'}}>Źródła</Typography>
                             </ExpansionPanelSummary>
-                            <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                            <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
                                 <ListItem key="list1" button component={Link} to={'/factors/factorsources/list'} onClick={this.handleOnClickDrawer}>
-                                    <ListItemIcon><InboxIcon /></ListItemIcon>
-                                    <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                                    <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                    <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                                 </ListItem>
 
                                 <ListItem key="list2" button component={Link} to={'/factors/factorsources/create'} onClick={this.handleOnClickDrawer}>
-                                    <ListItemIcon><InboxIcon/></ListItemIcon>
-                                    <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                                    <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                    <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                                 </ListItem>
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
@@ -357,37 +394,37 @@ class MyDrawer extends Component {
 
                     </ExpansionPanel>
 
-                    <ExpansionPanel>
+                    <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
-                            <Typography style={{fontSize: '25px',color:'#1565c0'}}>Resources</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Resources</Typography>
                         </ExpansionPanelSummary>
-                        <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                        <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
                             <ListItem key="list1" button component={Link} to={'/resources/resources/list'} onClick={this.handleOnClickDrawer}>
-                                <ListItemIcon><InboxIcon /></ListItemIcon>
-                                <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                                <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                             </ListItem>
 
                             <ListItem key="list2" button component={Link} to={'/resources/resources/create'} onClick={this.handleOnClickDrawer}>
-                                <ListItemIcon><InboxIcon/></ListItemIcon>
-                                <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                                <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                             </ListItem>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
 
 
-                    <ExpansionPanel>
+                    <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
-                            <Typography style={{fontSize: '25px',color:'#1565c0'}}>Energy Resources</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Energy Resources</Typography>
                         </ExpansionPanelSummary>
-                        <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                        <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
                             <ListItem key="list1" button component={Link} to={'/energyresources/energyresources/list'} onClick={this.handleOnClickDrawer}>
-                                <ListItemIcon><InboxIcon /></ListItemIcon>
-                                <ListItemText style={{fontSize: '16px'}} primary="Lista" />
+                                <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>
+                                <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                             </ListItem>
 
                             <ListItem key="list2" button component={Link} to={'/energyresources/energyresources/create'} onClick={this.handleOnClickDrawer}>
-                                <ListItemIcon><InboxIcon/></ListItemIcon>
-                                <ListItemText style={{fontSize: '16px'}} primary="Dodaj" />
+                                <ListItemIcon style={{color:'#CCC'}}><InboxIcon/></ListItemIcon>
+                                <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                             </ListItem>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
