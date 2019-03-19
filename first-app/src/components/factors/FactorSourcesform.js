@@ -12,10 +12,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import {Link, Redirect} from 'react-router-dom';
 import SnackbarFormWrapper from '../view/Snackbarformwrapper';
-//import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 import 'date-fns';
-//import DateFnsUtils from '@date-io/date-fns';
+import DateFnsUtils from '@date-io/date-fns';
 import Grid from '@material-ui/core/Grid';
+import moment from 'moment';
 
 const styles = theme => ({
     container: {
@@ -42,7 +43,7 @@ class FactorSourcesform extends Component {
         super();
 
         this.state = {
-            date: '',
+            date: new Date(),
             desc: '',
             doi: '',
             bibtex: '',
@@ -54,7 +55,6 @@ class FactorSourcesform extends Component {
             horizontal: 'center',
 
             messageVariant: '',
-            selectedDate: new Date('2014-08-18T21:11:54'),
         };
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -66,9 +66,6 @@ class FactorSourcesform extends Component {
         this.fetchFiles();
     }
 
-    handleDateChange = date => {
-        this.setState({ selectedDate: date });
-    };
     createFactorSource(factorSource) {
 
         fetch('https://jsonplaceholder.typicode.com/todos',{
@@ -123,14 +120,19 @@ class FactorSourcesform extends Component {
     };
 
     onChange(event) {
+        console.log(event.target.name)
         this.setState({[event.target.name] : event.target.value});
+    };
+
+    handleDateChange = date => {
+        console.log(date);
+        this.setState({ date: date });
     };
 
     render() {
         const { classes } = this.props;
         const { date, desc, doi, bibtex, file, files } = this.state;
         const { open, messageVariant } = this.state;
-        const { selectedDate } = this.state;
 
         const fileItems = files.map(file => (
             <MenuItem value={file.id}>{file.title}</MenuItem>
@@ -142,34 +144,33 @@ class FactorSourcesform extends Component {
                 <Paper style={{marginLeft:'20%',width:'60%'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField
-                            id="date"
-                            label="Data"
-                            value={date}
-                            name="date"
-                            type="date"
-                            onChange={this.onChange}
-                            className={classes.textField}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                        {/*<MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
-                            {/*<Grid container className={classes.grid} justify="space-around">*/}
-                                {/*<DatePicker*/}
-                                    {/*margin="normal"*/}
-                                    {/*label="Date picker"*/}
-                                    {/*value={selectedDate}*/}
-                                    {/*onChange={this.handleDateChange}*/}
-                                {/*/>*/}
-                                {/*<TimePicker*/}
-                                    {/*margin="normal"*/}
-                                    {/*label="Time picker"*/}
-                                    {/*value={selectedDate}*/}
-                                    {/*onChange={this.handleDateChange}*/}
-                                {/*/>*/}
-                            {/*</Grid>*/}
-                        {/*</MuiPickersUtilsProvider>*/}
+                        {/*<TextField*/}
+                            {/*id="date"*/}
+                            {/*label="Data"*/}
+                            {/*value={date}*/}
+                            {/*name="date"*/}
+                            {/*type="date"*/}
+                            {/*onChange={this.onChange}*/}
+                            {/*className={classes.textField}*/}
+                            {/*InputLabelProps={{*/}
+                                {/*shrink: true,*/}
+                            {/*}}*/}
+                        {/*/>*/}
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <Grid container className={classes.grid} justify="space-around">
+                                <DatePicker
+                                    id="date"
+                                    margin="normal"
+                                    format="dd-MM-yyyy"
+                                    keyboard
+                                    label="Date"
+                                    name="date"
+                                    value={date}
+                                    onChange={this.handleDateChange}
+                                />
+                            </Grid>
+                        </MuiPickersUtilsProvider>
+
 
                         <br/>
 

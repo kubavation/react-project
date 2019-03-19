@@ -28,8 +28,6 @@ class Header extends React.Component {
         const { items, itemNames } = this.props;
         const { page, rowsPerPage } = this.state;
 
-        console.log("XDDDDDDDDDDDDD")
-
         return (
            <div>
                <h1 className="header">Knowledge Bank</h1>
