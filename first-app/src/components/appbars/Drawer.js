@@ -49,7 +49,7 @@ import EnergyResourcesForm from '../energyresources/EnergyResourcesform';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DrawerListItem from '../view/Drawerlistitem';
 import MenuBG from '../../menu_background5.jpg';
-
+import Header from '../view/Header';
 
 const drawerWidth = 240;
 
@@ -120,6 +120,9 @@ const styles = theme => ({
         }),
         marginLeft: 0,
     },
+    expandIcon:{
+        color:'#86C232',
+    },
 });
 
 class MyDrawer extends Component {
@@ -168,7 +171,7 @@ class MyDrawer extends Component {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" color="inherit" noWrap>
-                        KnowledgeBank
+                        <Button component={Link} to={'/header'} onClick={this.handleOnClickDrawer}> Knowledge Bank</Button>
                     </Typography>
                     <Typography variant="h6" color="inherit"  style={{marginLeft:'80%'}}>
                         Login
@@ -193,7 +196,7 @@ class MyDrawer extends Component {
 
                 <List >
                     <ExpansionPanel className={classes.panel} >
-                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon} />} >
                             <Typography style={{fontSize: '25px',color:'#86C232'}} >Units</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column',padding: '0px'}} >
@@ -264,7 +267,7 @@ class MyDrawer extends Component {
 
 
                     <ExpansionPanel className={classes.panel}  >
-                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon} />}>
                             <Typography style={{fontSize: '25px',color:'#86C232'}} >Files</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column',padding: '0px'}} >
@@ -297,7 +300,7 @@ class MyDrawer extends Component {
                             </ExpansionPanel>
 
                             <ExpansionPanel >
-                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
+                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>} style={{backgroundColor: '#61892F'}}>
                                     <Typography style={{fontSize: '16px',color: '#000'}}>Folders</Typography>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
@@ -318,7 +321,7 @@ class MyDrawer extends Component {
                     </ExpansionPanel>
 
                     <ExpansionPanel className={classes.panel} >
-                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon}/>} >
                             <Typography style={{fontSize: '25px',color:'#86C232'}}>Categories</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
@@ -335,7 +338,7 @@ class MyDrawer extends Component {
                     </ExpansionPanel>
 
                     <ExpansionPanel className={classes.panel} >
-                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon} />} >
                             <Typography style={{fontSize: '25px',color:'#86C232'}}>Atrybuty</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
@@ -352,7 +355,7 @@ class MyDrawer extends Component {
                     </ExpansionPanel>
 
                     <ExpansionPanel className={classes.panel} >
-                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon}/>} >
                             <Typography style={{fontSize: '25px',color:'#86C232'}}>Factors</Typography>
                         </ExpansionPanelSummary>
 
@@ -395,7 +398,7 @@ class MyDrawer extends Component {
                     </ExpansionPanel>
 
                     <ExpansionPanel className={classes.panel} >
-                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon} />} >
                             <Typography style={{fontSize: '25px',color:'#86C232'}}>Resources</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
@@ -413,7 +416,7 @@ class MyDrawer extends Component {
 
 
                     <ExpansionPanel className={classes.panel} >
-                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon} />} >
                             <Typography style={{fontSize: '25px',color:'#86C232'}}>Energy Resources</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
@@ -461,6 +464,7 @@ class MyDrawer extends Component {
                     <Route path='/resources/resources/create' component={Resourcesform} />
                     <Route path='/energyresources/energyresources/list' component={EnergyResources} />
                     <Route path='/energyresources/energyresources/create' component={EnergyResourcesForm} />
+                    <Route path='/header' component={Header} />
                 </Switch>
             </main>
         </div>

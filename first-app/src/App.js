@@ -53,11 +53,7 @@ class App extends Component {
           <video autoPlay muted loop id="myVideo">
               <source src={video} type="video/mp4"/>
           </video>
-          <h1 className="header">Knowledge Bank</h1>
-          <div className="content">
-              <p>This website was created to store information about carbon footprint.</p>
-              <p>Help us to make it bigger and insert new data.</p>
-          </div>
+
       </div>
       </Router>
     );

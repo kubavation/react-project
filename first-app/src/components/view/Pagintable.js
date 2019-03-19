@@ -33,43 +33,43 @@ class PaginTable extends React.Component {
     };
 
 
-     render() {
-         const { classes } = this.props;
-         const { items, itemNames } = this.props;
-         const { page, rowsPerPage } = this.state;
+    render() {
+        const { classes } = this.props;
+        const { items, itemNames } = this.props;
+        const { page, rowsPerPage } = this.state;
 
-         const itemComponents = items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(qnt => (
-             <TableRow key={qnt.id}>
-                 { Object.keys(qnt).map(key => <TableCell>{qnt[key]}</TableCell>) }
-             </TableRow>
-         ));
+        const itemComponents = items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(qnt => (
+            <TableRow key={qnt.id}>
+                { Object.keys(qnt).map(key => <TableCell>{qnt[key]}</TableCell>) }
+            </TableRow>
+        ));
 
-         return (
-             <div>
-             <Table>
-                 <TableHeadPagin items={itemNames}/>
-                 <TableBody>
-                     {itemComponents}
-                 </TableBody>
-             </Table>
-             <TablePagination
-                 rowsPerPageOptions={[5, 10, 25]}
-                 component="div"
-                 count={items.length}
-                 rowsPerPage={rowsPerPage}
-                 page={page}
-                 backIconButtonProps={{
-                     'aria-label': 'Previous Page',
-                 }}
-                 nextIconButtonProps={{
-                     'aria-label': 'Next Page',
-                 }}
-                 onChangePage={this.handleChangePage}
-                 onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                 />
-             </div>
+        return (
+            <div>
+                <Table>
+                    <TableHeadPagin items={itemNames}/>
+                    <TableBody>
+                        {itemComponents}
+                    </TableBody>
+                </Table>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={items.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    backIconButtonProps={{
+                        'aria-label': 'Previous Page',
+                    }}
+                    nextIconButtonProps={{
+                        'aria-label': 'Next Page',
+                    }}
+                    onChangePage={this.handleChangePage}
+                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                />
+            </div>
 
-         );
+        );
     }
 
 }

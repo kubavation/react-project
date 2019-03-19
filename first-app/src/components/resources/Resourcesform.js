@@ -44,7 +44,7 @@ const styles = theme => ({
         overflowX: 'auto',
     },
     table: {
-        minWidth: 700,
+        maxWidth: '90%',
     }
 });
 
@@ -220,7 +220,7 @@ class Resourcesform extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie surowca</h1>
-                <Paper style={{marginLeft:'20%',width:'60%'}}>
+                <Paper style={{marginLeft:'10%',width:'80%'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
                         <TextField id="namePl" label="Nazwa PL"
@@ -248,7 +248,7 @@ class Resourcesform extends Component {
                         <h3>Współczynniki: </h3>
 
                         <div style={{width: '100%',overflowX: 'auto'}}>
-                            <Table className={classes.table} style={{border:'1px solid black'}}>
+                            <Table className={classes.table} style={{border:'1px solid black', marginLeft:'5%', marginRight:'5%'}}>
                                 <TableHead>
                                     <TableRow style={{border:'1px solid black'}}>
                                         <TableCell style={{border:'1px solid black'}}>Nazwa</TableCell>

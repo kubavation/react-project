@@ -12,6 +12,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import {Link, Redirect} from 'react-router-dom';
 import SnackbarFormWrapper from '../view/Snackbarformwrapper';
+//import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import 'date-fns';
+//import DateFnsUtils from '@date-io/date-fns';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     container: {
@@ -49,7 +53,8 @@ class FactorSourcesform extends Component {
             vertical: 'top',
             horizontal: 'center',
 
-            messageVariant: ''
+            messageVariant: '',
+            selectedDate: new Date('2014-08-18T21:11:54'),
         };
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -61,6 +66,9 @@ class FactorSourcesform extends Component {
         this.fetchFiles();
     }
 
+    handleDateChange = date => {
+        this.setState({ selectedDate: date });
+    };
     createFactorSource(factorSource) {
 
         fetch('https://jsonplaceholder.typicode.com/todos',{
@@ -122,6 +130,7 @@ class FactorSourcesform extends Component {
         const { classes } = this.props;
         const { date, desc, doi, bibtex, file, files } = this.state;
         const { open, messageVariant } = this.state;
+        const { selectedDate } = this.state;
 
         const fileItems = files.map(file => (
             <MenuItem value={file.id}>{file.title}</MenuItem>
@@ -145,6 +154,22 @@ class FactorSourcesform extends Component {
                                 shrink: true,
                             }}
                         />
+                        {/*<MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
+                            {/*<Grid container className={classes.grid} justify="space-around">*/}
+                                {/*<DatePicker*/}
+                                    {/*margin="normal"*/}
+                                    {/*label="Date picker"*/}
+                                    {/*value={selectedDate}*/}
+                                    {/*onChange={this.handleDateChange}*/}
+                                {/*/>*/}
+                                {/*<TimePicker*/}
+                                    {/*margin="normal"*/}
+                                    {/*label="Time picker"*/}
+                                    {/*value={selectedDate}*/}
+                                    {/*onChange={this.handleDateChange}*/}
+                                {/*/>*/}
+                            {/*</Grid>*/}
+                        {/*</MuiPickersUtilsProvider>*/}
 
                         <br/>
 
