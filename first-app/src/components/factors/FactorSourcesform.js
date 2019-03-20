@@ -17,6 +17,8 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import Grid from '@material-ui/core/Grid';
 import moment from 'moment';
+import { createMuiTheme } from '@material-ui/core'
+import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
 
 const styles = theme => ({
     container: {
@@ -36,7 +38,18 @@ const styles = theme => ({
     }
 });
 
-
+export const customTheme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#86C232',
+            light:  '#0f0',
+            dark:  '#00f',
+        },
+        secondary: {
+            main: '#0F0',
+        },
+    },
+});
 class FactorSourcesform extends Component {
 
     constructor(props) {
@@ -156,6 +169,7 @@ class FactorSourcesform extends Component {
                                 {/*shrink: true,*/}
                             {/*}}*/}
                         {/*/>*/}
+                        <MuiThemeProvider theme={customTheme}>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <Grid container className={classes.grid} justify="space-around">
                                 <DatePicker
@@ -170,6 +184,7 @@ class FactorSourcesform extends Component {
                                 />
                             </Grid>
                         </MuiPickersUtilsProvider>
+                        </MuiThemeProvider>
 
 
                         <br/>
