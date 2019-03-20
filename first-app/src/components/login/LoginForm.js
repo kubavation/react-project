@@ -67,7 +67,7 @@ class LoginForm extends Component {
             vertical: 'top',
             horizontal: 'center',
 
-            messageVariant: ''
+            messageVariant: '',
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -81,7 +81,7 @@ class LoginForm extends Component {
         const { success } = this.state;
 
         if(success) {
-            this.setState({open: true, messageVariant: 'success'}, () => {
+            this.setState({open: true, messageVariant: 'success',message:'Logowanie udane'}, () => {
                 localStorage.setItem('token',this.state.username); //TODO change to token
                 setTimeout(() =>
                     this.props.history.push('/header'), 1000)
@@ -90,7 +90,7 @@ class LoginForm extends Component {
 
             localStorage.setItem('token',''); //todo remove
             this.setState({username: '', password: '',
-                messageVariant: 'error', open: true})
+                messageVariant: 'error', open: true, message:'Logowanie nieudane'})
         }
     }
 
@@ -139,7 +139,7 @@ class LoginForm extends Component {
     render() {
 
         const { classes } = this.props;
-        const { username, password, open, messageVariant } = this.state;
+        const { username, password, open, messageVariant, message } = this.state;
 
         const auth = localStorage.getItem('token');
         const isLoggedIn = !(auth === '' || auth === null);
@@ -208,7 +208,7 @@ class LoginForm extends Component {
 
                     </form>
 
-                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                    <SnackbarFormWrapper open={open} message={message} onClose={this.handleClose} variant={messageVariant}/>
 
                 </Paper>
 

@@ -298,7 +298,7 @@ class MyDrawer extends Component {
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column',padding: '0px'}} >
 
-                            <ExpansionPanel>
+                            <ExpansionPanel className={classes.panel}>
                                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
                                     <Typography style={{fontSize: '16px',color: '#000'}}>Files</Typography>
                                 </ExpansionPanelSummary>
@@ -327,7 +327,7 @@ class MyDrawer extends Component {
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
 
-                            <ExpansionPanel >
+                            <ExpansionPanel className={classes.panel} >
                                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>} style={{backgroundColor: '#61892F'}}>
                                     <Typography style={{fontSize: '16px',color: '#000'}}>Folders</Typography>
                                 </ExpansionPanelSummary>
@@ -502,6 +502,7 @@ class MyDrawer extends Component {
                     <Route path='/header' component={Header} />
                     <Route path='/login' component={LoginForm} />
                     <Route path='/register' component={RegisterForm} />
+                    <Route path='/' component={Header} />
                 </Switch>
             </main>
         </div>

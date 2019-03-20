@@ -157,16 +157,17 @@ class Unitsform extends Component {
                 <Paper style={{marginLeft:'20%',width:'60%'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField id="namePl" label="Nazwa PL"
+                        <br/><br/>
+                        <TextField id="namePl" label="Nazwa PL" variant="outlined"
                                    className={classes.textField} margin="normal" value={namePl}
                                    onChange={this.onChange} name="namePl"/>
 
-                        <TextField id="nameEng" label="Nazwa EN"
+                        <TextField id="nameEng" label="Nazwa EN" variant="outlined"
                                    className={classes.textField} margin="normal" value={nameEn}
                                    onChange={this.onChange} name="nameEn"/>
                         <br/>
 
-                        <TextField id="shortcut" label="Skrót"
+                        <TextField id="shortcut" label="Skrót" variant="outlined"
                                    className={classes.textField} margin="normal" value={shortcut}
                                    onChange={this.onChange} name="shortcut"/>
                         <br/>
@@ -192,11 +193,11 @@ class Unitsform extends Component {
 
                         <br/>
 
-                        <TextField id="baseUnit" label="Jednostka bazowa"
+                        <TextField id="baseUnit" label="Jednostka bazowa" variant="outlined"
                                    className={classes.textField} margin="normal" disabled value={baseUnit}
                                    onChange={this.onChange} name="baseUnit"/>
 
-                        <TextField id="ratio" label="Przelicznik"
+                        <TextField id="ratio" label="Przelicznik" variant="outlined"
                                    className={classes.textField} margin="normal" value={ratio}
                                    onChange={this.onChange} name="ratio"/>
                         <br/>

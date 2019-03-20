@@ -81,12 +81,12 @@ class RegisterForm extends Component {
         const { success } = this.state;
 
         if(success) {
-            this.setState({open: true, messageVariant: 'success'}, () => {
+            this.setState({open: true, messageVariant: 'success',message: 'Rejestracja udana'}, () => {
                 setTimeout(() =>
                     this.props.history.push('/login'), 1000)
             });
         } else {
-            this.setState({messageVariant: 'error', open: true})
+            this.setState({messageVariant: 'error', open: true, message: 'Rejestracja nieudana'})
         }
     }
 
@@ -138,7 +138,7 @@ class RegisterForm extends Component {
     render() {
 
         const { classes } = this.props;
-        const { username, password, email, open, messageVariant } = this.state;
+        const { username, password, email, open, messageVariant, message} = this.state;
 
         const auth = localStorage.getItem('token');
         const isLoggedIn = !(auth === '' || auth === null);
@@ -217,7 +217,7 @@ class RegisterForm extends Component {
 
                     </form>
 
-                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                    <SnackbarFormWrapper open={open} message={message} onClose={this.handleClose} variant={messageVariant}/>
 
                 </Paper>
 

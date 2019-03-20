@@ -57,10 +57,12 @@ class Quantities extends Component {
         const items = this.state.items;
 
         return (
-            <Paper className={classes.root}>
-                <h1>Lista wielkości fiz/chem</h1>
+            <div>
+            <h1 style={{color:'#CCC', fontSize: 40}}>Lista wielkości fiz/chem</h1>
+            <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}>
                 <PaginTable items={items} itemNames={itemNames}/>
             </Paper>
+            </div>
         )
     }
 

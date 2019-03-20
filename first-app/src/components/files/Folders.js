@@ -50,10 +50,12 @@ class Folders extends Component {
         const items = this.state.items;
 
         return (
-            <Paper className={classes.root}>
-                <h1>Lista folderów</h1>
+            <div>
+            <h1 style={{color:'#CCC', fontSize: 40}}>Lista folderów</h1>
+            <Paper style={{backgroundColor:'#CCC',borderRadius:'25px'}} className={classes.root}>
                 <PaginTable items={items} itemNames={itemNames}/>
             </Paper>
+            </div>
         )
     }
 

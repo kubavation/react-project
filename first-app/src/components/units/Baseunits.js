@@ -50,10 +50,12 @@ class Baseunits extends Component {
         const { items } = this.state;
 
         return (
-            <Paper className={classes.root}>
-                <h1>Lista jednostek bazowych</h1>
-                <PaginTable items={items} itemNames={itemNames}/>
-            </Paper>
+            <div>
+                <h1 style={{color:'#CCC', fontSize: 40}}>Lista jednostek bazowych</h1>
+                <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}>
+                    <PaginTable items={items} itemNames={itemNames}/>
+                </Paper>
+            </div>
         )
     }
 

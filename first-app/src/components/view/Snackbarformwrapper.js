@@ -23,20 +23,26 @@ class SnackbarFormWrapper extends Component {
         this.state = {
             open: props.open,
             onClose: props.onClose,
-            variant: props.variant
+            variant: props.variant,
+            message: props.message
         };
     }
 
     componentWillReceiveProps(props) {
-        this.setState({open: props.open, variant: props.variant})
+        this.setState({open: props.open, variant: props.variant,message: props.message})
     }
 
     render() {
 
-        const { open, onClose, variant } = this.state;
+        const { open, onClose, variant, message } = this.state;
 
-        const message = variant === "success" ? "Dodano nowy rekord"
-            : "Nie udało się utworzyć nowego rekordu";
+        let msg;
+        if(message === undefined) {
+            msg = variant === "success" ? "Dodano nowy rekord"
+                : "Nie udało się utworzyć nowego rekordu";
+        } else {
+            msg = message;
+        }
 
         return (
            <Snackbar
@@ -52,7 +58,7 @@ class SnackbarFormWrapper extends Component {
                     onClose={onClose}
                     open = {open}
                     variant={variant}
-                    message={message}
+                    message={msg}
                 />
             </Snackbar>
         );

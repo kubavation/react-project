@@ -32,7 +32,24 @@ const styles = theme => ({
     },
     menu: {
         width: 200,
-    }
+    },
+    cssLabel: {
+        '&$cssFocused': {
+            color: '#86C232'
+        },
+    },
+    cssFocused: {},
+    cssUnderline: {
+        '&:after': {
+            borderBottomColor: '#86C232'
+        },
+    },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: '#86C232'
+        }
+    },
+    notchedOutline: {}
 });
 
 class QuantitiesForm extends Component {
@@ -136,20 +153,54 @@ class QuantitiesForm extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie wielkości fiz/chem</h1>
-                <Paper style={{marginLeft:'20%',width:'60%'}}>
+                <Paper style={{marginLeft:'30%',width:'40%',backgroundColor:'#CCC',borderRadius:'25px'}}>
                 <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
+                    <br/>
+                    <br/>
                     <TextField id="namePl" label="Nazwa PL"
                                className={classes.textField} margin="normal" value={namePl}
-                               onChange={this.onChange} name="namePl"/>
+                               onChange={this.onChange} name="namePl"
+                               variant="outlined"
+                               InputLabelProps={{
+                                   classes: {
+                                       root: classes.cssLabel,
+                                       focused: classes.cssFocused,
+                                   },
+                               }}
+                               InputProps={{
+                                   classes: {
+                                       root: classes.cssOutlinedInput,
+                                       focused: classes.cssFocused,
+                                       notchedOutline: classes.notchedOutline,
+                                   }
+                               }}
+
+                    />
 
                     <TextField id="nameEng" label="Nazwa EN"
                                className={classes.textField} margin="normal" value={nameEn}
-                               onChange={this.onChange} name="nameEn"/>
+                               onChange={this.onChange} name="nameEn"
+                               variant="outlined"
+                               InputLabelProps={{
+                                   classes: {
+                                       root: classes.cssLabel,
+                                       focused: classes.cssFocused,
+                                   },
+                               }}
+                               InputProps={{
+                                   classes: {
+                                       root: classes.cssOutlinedInput,
+                                       focused: classes.cssFocused,
+                                       notchedOutline: classes.notchedOutline,
+                                   }
+                               }}
+                    />
+                    <br/>
                     <br/>
 
                     <br/>
-                    <InputLabel htmlFor="base-unit">Jednostka bazowa</InputLabel>
+                    <InputLabel style={{marginRight:'2%'}}htmlFor="base-unit">Jednostka bazowa</InputLabel>
                     <Select
                         value={this.state.baseUnit}
                         style={{width:'20%'}}
@@ -160,15 +211,17 @@ class QuantitiesForm extends Component {
                         {unitsItems}
                     </Select>
 
-                    <Button style={{marginLeft: '2%'}} color="primary" className={classes.button} component={Link}
+                    <Button style={{marginLeft: '2%',color: "#86C232"}} color="primary" className={classes.button} component={Link}
                             to={{pathname: '/units/baseunits/create', state: {fromForm: true}}}>
                         Dodaj
                     </Button>
                     <br/>
 
 
-                    <Button style={{marginBottom: '5%',marginTop:'5%'}}
-                        variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}>
+                    <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: "#86C232"}}
+                        variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
+                        size="large"
+                      >
                         Dodaj
                     </Button>
 

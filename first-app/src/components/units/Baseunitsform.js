@@ -121,33 +121,36 @@ class BaseunitsForm extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie jednostki bazowej</h1>
-                <Paper style={{marginLeft:'20%',width:'60%'}}>
+                <Paper style={{marginLeft:'30%',width:'40%',backgroundColor:'#CCC',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField id="namePl" label="Nazwa PL"
+                        <br/>
+                        <br/>
+                        <TextField id="namePl" label="Nazwa PL" variant="outlined"
                                    className={classes.textField} margin="normal" value={namePl}
                                    onChange={this.onChange} name="namePl"/>
 
-                        <TextField id="nameEng" label="Nazwa EN"
+                        <TextField id="nameEng" label="Nazwa EN" variant="outlined"
                                    className={classes.textField} margin="normal" value={nameEn}
                                    onChange={this.onChange} name="nameEn"/>
                         <br/>
 
-                        <TextField id="shortcut" label="Skrót"
+                        <TextField id="shortcut" label="Skrót" variant="outlined"
                                    className={classes.textField} margin="normal" value={shortcut}
                                    onChange={this.onChange} name="shortcut"/>
 
                         <br/>
 
-                        <Button style={{marginBottom: '5%',marginTop:'5%'}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}>
+                        <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: "#86C232"}}
+                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
+                                size="large">
                             Dodaj
                         </Button>
 
 
-                        { fromForm ? <Button style={{marginLeft: '5%'}}
+                        { fromForm ? <Button style={{marginLeft: '5%',backgroundColor: "#86C232"}}
                             variant="contained" color="primary" className={classes.button}
-                             component={Link}
+                             component={Link} size="large"
                              to={'/units/quantities/create'}>Powrót</Button> : ""}
 
 
