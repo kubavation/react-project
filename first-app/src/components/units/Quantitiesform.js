@@ -226,9 +226,10 @@ class QuantitiesForm extends Component {
                     </Button>
 
 
-                    { fromForm ? <Button style={{marginLeft: '5%'}}
-                                         variant="contained" color="primary" className={classes.button}
+                    { fromForm ? <Button style={{marginLeft: '5%',backgroundColor: "#86C232"}}
+                                         variant="contained" className={classes.button} color="primary"
                                          component={Link}
+                                         size="large"
                                          to={'/units/units/create'}>Powrót</Button> : ""}
 
 

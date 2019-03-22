@@ -214,58 +214,60 @@ class Resourcesform extends Component {
 
 
         const factorNamesItems = actualFactorNames.map(name => (
-            <MenuItem value={name.id}>{name.title}</MenuItem>
+            <MenuItem  value={name.id}>{name.title}</MenuItem>
         ));
 
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie surowca</h1>
-                <Paper style={{marginLeft:'10%',width:'80%'}}>
+                <Paper style={{marginLeft:'10%',width:'80%',backgroundColor:'#CCC',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField id="namePl" label="Nazwa PL"
+                        <br/>
+                        <TextField id="namePl" label="Nazwa PL" variant="outlined" style={{width:'20%'}}
                                    className={classes.textField} margin="normal" value={namePl}
                                    onChange={this.onChange} name="namePl"/>
 
-                        <TextField id="nameEn" label="Nazwa EN"
+                        <TextField id="nameEn" label="Nazwa EN" variant="outlined" style={{width:'20%',marginLeft:'9%'}}
                                    className={classes.textField} margin="normal" value={nameEn}
                                    onChange={this.onChange} name="nameEn"/>
                         <br/>
 
-                        <TextField id="descPl" label="Opis PL"
+                        <TextField id="descPl" label="Opis PL" variant="outlined" style={{width:'50%'}}
                                    className={classes.textField} margin="normal" value={descPl}
                                    onChange={this.onChange} name="descPl"/>
 
                         <br/>
 
-                        <TextField id="descEn" label="Opis EN"
+                        <TextField id="descEn" label="Opis EN" variant="outlined"  style={{width:'50%'}}
                                    className={classes.textField} margin="normal" value={descEn}
                                    onChange={this.onChange} name="descEn"/>
 
                         <br/>
 
                         <br/>
-                        <h3>Współczynniki: </h3>
+                        <h2>Współczynniki: </h2>
 
                         <div style={{width: '100%',overflowX: 'auto'}}>
                             <Table className={classes.table} style={{border:'1px solid black', marginLeft:'5%', marginRight:'5%'}}>
                                 <TableHead>
                                     <TableRow style={{border:'1px solid black'}}>
-                                        <TableCell style={{border:'1px solid black'}}>Nazwa</TableCell>
-                                        <TableCell style={{border:'1px solid black'}}>Wartość</TableCell>
-                                        <TableCell style={{border:'1px solid black'}}>Niepewność</TableCell>
-                                        <TableCell style={{border:'1px solid black'}}>  </TableCell>
+                                        <TableCell align="center" style={{border:'1px solid black',fontSize:'20px'}}>Nazwa</TableCell>
+                                        <TableCell align="center" style={{border:'1px solid black',fontSize:'20px'}}>Wartość</TableCell>
+                                        <TableCell align="center" style={{border:'1px solid black',fontSize:'20px'}}>Niepewność</TableCell>
+                                        <TableCell align="center"style={{border:'1px solid black'}}>  </TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {factorNames.map(row => (
                                         <TableRow key={row.factorId} style={{border:'1px solid black'}}>
-                                            <TableCell style={{border:'1px solid black'}}> {this.factorsById(row.factorId).title}</TableCell>
+                                            <TableCell align="center" style={{border:'1px solid black'}}> {this.factorsById(row.factorId).title}</TableCell>
                                             <TableCell style={{border:'1px solid black'}}>{row.value}</TableCell>
                                             <TableCell style={{border:'1px solid black'}}>{row.error}</TableCell>
                                             <TableCell style={{border:'1px solid black'}}>
                                                 <Button
-                                                    variant="contained"
+                                                    variant="contained" style={{backgroundColor: "#86C232"}} 
+                                                    size="small"
                                                     color="primary" className={classes.button}
                                                     onClick={() => this.delete(row.factorId)}>
                                                     Usuń
@@ -304,8 +306,8 @@ class Resourcesform extends Component {
 
                                         <TableCell style={{border:'1px solid black'}}>
                                             <Button
-                                                variant="contained"
-                                                color="primary" className={classes.button} onClick={this.addFactor}>
+                                                variant="contained" style={{backgroundColor: "#86C232"}}
+                                                color="primary" className={classes.button} onClick={this.addFactor} size="small">
                                                 Dodaj
                                             </Button>
                                         </TableCell>
@@ -318,8 +320,9 @@ class Resourcesform extends Component {
                             <br/>
 
 
-                        <Button style={{marginBottom: '5%',marginTop:'5%'}}
+                        <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: "#86C232"}}
                                 variant="contained" color="primary" className={classes.button} type="submit"
+                                size="large"
                                 onSubmit={this.onSubmit}>
                             Dodaj
                         </Button>

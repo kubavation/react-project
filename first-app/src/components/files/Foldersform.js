@@ -129,39 +129,48 @@ class Foldersform extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie folderu</h1>
-                <Paper style={{marginLeft:'20%',width:'60%'}}>
+                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#CCC',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField id="folderName" label="Nazwa folderu"
-                                   className={classes.textField} margin="fileName" value={folderName}
+                        <br/><br/>
+                        <TextField id="folderName" label="Nazwa folderu" variant="outlined"
+                        style={{marginRight:'9%'}}
+                                   className={classes.textField}  value={folderName}
                                    onChange={this.onChange} name="folderName"/>
-                        <br/>
-
-
-                        <br/>
-                        <TextField id="folderDescPl" label="Opis PL"
-                                   className={classes.textField} margin="normal" value={folderDescPl}
-                                   onChange={this.onChange} name="folderDescPl"/>
-
-                        <TextField id="folderDescEn" label="Opis ENG" style={{marginLeft:'10%'}}
-                                   className={classes.textField} margin="normal" value={folderDescEn}
-                                   onChange={this.onChange} name="folderDescEn"/>
-                        <br/>
-
-                        <InputLabel htmlFor="parent-folder" style={{marginRight:'2%'}}>Parent folder</InputLabel>
+                       
+                       <InputLabel htmlFor="parent-folder">Parent folder</InputLabel>
                         <Select
                             value={this.state.parentFolder}
-                            style={{width:'20%',marginTop:'4%'}}
+                            style={{width:'20%',marginTop:'2%'}}
                             onChange={this.onChange}
                             placeholder="Parent folder"
                             input={<Input name="parentFolder" id="parent-folder"/>}
                         >
                             {foldersItems}
                         </Select>
+
+                        <br/>
+                        <br/>
+                        <TextField id="folderDescPl" label="Opis PL" variant="outlined"
+                                   className={classes.textField} margin="normal"
+                                   style={{width:'60%'}} value={folderDescPl}
+                                   onChange={this.onChange} name="folderDescPl"/>
+
                         <br/>
 
-                        <Button style={{marginBottom: '5%',marginTop:'5%'}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}>
+                        <TextField id="folderDescEn" label="Opis ENG" style={{marginLeft:'10%'}}
+                                   style={{width:'60%'}}
+                                   className={classes.textField} margin="normal" value={folderDescEn}
+                                   variant="outlined"
+                                   onChange={this.onChange} name="folderDescEn"/>
+                        <br/>
+
+                    
+                        <br/>
+
+                        <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: "#86C232"}}
+                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
+                                size="large">
                             Dodaj
                         </Button>
 

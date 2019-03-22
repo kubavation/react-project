@@ -110,20 +110,22 @@ class EnergyResourcesForm extends Component {
     onSubmit(event) {
         event.preventDefault();
 
-        const factorSource = {
-            date: this.state.date,
-            desc: this.state.desc,
-            doi: this.state.doi,
-            bibtex: this.state.bibtex,
-            file: this.state.file
+        const energyResource = {
+            mediumGUS: this.state.mediumGUS,
+            codeGUS: this.state.codeGUS,
+            name: this.state.name,
+            co2: this.state.co2,
+            unit: this.state.unit,
+            ncv: this.state.ncv,
+            we: this.state.we
         };
 
-        this.createFactorSource(factorSource);
+        this.createEnergyResource(energyResource);
 
         const variant = 'success';  // ? fail?
 
-        this.setState({userId: '', title: '',
-            date: '', desc: '', doi: '',bibtex: '',file: '',
+        this.setState({enmediumGUSergy: '', codeGUS: '',
+        name: '', co2: '', unit: '',ncv: '',we: '',
             redirect: true, open: true, messageVariant: variant});
     };
 
@@ -133,66 +135,90 @@ class EnergyResourcesForm extends Component {
 
     render() {
         const { classes } = this.props;
-        const { date, desc, doi, bibtex, file, files } = this.state;
+        const { mediumGUS, allMediumGUS, codeGUS, name, co2, unit,units, ncv, we } = this.state;
         const { open, messageVariant } = this.state;
 
-        const fileItems = files.map(file => (
-            <MenuItem value={file.id}>{file.title}</MenuItem>
+        const mediumItems = allMediumGUS.map(med => (
+            <MenuItem value={med.id}>{med.title}</MenuItem>
+        ));
+
+        const unitItems = units.map(unit => (
+            <MenuItem value={unit.id}>{unit.title}</MenuItem>
         ));
 
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
-                <Paper style={{marginLeft:'20%',width:'60%'}}>
+                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#CCC',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField
-                            id="date"
-                            label="Data"
-                            value={date}
-                            name="date"
-                            type="date"
-                            onChange={this.onChange}
-                            className={classes.textField}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-
                         <br/>
 
-
-                        <TextField id="doi" label="DOI"
-                                   className={classes.textField} margin="normal" value={doi}
-                                   onChange={this.onChange} name="doi"/>
-
-                        <br/>
-
-                        <TextField id="desc" label="Opis"
-                                   className={classes.textField} margin="normal" value={desc}
-                                   onChange={this.onChange} name="desc"/>
-
-                        <br/>
-
-                        <TextField id="bibtex" label="BibText" //textarea
-                                   className={classes.textField} margin="normal" value={bibtex}
-                                   onChange={this.onChange} name="bibtex"/>
-                        <br/>
-                        <br/>
-                        <InputLabel htmlFor="file">Plik</InputLabel>
+                        <InputLabel htmlFor="medium">Nośnik wg GUS</InputLabel>
                         <Select
-                            value={file}
-                            style={{width:'20%'}}
+                            value={mediumGUS}
+                            style={{width:'20%',marginRight:'8%'}}
                             onChange={this.onChange}
-                            placeholder="Plik"
-                            input={<Input name="file" id="file"/>}
+                            placeholder=""
+                            input={<Input name="medium" id="medium"/>}
                         >
-                            {fileItems}
-                        </Select>
+                            {mediumItems}
+                        </Select> 
 
                         <br/>
-                        <Button style={{marginBottom: '5%',marginTop:'5%'}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}>
+                        <br/>
+
+
+                        <TextField id="codeGUS" label="Kod GUS" style={{width:'20%',marginRight:'21%'}}
+                                   className={classes.textField} margin="normal" value={codeGUS}
+                                   disabled variant="outlined"
+                                   onChange={this.onChange} name="codeGUS"/>
+
+                        <br/>
+
+                        <TextField id="name" label="Nazwa" style={{width:'40%'}}
+                                   className={classes.textField} margin="normal" value={name}
+                                   variant="outlined"
+                                   onChange={this.onChange} name="name"/>
+
+                        <br/>
+                        <br/>
+
+                        <InputLabel htmlFor="co2">Equiv kg CO2/unit</InputLabel>
+                        <TextField id="co2" label="Wartość" style={{width:'20%',marginLeft:'2%'}}
+                                   className={classes.textField} value={co2}
+                                   variant="outlined"
+                                   onChange={this.onChange} name="co2"/>
+
+                        <Select
+                            value={mediumGUS}
+                            style={{width:'20%',marginLeft:'2%'}}
+                            onChange={this.onChange}
+                            placeholder=""
+                            input={<Input name="unit" id="unit"/>}
+                        >
+                            {unitItems}
+                        </Select> 
+
+                        <br/><br/>
+
+                        <InputLabel htmlFor="ncv">NCV [MJ/kg]</InputLabel>
+                        <TextField id="ncv" label="Wartość" style={{width:'20%',marginLeft:'2%'}}
+                                   className={classes.textField} value={ncv}
+                                   variant="outlined"
+                                   onChange={this.onChange} name="ncv"/>
+
+                        <br/><br/>
+
+                        <InputLabel htmlFor="we">WE [kg/GJ]</InputLabel>
+                        <TextField id="we" label="Wartość" style={{width:'20%',marginLeft:'2%'}}
+                                   className={classes.textField} value={we}
+                                   variant="outlined"
+                                   onChange={this.onChange} name="we"/>
+                        <br/>
+                        <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: "#86C232"}}
+                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
+                                size="large">
                             Dodaj
                         </Button>
 

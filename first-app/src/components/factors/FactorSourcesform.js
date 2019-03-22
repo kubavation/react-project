@@ -60,8 +60,10 @@ class FactorSourcesform extends Component {
             desc: '',
             doi: '',
             bibtex: '',
-            file: '',
-            files: [],
+            //file: '',
+           // files: [],
+            fileName: '',
+            file :  React.createRef(),
 
             open: false,
             vertical: 'top',
@@ -73,13 +75,16 @@ class FactorSourcesform extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.onFileChange = this.onFileChange.bind(this);
     }
 
     componentDidMount() {
-        this.fetchFiles();
+     //   this.fetchFiles();
     }
 
     createFactorSource(factorSource) {
+
+        console.log(factorSource)
 
         fetch('https://jsonplaceholder.typicode.com/todos',{
             method: 'POST',
@@ -95,14 +100,14 @@ class FactorSourcesform extends Component {
             );
     }
 
-    fetchFiles() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
-            .then(response => response.json())
-            .then(files => {
-                files = files.slice(3,8);   //remove
-                this.setState({files: files});
-            });
-    }
+    // fetchFiles() {
+    //     fetch('https://jsonplaceholder.typicode.com/todos')
+    //         .then(response => response.json())
+    //         .then(files => {
+    //             files = files.slice(3,8);   //remove
+    //             this.setState({files: files});
+    //         });
+    // }
 
     handleClose(event, reason) {
         if (reason === 'clickaway') {
@@ -112,24 +117,34 @@ class FactorSourcesform extends Component {
         this.setState({ open: false });
     };
 
+
+    onFileChange(event) {
+        console.log(this.state.file.current.files[0]);
+        const name = this.state.file.current.files[0].name;
+        this.setState({fileName: name});
+    }
+
+
     onSubmit(event) {
         event.preventDefault();
+
 
         const factorSource = {
             date: this.state.date,
             desc: this.state.desc,
             doi: this.state.doi,
             bibtex: this.state.bibtex,
-            file: this.state.file
+            file: this.state.file.current.files[0]
         };
-
+        
         this.createFactorSource(factorSource);
 
         const variant = 'success';  // ? fail?
 
         this.setState({userId: '', title: '',
-            date: '', desc: '', doi: '',bibtex: '',file: '',
+            date: '', desc: '', doi: '',bibtex: '',file: React.createRef(),
             redirect: true, open: true, messageVariant: variant});
+
     };
 
     onChange(event) {
@@ -144,17 +159,17 @@ class FactorSourcesform extends Component {
 
     render() {
         const { classes } = this.props;
-        const { date, desc, doi, bibtex, file, files } = this.state;
+        const { date, desc, doi, bibtex, file, files, fileName } = this.state;
         const { open, messageVariant } = this.state;
 
-        const fileItems = files.map(file => (
-            <MenuItem value={file.id}>{file.title}</MenuItem>
-        ));
+        // const fileItems = files.map(file => (
+        //     <MenuItem value={file.id}>{file.title}</MenuItem>
+        // ));
 
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
-                <Paper style={{marginLeft:'20%',width:'60%'}}>
+                <Paper style={{marginLeft:'20%',width:'60%', backgroundColor:'#CCC',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
                         {/*<TextField*/}
@@ -169,45 +184,72 @@ class FactorSourcesform extends Component {
                                 {/*shrink: true,*/}
                             {/*}}*/}
                         {/*/>*/}
+                      
+                        <br/>
                         <MuiThemeProvider theme={customTheme}>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <Grid container className={classes.grid} justify="space-around">
+                            {/* <Grid container className={classes.grid} justify="space-around"> */}
                                 <DatePicker
                                     id="date"
                                     margin="normal"
                                     format="dd-MM-yyyy"
                                     keyboard
+                                    style={{width:'25%'}}
                                     label="Date"
                                     name="date"
                                     value={date}
                                     onChange={this.handleDateChange}
                                 />
-                            </Grid>
+                            {/* </Grid> */}
                         </MuiPickersUtilsProvider>
                         </MuiThemeProvider>
 
 
-                        <br/>
 
-
-                        <TextField id="doi" label="DOI"
+                        <TextField id="doi" label="DOI" variant="outlined"  style={{marginLeft:'9%',width:'25%'}}
                                    className={classes.textField} margin="normal" value={doi}
                                    onChange={this.onChange} name="doi"/>
 
                         <br/>
 
-                        <TextField id="desc" label="Opis"
+
+                                   
+                        <TextField id="bibtex" label="BibText" variant="outlined"//textarea 
+                                    style={{width:'60%'}}
+                                    multiline
+                                    rows="5"
+                                   className={classes.textField} margin="normal" value={bibtex}
+                                   onChange={this.onChange} name="bibtex"/>
+
+                        <br/>
+
+                        <TextField id="desc" label="Opis" variant="outlined"
+                                    style={{width:'60%'}}
                                    className={classes.textField} margin="normal" value={desc}
                                    onChange={this.onChange} name="desc"/>
 
                         <br/>
+                    
+               
+                        <br/>
+                        <br/>
 
-                        <TextField id="bibtex" label="BibText" //textarea
-                                   className={classes.textField} margin="normal" value={bibtex}
-                                   onChange={this.onChange} name="bibtex"/>
-                        <br/>
-                        <br/>
-                        <InputLabel htmlFor="file">Plik</InputLabel>
+                        <div>
+                        <TextField id="fileName" label="Plik" variant="outlined"
+                                   style={{width:'43%',marginLeft:'0%'}} disabled
+                                   className={classes.textField} margin="normal" value={fileName}
+                                   onChange={this.onChange} name="fileName"/>
+
+
+                       <Button variant="contained" component="label" style={{marginTop:'2%',backgroundColor: "#86C232",color:'#fff'}}
+                        size="large">
+                           Upload file
+                           <input type="file" style={{display: 'none'}} name="file" ref={file} onChange={this.onFileChange}
+                           />
+                       </Button>
+                        </div>
+
+                        {/* <InputLabel htmlFor="file">Plik</InputLabel>
                         <Select
                             value={file}
                             style={{width:'20%'}}
@@ -216,11 +258,12 @@ class FactorSourcesform extends Component {
                             input={<Input name="file" id="file"/>}
                         >
                             {fileItems}
-                        </Select>
+                        </Select> */}
 
                         <br/>
-                        <Button style={{marginBottom: '5%',marginTop:'5%'}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}>
+                        <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: '#86C232'}}
+                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
+                                size="large">
                             Dodaj
                         </Button>
 

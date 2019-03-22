@@ -110,33 +110,36 @@ class FactorNamesForm extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
-                <Paper style={{marginLeft:'20%',width:'60%'}}>
+                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#CCC',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField id="namePl" label="Nazwa PL"
+                        <br/>
+                        <TextField id="namePl" label="Nazwa PL" style={{width:'25%'}}
                                    className={classes.textField} margin="normal" value={namePl}
-                                   onChange={this.onChange} name="namePl"/>
+                                   onChange={this.onChange} name="namePl" variant="outlined"/>
 
 
-                        <TextField id="nameEn" label="Nazwa EN"
+                        <TextField id="nameEn" label="Nazwa EN" style={{marginLeft:'9%',width:'25%'}}
                                    className={classes.textField} margin="normal" value={nameEn}
-                                   onChange={this.onChange} name="nameEn"/>
+                                   onChange={this.onChange} name="nameEn" variant="outlined"/>
 
                         <br/>
+                        <br/>
 
-                        <TextField id="descPl" label="Opis PL"
+                        <TextField id="descPl" label="Opis PL" style={{width:'60%'}}
                                    className={classes.textField} margin="normal" value={descPl}
-                                   onChange={this.onChange} name="descPl"/>
+                                   onChange={this.onChange} name="descPl" variant="outlined"/>
                         <br/>
 
 
-                        <TextField id="descEn" label="Opis EN"
+                        <TextField id="descEn" label="Opis EN" style={{width:'60%'}}
                                    className={classes.textField} margin="normal" value={descEn}
-                                   onChange={this.onChange} name="descEn"/>
+                                   onChange={this.onChange} name="descEn" variant="outlined"/>
 
                         <br/>
-                        <Button style={{marginBottom: '5%',marginTop:'5%'}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}>
+                        <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: "#86C232"}}
+                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
+                                size="large">
                             Dodaj
                         </Button>
 

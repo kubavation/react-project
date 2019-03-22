@@ -98,7 +98,7 @@ class Unitsform extends Component {
         fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(bunit => {
-                 this.setState({baseUnit: 'elo'}) //remove
+                 this.setState({baseUnit: 'jakas jednostka'}) //remove
                 //this.setState({baseUnit: bunit});
             });
     }
@@ -154,7 +154,7 @@ class Unitsform extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie jednostki</h1>
-                <Paper style={{marginLeft:'20%',width:'60%'}}>
+                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#CCC',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
                         <br/><br/>
@@ -186,7 +186,7 @@ class Unitsform extends Component {
                         </Select>
 
 
-                        <Button style={{marginLeft: '2%'}} color="primary" className={classes.button} component={Link}
+                        <Button style={{marginLeft: '2%',color:'#86C232'}}  className={classes.button} component={Link}
                                 to={{pathname: '/units/quantities/create', state: {fromForm: true}}}>
                             Dodaj
                         </Button>
@@ -205,8 +205,9 @@ class Unitsform extends Component {
                         <br/>
 
 
-                        <Button style={{marginBottom: '5%',marginTop:'5%'}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}>
+                        <Button style={{marginBottom: '5%',marginTop:'5%', backgroundColor: "#86C232"}}
+                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
+                                size="large">
                             Dodaj
                         </Button>
 
