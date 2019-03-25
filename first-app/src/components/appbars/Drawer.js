@@ -211,8 +211,8 @@ class MyDrawer extends Component {
             >
                 <div className={classes.drawerHeader}>
                     <h2 style={{marginRight:'20%', color:'#86C232'}}>MENU</h2>
-                    <IconButton onClick={this.handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                    <IconButton onClick={this.handleDrawerClose} style={{color:'#86C232'}}>
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon  /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
 
@@ -226,16 +226,6 @@ class MyDrawer extends Component {
                                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#61892F'}}>
                                     <Typography style={{fontSize: '16px',color: '#000'}}>Quantities</Typography>
                                 </ExpansionPanelSummary>
-                                {/*Zmienione bo nie mogłem dodać koloru czcionki*/}
-                                {/*<ExpansionPanelDetails style={{flexDirection: 'column',backgroundColor:'#474B4F'}}>
-
-                                    <DrawerListItem key="list1" path="/units/quantities/list"
-                                    type="LIST" name="Lista" onClick={this.handleOnClickDrawer}/>
-
-                                    <DrawerListItem key="list2" path="/units/quantities/create"
-                                        type="ADD" name="Dodaj" onClick={this.handleOnClickDrawer}/>
-
-                                </ExpansionPanelDetails>*/}
                                 <ExpansionPanelDetails  style={{flexDirection: 'column'}} >
                                     <ListItem key="list1" className={classes.panel} button component={Link} to={'/units/quantities/list'} onClick={this.handleOnClickDrawer}>
                                         <ListItemIcon style={{color:'#CCC'}}><InboxIcon /></ListItemIcon>

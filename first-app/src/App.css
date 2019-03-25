@@ -51,7 +51,8 @@
 }
 .header{
   position:fixed;
-  padding-left: 40%;
+  margin-left: 40%;
+  margin-right: 40%;
   color: #86C232;
   font-size: 52px;
   font-family: Jazz LET, fantasy;
