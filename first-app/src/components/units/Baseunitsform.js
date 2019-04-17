@@ -72,7 +72,7 @@ class BaseunitsForm extends Component {
         const baseUnit = {
             namePl: this.state.namePl,
             nameEn: this.state.nameEn,
-            shortcut: this.state.short
+            shortcut: this.state.shortcut
         };
 
         this.createBaseUnit(baseUnit);
@@ -97,18 +97,19 @@ class BaseunitsForm extends Component {
     };
 
     createBaseUnit(unit) {
-        fetch('https://jsonplaceholder.typicode.com/todos',{
+        console.log(unit);
+        fetch('http://api.gabryelkamil.pl/base_unit',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(unit)
         })
-            .then(response => response.json())
+            /*.then(response => response.json())
             .then(res => {
                     console.log(res)
                 }
-            );
+            );*/
     }
 
 
@@ -121,7 +122,7 @@ class BaseunitsForm extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie jednostki bazowej</h1>
-                <Paper style={{marginLeft:'30%',width:'40%',backgroundColor:'#CCC',borderRadius:'25px'}}>
+                <Paper style={{marginLeft:'30%',width:'40%',backgroundColor:'#EEE',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
                         <br/>

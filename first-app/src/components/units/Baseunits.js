@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['userId','id','title'] //namePl,nameEn,shortcut
+const itemNames = ['ID','Jednostka','NazwaPL','NazwaEN','Przelicznik'] //namePl,nameEn,shortcut
 
 class Baseunits extends Component {
 
@@ -32,7 +32,7 @@ class Baseunits extends Component {
     }
 
     getBaseUnits() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/get_base_unit')
             .then(response => response.json())
             .then(units => {
                 this.setState({items: units});
@@ -52,7 +52,7 @@ class Baseunits extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Lista jednostek bazowych</h1>
-                <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}>
+                <Paper className={classes.root} style={{backgroundColor:'#EEE',borderRadius:'25px'}}>
                     <PaginTable items={items} itemNames={itemNames}/>
                 </Paper>
             </div>

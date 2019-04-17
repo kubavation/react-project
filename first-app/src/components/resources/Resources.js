@@ -52,7 +52,7 @@ class Resources extends Component {
         return (
             <div>
             <h1 style={{color:'#CCC', fontSize: 40}}>Lista surowców</h1>
-            <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}>
+            <Paper className={classes.root} style={{backgroundColor:'#EEE',borderRadius:'25px'}}>
                 <PaginTable items={items} itemNames={itemNames} />
             </Paper>
             </div>

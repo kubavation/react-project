@@ -56,19 +56,19 @@ class FactorNamesForm extends Component {
     }
 
     createFactorName(factorName) {
-
-        fetch('https://jsonplaceholder.typicode.com/todos',{
+        console.log(factorName);
+        fetch('http://api.gabryelkamil.pl/factor_name',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(factorName)
         })
-            .then(response => response.json())
+            /*.then(response => response.json())
             .then(res => {
                     console.log(res)
                 }
-            );
+            );*/
     }
 
     handleClose(event, reason) {
@@ -110,7 +110,7 @@ class FactorNamesForm extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
-                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#CCC',borderRadius:'25px'}}>
+                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#EEE',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
                         <br/>

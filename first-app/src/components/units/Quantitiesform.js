@@ -86,28 +86,30 @@ class QuantitiesForm extends Component {
     }
 
     fetchBaseUnits() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/get_base_unit')
             .then(response => response.json())
             .then(result => {
-                result = result.slice(3,8);
+                //result = result.slice(3,8);
+                result = result.map(t => t.unit);
+                console.log(result);
                 this.setState({baseUnits: result});
             });
     }
 
     createQuantity(qnt) {
-
-        fetch('https://jsonplaceholder.typicode.com/todos',{
+        console.log(qnt);
+        fetch('http://api.gabryelkamil.pl/quantity',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(qnt)
         })
-            .then(response => response.json())
+            /*.then(response => response.json())
             .then(qnt => {
                 console.log(qnt)
             }
-        );
+        );*/
     }
 
     handleClose(event, reason) {
@@ -122,8 +124,8 @@ class QuantitiesForm extends Component {
         event.preventDefault();
 
         const quantity = {
-            userId: this.state.userId,
-            title: this.state.title,
+            namePl: this.state.namePl,
+            nameEn: this.state.nameEn,
             id: Math.floor(Math.random()*1000)
         };
 
@@ -147,13 +149,13 @@ class QuantitiesForm extends Component {
         const { fromForm } = this.state;
 
         const unitsItems = baseUnits.map((unit) => (
-            <MenuItem value={unit.id}>{unit.title}</MenuItem>
+            <MenuItem value={unit}>{unit}</MenuItem>
         ));
 
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie wielkości fiz/chem</h1>
-                <Paper style={{marginLeft:'30%',width:'40%',backgroundColor:'#CCC',borderRadius:'25px'}}>
+                <Paper style={{marginLeft:'30%',width:'40%',backgroundColor:'#EEE',borderRadius:'25px'}}>
                 <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
                     <br/>

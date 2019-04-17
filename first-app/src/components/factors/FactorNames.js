@@ -51,7 +51,7 @@ class FactorNames extends Component {
 
         return (
             <div>
-            <h1 style={{color:'#CCC', fontSize: 40}}>Lista współczynników</h1>
+            <h1 style={{color:'#EEE', fontSize: 40}}>Lista współczynników</h1>
             <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}>
                 <PaginTable items={items} itemNames={itemNames}/>
             </Paper> 

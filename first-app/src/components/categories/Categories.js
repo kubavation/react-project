@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['userId','id','title'] //namePl,nameEn,descPl,descEn
+const itemNames = ['ID Kategorii','NazwaPL','NazwaEN','OpisPL','OpisEN'] //namePl,nameEn,descPl,descEn
 
 class Categories extends Component {
 
@@ -32,7 +32,7 @@ class Categories extends Component {
     }
 
     getCategories() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/get_category')
             .then(response => response.json())
             .then(categories => {
                 this.setState({items: categories});
@@ -51,7 +51,7 @@ class Categories extends Component {
 
         return (
             <div>
-            <h1 style={{color:'#CCC', fontSize: 40}}>Lista kategorii</h1>
+            <h1 style={{color:'#EEE', fontSize: 40}}>Lista kategorii</h1>
             <Paper style={{backgroundColor:'#CCC',borderRadius:'25px'}} className={classes.root}>
                 <PaginTable items={items} itemNames={itemNames}/>
             </Paper>

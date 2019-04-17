@@ -99,19 +99,19 @@ class Resourcesform extends Component {
     }
 
     createResource(resource) {
-
-        fetch('https://jsonplaceholder.typicode.com/todos',{
+        console.log(resource);
+        fetch('http://api.gabryelkamil.pl/resource',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(resource)
         })
-            .then(response => response.json())
+            /*.then(response => response.json())
             .then(res => {
                     //console.log(res);
                 }
-            );
+            );*/
 
         this.fetchFactorNames();
     }
@@ -220,7 +220,7 @@ class Resourcesform extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie surowca</h1>
-                <Paper style={{marginLeft:'10%',width:'80%',backgroundColor:'#CCC',borderRadius:'25px'}}>
+                <Paper style={{marginLeft:'10%',width:'80%',backgroundColor:'#EEE',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
                         <br/>

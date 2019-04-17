@@ -78,19 +78,19 @@ class Unitsform extends Component {
     }
 
     createUnit(unit) {
-
-        fetch('https://jsonplaceholder.typicode.com/todos',{
+        console.log(unit);
+        fetch('http://api.gabryelkamil.pl/unit',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(unit)
         })
-            .then(response => response.json())
+            /*.then(response => response.json())
             .then(res => {
                     console.log(res)
                 }
-            );
+            );*/
     }
 
 
@@ -154,7 +154,7 @@ class Unitsform extends Component {
         return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie jednostki</h1>
-                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#CCC',borderRadius:'25px'}}>
+                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#EEE',borderRadius:'25px'}}>
                     <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
                         <br/><br/>

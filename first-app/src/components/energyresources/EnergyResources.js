@@ -51,7 +51,7 @@ class EnergyResources extends Component {
 
         return (
             <div>
-            <h1  style={{color:'#CCC', fontSize: 40}}>Lista surowców energetycznych</h1>
+            <h1  style={{color:'#EEE', fontSize: 40}}>Lista surowców energetycznych</h1>
             <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}> 
                 <PaginTable items={items} itemNames={itemNames}/>
             </Paper>
