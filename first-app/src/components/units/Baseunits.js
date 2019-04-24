@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['ID','Jednostka','NazwaPL','NazwaEN','Przelicznik'] //namePl,nameEn,shortcut
+const itemNames = ['ID','Jednostka','NazwaPL','Przelicznik','NazwaEN'] //namePl,nameEn,shortcut
 
 class Baseunits extends Component {
 
@@ -53,7 +53,7 @@ class Baseunits extends Component {
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Lista jednostek bazowych</h1>
                 <Paper className={classes.root} style={{backgroundColor:'#EEE',borderRadius:'25px'}}>
-                    <PaginTable items={items} itemNames={itemNames}/>
+                    <PaginTable items={items} itemNames={itemNames} link={"/units/baseunits/create"}/>
                 </Paper>
             </div>
         )

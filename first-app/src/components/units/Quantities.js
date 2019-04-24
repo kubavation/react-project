@@ -39,7 +39,7 @@ class Quantities extends Component {
     }
 
     getQuantities() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/get_quantity')
             .then(response => response.json())
             .then(qnts => {
                 this.setState({items: qnts});
@@ -60,7 +60,7 @@ class Quantities extends Component {
             <div>
             <h1 style={{color:'#CCC', fontSize: 40}}>Lista wielkości fiz/chem</h1>
             <Paper className={classes.root} style={{backgroundColor:'#EEE',borderRadius:'25px'}}>
-                <PaginTable items={items} itemNames={itemNames}/>
+                <PaginTable items={items} itemNames={itemNames} link={"/units/quantities/create"}/>
             </Paper>
             </div>
         )

@@ -53,7 +53,7 @@ class Files extends Component {
             <div>
             <h1 style={{color:'#CCC', fontSize: 40}}>Lista plików</h1>
             <Paper style={{backgroundColor:'#EEE',borderRadius:'25px'}} className={classes.root}>
-                <PaginTable items={items} itemNames={itemNames}/>
+                <PaginTable items={items} itemNames={itemNames} link={"/files/files/create"}/>
             </Paper>
             </div>
         )

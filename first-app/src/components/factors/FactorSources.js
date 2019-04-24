@@ -53,7 +53,7 @@ class FactorSources extends Component {
             <div>
             <h1 style={{color:'#EEE', fontSize: 40}}>Lista źródeł</h1>
             <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}>
-                <PaginTable items={items} itemNames={itemNames}/>
+                <PaginTable items={items} itemNames={itemNames} link={"/factors/factorsources/create"}/>
             </Paper>
             </div>
         )

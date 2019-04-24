@@ -38,57 +38,88 @@ const styles = theme => ({
 class BaseunitsForm extends Component {
 
     constructor(props) {
-        super();
-        console.log(props.location.state);
-        this.state = {
+        super(props);
 
-            namePl: '',
-            nameEn: '',
-            shortcut: '',
-
-            open: false,
-            vertical: 'top',
-            horizontal: 'center',
-
-            messageVariant: '',
-            fromForm: props.location.state !== undefined
+        if (props.match.params.id !== null && props.match.params.id !== undefined) {
+            console.log(props);
+            this.getForEdit(props);
+        }
+        else {
+            this.state = {
+                namePl: '',
+                nameEn: '',
+                shortcut: '',
+                open: false,
+                vertical: 'top',
+                horizontal: 'center',
+                messageVariant: '',
+                fromForm: props.location.state !== undefined
                     ? props.location.state.fromForm : false
-        };
+            };
+         }
+
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
+    }
+        
+    getForEdit(props) {
+        //fetch('http://api.gabryelkamil.pl/get_base_unit/' + props.match.params.id)
+        fetch('https://jsonplaceholder.typicode.com/todos/2')
+            .then(response => response.json())
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    namePl: res.namePl,
+                    nameEn: res.nameEn,
+                    shortcut: res.shortcut,
+                    open: false,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: '',
+                    fromForm: props.location.state !== undefined
+                        ? props.location.state.fromForm : false,
+                    id: res.id
+                });
+            });
 
-      //  console.log(props.location.state.fromForm);
     }
 
-
-    componentWillReceiveProps(props) {
-        console.log(props);
-    }
 
     onSubmit(event) {
         event.preventDefault();
 
-        const baseUnit = {
-            namePl: this.state.namePl,
-            nameEn: this.state.nameEn,
-            shortcut: this.state.shortcut
-        };
+        let baseUnit;
+
+        if(this.state.id !== undefined && this.state.id !== '') {
+            baseUnit = {
+                namePl: this.state.namePl,
+                nameEn: this.state.nameEn,
+                shortcut: this.state.shortcut,
+                id: this.state.id
+            };
+        } else {
+
+            baseUnit = {
+                namePl: this.state.namePl,
+                nameEn: this.state.nameEn,
+                shortcut: this.state.shortcut
+            };
+        }
+
+        // const baseUnit = {
+        //     namePl: this.state.namePl,
+        //     nameEn: this.state.nameEn,
+        //     shortcut: this.state.shortcut
+        // };
 
         this.createBaseUnit(baseUnit);
-
-        const variant = 'success';  // ? fail?
-
-        //if success
-        this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: variant})
-        //this.setState({userId: '', title: '', redirect: true, open: true, messageVariant: variant});
     };
 
     handleClose(event, reason) {
         if (reason === 'clickaway') {
             return;
         }
-
         this.setState({ open: false });
     };
 
@@ -97,6 +128,9 @@ class BaseunitsForm extends Component {
     };
 
     createBaseUnit(unit) {
+
+        const redirect = unit.id != null;
+
         console.log(unit);
         fetch('http://api.gabryelkamil.pl/base_unit',{
             method: 'POST',
@@ -104,68 +138,85 @@ class BaseunitsForm extends Component {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(unit)
-        })
-            /*.then(response => response.json())
-            .then(res => {
-                    console.log(res)
-                }
-            );*/
+        }).then(response => {
+           if(response.status != "204")
+               this.setState({open: true, messageVariant: 'error'})
+            else {
+               this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: 'success'})
+
+               if(redirect)
+               setTimeout(() =>
+                   this.props.history.push('/units/baseunits/list'), 800);
+           }
+        });
     }
 
 
-    render() {
+     render() {
 
-        const { classes } = this.props;
-        const { namePl, nameEn, shortcut, open, messageVariant } = this.state;
-        const { fromForm } = this.state;
+         if (this.state != null) {
 
-        return (
-            <div>
-                <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie jednostki bazowej</h1>
-                <Paper style={{marginLeft:'30%',width:'40%',backgroundColor:'#EEE',borderRadius:'25px'}}>
-                    <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
+             const {classes} = this.props;
+             const {namePl, nameEn, shortcut, open, messageVariant, id} = this.state;
+             const {fromForm} = this.state;
 
-                        <br/>
-                        <br/>
-                        <TextField id="namePl" label="Nazwa PL" variant="outlined"
-                                   className={classes.textField} margin="normal" value={namePl}
-                                   onChange={this.onChange} name="namePl"/>
+             return (
+                 <div>
 
-                        <TextField id="nameEng" label="Nazwa EN" variant="outlined"
-                                   className={classes.textField} margin="normal" value={nameEn}
-                                   onChange={this.onChange} name="nameEn"/>
-                        <br/>
+                     <h1 style={{color: '#CCC', fontSize: 40}}>Wprowadzanie jednostki bazowej</h1>
+                     <Paper style={{marginLeft: '30%', width: '40%', backgroundColor: '#EEE', borderRadius: '25px'}}>
+                         <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField id="shortcut" label="Skrót" variant="outlined"
-                                   className={classes.textField} margin="normal" value={shortcut}
-                                   onChange={this.onChange} name="shortcut"/>
+                             <br/>
+                             <br/>
+                             <TextField id="namePl" label="Nazwa PL" variant="outlined"
+                                        className={classes.textField} margin="normal" value={namePl}
+                                        onChange={this.onChange} name="namePl"/>
 
-                        <br/>
+                             <TextField id="nameEng" label="Nazwa EN" variant="outlined"
+                                        className={classes.textField} margin="normal" value={nameEn}
+                                        onChange={this.onChange} name="nameEn"/>
+                             <br/>
 
-                        <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: "#86C232"}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
-                                size="large">
-                            Dodaj
-                        </Button>
+                             <TextField id="shortcut" label="Skrót" variant="outlined"
+                                        className={classes.textField} margin="normal" value={shortcut}
+                                        onChange={this.onChange} name="shortcut"/>
 
+                             <br/>
 
-                        { fromForm ? <Button style={{marginLeft: '5%',backgroundColor: "#86C232"}}
-                            variant="contained" color="primary" className={classes.button}
-                             component={Link} size="large"
-                             to={'/units/quantities/create'}>Powrót</Button> : ""}
-
-
-                    </form>
-
-                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
-
-                </Paper>
-
-            </div>
+                             <Button style={{marginBottom: '5%', marginTop: '5%', backgroundColor: "#86C232"}}
+                                     variant="contained" color="primary" className={classes.button} type="submit"
+                                     onSubmit={this.onSubmit}
+                                     size="large"
+                                     disabled={  this.state.namePl === '' ||
+                                                 this.state.nameEn === '' ||
+                                                 this.state.shortcut === '' }
+                                    >
+                                 Dodaj
+                             </Button>
 
 
-        );
-    }
+                             {fromForm ? <Button style={{marginLeft: '5%', backgroundColor: "#86C232"}}
+                                                 variant="contained" color="primary" className={classes.button}
+                                                 component={Link} size="large"
+
+                                                 to={'/units/quantities/create'}>Powrót</Button> : ""}
+
+
+                         </form>
+
+                         <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+
+                     </Paper>
+
+                 </div>
+
+
+             );
+         }
+         else
+             return null;
+     }
 
 }
 

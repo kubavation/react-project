@@ -349,16 +349,16 @@ class MyDrawer extends Component {
 
                     <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon}/>} >
-                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Źródła</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Inne Źródła</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column'}}>
-                            <ListItem key="list1" button component={Link} to={'/resources/resources/list'} onClick={this.handleOnClickDrawer}>
+                            <ListItem key="list1" button component={Link} to={'/factors/factorsources/list'} onClick={this.handleOnClickDrawer}>
                                 <ListItemIcon style={{color:'#CCC',fontSize:'30px'}}><MdEventNote /></ListItemIcon>
                                 <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                             </ListItem>
 
                             {isLoggedIn &&
-                            <ListItem key="list2" button component={Link} to={'/resources/resources/create'} onClick={this.handleOnClickDrawer}>
+                            <ListItem key="list2" button component={Link} to={'/factors/factorsources/create'} onClick={this.handleOnClickDrawer}>
                                 <ListItemIcon style={{color:'#CCC', fontSize:'30px'}}><MdAddCircleOutline/></ListItemIcon>
                                 <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                             </ListItem>}
@@ -435,7 +435,7 @@ class MyDrawer extends Component {
                     <Route path='/units/quantities/list' component={Quantities} />
                     <Route path='/units/quantities/create' component={Quantitiesform} />
                     <Route path='/units/baseunits/list' component={Baseunits} />
-                    <Route path='/units/baseunits/create' component={BaseunitsForm} />
+                    <Route path='/units/baseunits/create/:id?' component={BaseunitsForm} />
                     <Route path='/units/units/create' component={Unitsform} />
                     <Route path='/units/units/list' component={Units} />
                     <Route path='/files/files/list' component={Files} />

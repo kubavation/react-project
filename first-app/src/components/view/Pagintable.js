@@ -4,19 +4,23 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
+import Button from '@material-ui/core/Button';
 
 import TableHeadPagin from '../view/Tableheadpagin';
+import {Link} from "react-router-dom";
+import ListItem from "../appbars/Drawer";
 
 
 class PaginTable extends React.Component {
 
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             items: props.items,
             itemNames: props.itemNames,
             page: 0,
-            rowsPerPage: 10
+            rowsPerPage: 10,
+            link: props.link
         }
 
         this.handleChangePage = this.handleChangePage.bind(this);
@@ -36,11 +40,13 @@ class PaginTable extends React.Component {
     render() {
         const { classes } = this.props;
         const { items, itemNames } = this.props;
-        const { page, rowsPerPage } = this.state;
+        const { page, rowsPerPage, link } = this.state;
 
         const itemComponents = items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(qnt => (
             <TableRow key={qnt.id}>
                 { Object.keys(qnt).map(key => <TableCell>{qnt[key]}</TableCell>) }
+                <TableCell><Button variant="contained"
+                                   component={Link} to={link + '/' + qnt.id}>Edytuj</Button></TableCell>
             </TableRow>
         ));
 

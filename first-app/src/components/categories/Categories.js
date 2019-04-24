@@ -49,11 +49,13 @@ class Categories extends Component {
         const { classes } = this.props;
         const items = this.state.items;
 
+        console.log(items)
+
         return (
             <div>
             <h1 style={{color:'#EEE', fontSize: 40}}>Lista kategorii</h1>
             <Paper style={{backgroundColor:'#CCC',borderRadius:'25px'}} className={classes.root}>
-                <PaginTable items={items} itemNames={itemNames}/>
+                <PaginTable items={items} itemNames={itemNames} link={"/categories/categories/create"}/>
             </Paper>
             </div>
         )
