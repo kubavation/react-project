@@ -433,25 +433,25 @@ class MyDrawer extends Component {
                 <div className={classes.drawerHeader} />
                 <Switch>
                     <Route path='/units/quantities/list' component={Quantities} />
-                    <Route path='/units/quantities/create' component={Quantitiesform} />
+                    <Route path='/units/quantities/create/:id?' component={Quantitiesform} />
                     <Route path='/units/baseunits/list' component={Baseunits} />
                     <Route path='/units/baseunits/create/:id?' component={BaseunitsForm} />
-                    <Route path='/units/units/create' component={Unitsform} />
+                    <Route path='/units/units/create/:id?' component={Unitsform} />
                     <Route path='/units/units/list' component={Units} />
                     <Route path='/files/files/list' component={Files} />
-                    <Route path='/files/files/create' component={Filesform} />
+                    <Route path='/files/files/create/:id?' component={Filesform} />
                     <Route path='/files/folders/list' component={Folders} />
-                    <Route path='/files/folders/create' component={Foldersform} />
+                    <Route path='/files/folders/create/:id?' component={Foldersform} />
                     <Route path='/categories/categories/list' component={Categories} />
-                    <Route path='/categories/categories/create' component={Categoriesform} />
+                    <Route path='/categories/categories/create/:id?' component={Categoriesform} />
                     <Route path='/factors/factornames/list' component={FactorNames} />
-                    <Route path='/factors/factornames/create' component={FactorNamesForm} />
+                    <Route path='/factors/factornames/create/:id?' component={FactorNamesForm} />
                     <Route path='/factors/factorsources/list' component={FactorSources} />
-                    <Route path='/factors/factorsources/create' component={FactorSourcesform} />
+                    <Route path='/factors/factorsources/create/:id?' component={FactorSourcesform} />
                     <Route path='/resources/resources/list' component={Resources} />
-                    <Route path='/resources/resources/create' component={Resourcesform} />
+                    <Route path='/resources/resources/create/:id?' component={Resourcesform} />
                     <Route path='/energyresources/energyresources/list' component={EnergyResources} />
-                    <Route path='/energyresources/energyresources/create' component={EnergyResourcesForm} />
+                    <Route path='/energyresources/energyresources/create/:id?' component={EnergyResourcesForm} />
                     <Route path='/header' component={Header} />
                     <Route path='/login' component={LoginForm} />
                     <Route path='/register' component={RegisterForm} />

@@ -173,10 +173,6 @@ class QuantitiesForm extends Component {
 
         this.createQuantity(quantity);
 
-        //const variant = 'success';  // ? fail?
-
-        //this.setState({userId: '', title: '',
-         //   namePl: '', nameEn: '', baseUnit: '',redirect: true, open: true, messageVariant: variant});
     };
 
     onChange(event) {
@@ -199,7 +195,6 @@ class QuantitiesForm extends Component {
                 unitsItems = baseUnits.map((unit) => (
                     <MenuItem value={unit.id}>{unit.unit_pl}</MenuItem>
                 ));
-                //ss = <div style={{height:'400px'}}>{unitsItems}</div>;
             }
 
             return (

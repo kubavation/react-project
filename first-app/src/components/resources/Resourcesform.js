@@ -53,30 +53,32 @@ const styles = theme => ({
 class Resourcesform extends Component {
 
     constructor(props) {
-        super();
-
-        this.state = {
-            userId: '',
-            title: '',
-            redirect: false,
-
-            namePl: '',
-            nameEn: '',
-            descPl: '',
-            descEn: '',
-            allFactorNames: [], // wszystkie
-            factorNames: [], //wybrane
-            createdFactor: '', //utworzony
-            actualFactorNames: [], //aktualnie dostepne
+        super(props);
 
 
-            open: false,
-            vertical: 'top',
-            horizontal: 'center',
+        if (props.match.params.id !== null && props.match.params.id !== undefined)
+            this.getForEdit(props);
+        else {
+            this.state = {
+                redirect: false,
 
-            messageVariant: ''
-        };
+                namePl: '',
+                nameEn: '',
+                descPl: '',
+                descEn: '',
+                allFactorNames: [], // wszystkie
+                factorNames: [], //wybrane
+                createdFactor: '', //utworzony
+                actualFactorNames: [], //aktualnie dostepne
 
+
+                open: false,
+                vertical: 'top',
+                horizontal: 'center',
+
+                messageVariant: ''
+            };
+        }
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -84,21 +86,45 @@ class Resourcesform extends Component {
         this.addFactor = this.addFactor.bind(this);
     }
 
+    getForEdit(props) {
+        //fetch('http://api.gabryelkamil.pl/get_unit/' + props.match.params.id)
+        fetch('https://jsonplaceholder.typicode.com/todos/2')
+            .then(response => response.json())
+            .then(res => {
+                this.setState({
+                    namePl: res.namePl,
+                    nameEn: res.nameEn,
+                    descPl: res.descPl,
+                    descEn: res.descEn,
+                    id: res.id,
+                    factorNames: res.factorNames,
+
+                    open: false,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: ''
+                });
+            });
+    }
+
     componentDidMount() {
         this.fetchFactorNames();
     }
 
     fetchFactorNames() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/get_factor_name')
+       // fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(result => {
-                result = result.slice(3,7); //pobieranie names
+                result = result.slice(3,7); //pobieranie names //todo remove
                 this.setState({allFactorNames: result.slice(),
                     actualFactorNames: result.slice()});
             });
     }
 
     createResource(resource) {
+
+        const redirect = resource.id != null;
         console.log(resource);
         fetch('http://api.gabryelkamil.pl/resource',{
             method: 'POST',
@@ -106,12 +132,28 @@ class Resourcesform extends Component {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(resource)
-        })
-            /*.then(response => response.json())
-            .then(res => {
-                    //console.log(res);
-                }
-            );*/
+        }).then(response => {
+            if (response.status != "204")
+                this.setState({open: true, messageVariant: 'error'})
+            else {
+                this.setState({
+                    namePl: '',
+                    nameEn: '',
+                    descPl: '',
+                    descEn: '',
+                    factorNames: [],
+
+                    open: true,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: 'success'
+                });
+
+                if(redirect)
+                    setTimeout(() =>
+                        this.props.history.push('/resources/resources/list'), 800);
+            }
+        });
 
         this.fetchFactorNames();
     }
@@ -186,21 +228,27 @@ class Resourcesform extends Component {
     onSubmit(event) {
         event.preventDefault();
 
-        const resource = {
-            namePl: this.state.namePl,
-            nameEn: this.state.nameEn,
-            descPl: this.state.descPl,
-            descEn: this.state.descEn,
-            factorNames: this.state.factorNames
-        };
+        let resource;
+        if(this.state.id !== undefined && this.state.id !== '') {
+            resource = {
+                namePl: this.state.namePl,
+                nameEn: this.state.nameEn,
+                descPl: this.state.descPl,
+                descEn: this.state.descEn,
+                factorNames: this.state.factorNames,
+                id: this.state.id
+            };
+        } else {
+            resource = {
+                namePl: this.state.namePl,
+                nameEn: this.state.nameEn,
+                descPl: this.state.descPl,
+                descEn: this.state.descEn,
+                factorNames: this.state.factorNames
+            };
+        }
 
         this.createResource(resource);
-
-        const variant = 'success';  // ? fail?
-
-        this.setState({userId: '', title: '',
-            namePl: '', nameEn: '', descPl: '', descEn: '', factorNames: [],
-            redirect: true, open: true, messageVariant: variant});
     };
 
     onChange(event) {

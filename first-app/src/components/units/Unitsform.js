@@ -34,29 +34,30 @@ const styles = theme => ({
 class Unitsform extends Component {
 
     constructor(props) {
-        super();
+        super(props);
 
-        this.state = {
-            userId: '',
-            title: '',
-            redirect: false,
-            //remove
+        if (props.match.params.id !== null && props.match.params.id !== undefined)
+            this.getForEdit(props);
+        else {
+            this.state = {
+                redirect: false,
 
+                namePl: '',
+                nameEn: '',
+                shortcut: '',
+                //quantity: {namePl: '', nameEn: '', shortcut: ''},
+                quantity: '',
+                quantities: [],
+                baseUnit: '',
+                ratio: '',
 
-            namePl: '',
-            nameEn: '',
-            shortcut: '',
-            quantity: {namePl: '', nameEn: '', shortcut: ''},
-            quantities: [],
-            baseUnit: '',
-            ratio: '',
+                open: false,
+                vertical: 'top',
+                horizontal: 'center',
 
-            open: false,
-            vertical: 'top',
-            horizontal: 'center',
-
-            messageVariant: ''
-        };
+                messageVariant: ''
+            };
+        }
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -64,48 +65,101 @@ class Unitsform extends Component {
         this.handleQuantityChange= this.handleQuantityChange.bind(this);
     }
 
+    getForEdit(props) {
+        //fetch('http://api.gabryelkamil.pl/get_quantity/' + props.match.params.id)
+        fetch('https://jsonplaceholder.typicode.com/todos/2')
+            .then(response => response.json())
+            .then(res => {
+                this.setState({
+                    namePl: res.namePl,
+                    nameEn: res.nameEn,
+                    shortcut: res.shortcut,
+                    quantity: res.quantity.id,
+                    quantities: [],
+                    baseUnit: res.baseUnit.id,
+                    ratio: res.ratio,
+                    id: res.id,
+
+                    open: false,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: ''
+
+                });
+            });
+    }
+
+
     componentDidMount() {
         this.fetchQuantities();
     }
 
     fetchQuantities() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/get_quantity')
             .then(response => response.json())
             .then(result => {
-                result = result.slice(3,8); // remove
                 this.setState({quantities: result});
             });
     }
 
     createUnit(unit) {
         console.log(unit);
-        fetch('http://api.gabryelkamil.pl/unit',{
+        const redirect = unit.id != null;
+        fetch('http://api.gabryelkamil.pl/unit', {
             method: 'POST',
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(unit)
-        })
-            /*.then(response => response.json())
-            .then(res => {
-                    console.log(res)
-                }
-            );*/
+        }).then(response => {
+            if (response.status != "204")
+                this.setState({open: true, messageVariant: 'error'})
+            else {
+                this.setState({
+                    namePl: '',
+                    nameEn: '',
+                    shortcut: '',
+                    quantity: '',
+                    baseUnit: '',
+                    ratio: '',
+                    open: true,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: 'success'
+                });
+
+                if (redirect)
+                    setTimeout(() =>
+                        this.props.history.push('/units/units/list'), 800);
+            }
+        });
     }
 
 
-    setBaseUnit() {
+    setBaseUnit(qid) {
         fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(bunit => {
                  this.setState({baseUnit: 'jakas jednostka'}) //remove
                 //this.setState({baseUnit: bunit});
             });
+
+        //git
+
+        // fetch('http://api.gabryelkamil.pl/get_quantity/' + qid)
+        //     .then(response => response.json())
+        //     .then(r => {
+        //         fetch('http://api.gabryelkamil.pl/get_base_unit/' + r.baseUnit) //jakie id??
+        //             .then(resp => resp.json())
+        //             .then(res => {
+        //                 this.setState({baseUnit: res.namePl})
+        //             })
+        //     });
     }
 
     handleQuantityChange(event) {
         this.setState({quantity: event.target.value});
-        this.setBaseUnit();
+        this.setBaseUnit(event.target.value); //?
     }
 
 
@@ -120,22 +174,43 @@ class Unitsform extends Component {
     onSubmit(event) {
         event.preventDefault();
 
-        const unit = {
-            namePl: this.state.namePl,
-            nameEn: this.state.nameEn,
-            shortcut: this.state.shortcut,
-            quantity: this.state.quantity,
-            baseUnit: this.state.baseUnit,
-            ratio: this.state.ratio
-        };
+        let unit;
+
+        if(this.state.id !== undefined && this.state.id !== '') {
+
+            unit = {
+                namePl: this.state.namePl,
+                nameEn: this.state.nameEn,
+                shortcut: this.state.shortcut,
+                quantity: this.state.quantity,
+                //baseUnit: this.state.baseUnit,
+                ratio: this.state.ratio,
+                id: this.state.id
+            };
+
+        } else {
+
+            unit = {
+                namePl: this.state.namePl,
+                nameEn: this.state.nameEn,
+                shortcut: this.state.shortcut,
+                quantity: this.state.quantity,
+                //baseUnit: this.state.baseUnit,
+                ratio: this.state.ratio
+            }
+        }
+
+        // const unit = {
+        //     namePl: this.state.namePl,
+        //     nameEn: this.state.nameEn,
+        //     shortcut: this.state.shortcut,
+        //     quantity: this.state.quantity,
+        //     baseUnit: this.state.baseUnit,
+        //     ratio: this.state.ratio
+        // };
 
         this.createUnit(unit);
 
-        const variant = 'success';  // ? fail?
-
-        this.setState({userId: '', title: '', // remove
-            namePl: '', nameEn: '', shortcut: '',quantity: '', baseUnit: '',
-            ratio: '', redirect: true, open: true, messageVariant: variant});
     };
 
     onChange(event) {
@@ -148,7 +223,7 @@ class Unitsform extends Component {
         const { vertical, horizontal, open, messageVariant } = this.state;
 
         const quantitiesItems = quantities.map((qnt) => (
-            <MenuItem value={qnt.id}>{qnt.title}</MenuItem>
+            <MenuItem value={qnt.quantity_id}>{qnt.quantity_name_pl}</MenuItem>
         ));
 
         return (
@@ -207,7 +282,12 @@ class Unitsform extends Component {
 
                         <Button style={{marginBottom: '5%',marginTop:'5%', backgroundColor: "#86C232"}}
                                 variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
-                                size="large">
+                                size="large"
+                                disabled={this.state.namePl === '' ||
+                                this.state.nameEn === '' ||
+                                this.state.shortcut === '' ||
+                                this.state.quantity === '' ||
+                                this.state.ratio === ''}>
                             Dodaj
                         </Button>
 
