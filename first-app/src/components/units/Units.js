@@ -18,7 +18,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['ID','Nazwa PL','title']; //namePl,nameEn,ratio,quantity_id,unit
+const itemNames = ['NazwaPL','NazwaEN','Mnożnik','Skrót']; //namePl,nameEn,ratio,quantity_id,unit
 
 class Units extends Component {
 
@@ -33,7 +33,19 @@ class Units extends Component {
         fetch('http://api.gabryelkamil.pl/get_unit')
             .then(response => response.json())
             .then(units => {
-                this.setState({items: units});
+                let list = [];
+                units.forEach( u => {
+                    const temp  = {
+                        name_pl: u.unit_pl,
+                        name_en: u.unit_eng,
+                        ratio: u.ratio,
+                        shortcut: u.quantity_name
+                    }
+                    list.push(temp);
+                    })
+
+                this.setState({items: list});
+                console.log(list);
             });
     };
 

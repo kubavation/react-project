@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['ID Kategorii','NazwaPL','NazwaEN','OpisPL','OpisEN'] //namePl,nameEn,descPl,descEn
+const itemNames = ['NazwaPL','NazwaEN','OpisPL','OpisEN'] //namePl,nameEn,descPl,descEn
 
 class Categories extends Component {
 
@@ -35,7 +35,18 @@ class Categories extends Component {
         fetch('http://api.gabryelkamil.pl/get_category')
             .then(response => response.json())
             .then(categories => {
-                this.setState({items: categories});
+                let list = [];
+                categories.forEach( u => {
+                    const temp  = {
+                        cat_name_pl: u.cat_name_pl,
+                        cat_name_eng: u.cat_name_eng,
+                        desc_pl: u.cat_description_pl,
+                        desc_en: u.cat_description_eng
+                    }
+                    list.push(temp);
+                })
+                this.setState({items: list});
+                console.log(categories);
             });
     };
 
@@ -49,12 +60,10 @@ class Categories extends Component {
         const { classes } = this.props;
         const items = this.state.items;
 
-        console.log(items)
-
         return (
             <div>
             <h1 style={{color:'#EEE', fontSize: 40}}>Lista kategorii</h1>
-            <Paper style={{backgroundColor:'#CCC',borderRadius:'25px'}} className={classes.root}>
+            <Paper style={{backgroundColor:'#EEE',borderRadius:'25px'}} className={classes.root}>
                 <PaginTable items={items} itemNames={itemNames} link={"/categories/categories/create"}/>
             </Paper>
             </div>

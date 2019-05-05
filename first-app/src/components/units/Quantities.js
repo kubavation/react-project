@@ -27,7 +27,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['userId','id','title']
+const itemNames = ['NazwaPL','NazwaEN','Jednostka Bazowa']
 
 class Quantities extends Component {
 
@@ -42,7 +42,20 @@ class Quantities extends Component {
         fetch('http://api.gabryelkamil.pl/get_quantity')
             .then(response => response.json())
             .then(qnts => {
-                this.setState({items: qnts});
+                let list = [];
+                qnts.forEach( q => {
+                    const temp = {
+                        name_pl: q.quantity_name_pl,
+                        name_en: q.quantity_name_eng,
+                        short: q.base_unit,
+                        id: q.quantity_id
+                    }
+                    list.push(temp);
+                })
+
+                this.setState({items: list});
+                console.log(qnts);
+
             });
     };
 

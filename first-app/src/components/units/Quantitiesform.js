@@ -17,6 +17,7 @@ import SnackBarForm from '../view/Snackbarform'
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarFormWrapper from '../view/Snackbarformwrapper';
 
+
 const styles = theme => ({
     container: {
         display: 'flex',
@@ -54,13 +55,17 @@ const styles = theme => ({
 
 
 
+
 class QuantitiesForm extends Component {
 
     constructor(props) {
         super(props);
 
-        if (props.match.params.id !== null && props.match.params.id !== undefined)
+        if (props.match.params.id !== null && props.match.params.id !== undefined){
+            console.log(props);
             this.getForEdit(props);
+        }
+
         else {
             this.state = {
                 redirect: false,
@@ -82,14 +87,14 @@ class QuantitiesForm extends Component {
 
 
     getForEdit(props) {
-        //fetch('http://api.gabryelkamil.pl/get_unit/' + props.match.params.id)
-        fetch('https://jsonplaceholder.typicode.com/todos/2')
+        fetch('http://api.gabryelkamil.pl/get_unit/' + props.match.params.id)
+        //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
                 this.setState({
-                    namePl: res.namePl,
-                    nameEn: res.nameEn,
-                    id: res.id,
+                    namePl: res.quantity_name_pl,
+                    nameEn: res.quantity_name_eng,
+                    id: res.quantity_id,
                     baseUnit: res.baseUnit.id,
                     open: false,
                     vertical: 'top',
@@ -113,7 +118,7 @@ class QuantitiesForm extends Component {
     }
 
     createQuantity(qnt) {
-
+        console.log(qnt);
         const redirect = qnt.id != null;
         fetch('http://api.gabryelkamil.pl/quantity',{
             method: 'POST',

@@ -44,7 +44,10 @@ class PaginTable extends React.Component {
 
         const itemComponents = items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(qnt => (
             <TableRow key={qnt.id}>
-                { Object.keys(qnt).map(key => <TableCell>{qnt[key]}</TableCell>) }
+                { Object.keys(qnt).map(key => {
+                if(key !== 'id')
+                     return <TableCell >{qnt[key]}</TableCell>})
+                }
                 <TableCell><Button variant="contained"
                                    component={Link} to={link + '/' + qnt.id}>Edytuj</Button></TableCell>
             </TableRow>
@@ -52,9 +55,9 @@ class PaginTable extends React.Component {
 
         return (
             <div>
-                <Table>
-                    <TableHeadPagin items={itemNames}/>
-                    <TableBody>
+                <Table >
+                    <TableHeadPagin items={itemNames} />
+                    <TableBody >
                         {itemComponents}
                     </TableBody>
                 </Table>
