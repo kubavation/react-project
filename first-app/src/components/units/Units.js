@@ -39,7 +39,8 @@ class Units extends Component {
                         name_pl: u.unit_pl,
                         name_en: u.unit_eng,
                         ratio: u.ratio,
-                        shortcut: u.quantity_name
+                        shortcut: u.quantity_name,
+                        id: u.id
                     }
                     list.push(temp);
                     })

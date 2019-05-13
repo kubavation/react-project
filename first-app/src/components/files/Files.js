@@ -32,7 +32,7 @@ class Files extends Component {
     }
 
     getFiles() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/file')
             .then(response => response.json())
             .then(files => {
                 this.setState({items: files});

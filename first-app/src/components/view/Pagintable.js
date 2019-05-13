@@ -15,6 +15,7 @@ class PaginTable extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log(props.items)
         this.state = {
             items: props.items,
             itemNames: props.itemNames,
@@ -41,6 +42,7 @@ class PaginTable extends React.Component {
         const { classes } = this.props;
         const { items, itemNames } = this.props;
         const { page, rowsPerPage, link } = this.state;
+
 
         const itemComponents = items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(qnt => (
             <TableRow key={qnt.id}>

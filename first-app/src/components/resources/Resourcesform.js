@@ -56,8 +56,9 @@ class Resourcesform extends Component {
         super(props);
 
 
-        if (props.match.params.id !== null && props.match.params.id !== undefined)
+        if (props.match.params.id !== null && props.match.params.id !== undefined) {
             this.getForEdit(props);
+        }
         else {
             this.state = {
                 redirect: false,
@@ -87,17 +88,18 @@ class Resourcesform extends Component {
     }
 
     getForEdit(props) {
-        //fetch('http://api.gabryelkamil.pl/get_unit/' + props.match.params.id)
-        fetch('https://jsonplaceholder.typicode.com/todos/2')
+        console.log(props)
+        fetch('http://api.gabryelkamil.pl/resource/' + props.match.params.id)
+        //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
                 this.setState({
-                    namePl: res.namePl,
-                    nameEn: res.nameEn,
-                    descPl: res.descPl,
-                    descEn: res.descEn,
-                    id: res.id,
-                    factorNames: res.factorNames,
+                    namePl: res.resource_name_pl,
+                    nameEn: res.resource_name_eng,
+                    descPl: res.resource_description_pl,
+                    descEn: res.resource_description_eng,
+                    id: res.resource_id,
+                    //factorNames: res.factorNames,
 
                     open: false,
                     vertical: 'top',

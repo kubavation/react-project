@@ -36,8 +36,10 @@ class Unitsform extends Component {
     constructor(props) {
         super(props);
 
-        if (props.match.params.id !== null && props.match.params.id !== undefined)
-            this.getForEdit(props);
+        if (props.match.params.id != null && props.match.params.id != undefined) {
+            console.log(props.match.params)
+            this.getForEdit(props.match.params.id);
+        }
         else {
             this.state = {
                 redirect: false,
@@ -65,18 +67,22 @@ class Unitsform extends Component {
         this.handleQuantityChange= this.handleQuantityChange.bind(this);
     }
 
-    getForEdit(props) {
-        //fetch('http://api.gabryelkamil.pl/get_quantity/' + props.match.params.id)
-        fetch('https://jsonplaceholder.typicode.com/todos/2')
+    getForEdit(xd) {
+        console.log(xd)
+        fetch('http://api.gabryelkamil.pl/unit/' + xd)
+        //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
+                res = res[0];
+                console.log(res[0]);
                 this.setState({
-                    namePl: res.namePl,
-                    nameEn: res.nameEn,
+                    namePl: res.unit_pl,
+                    nameEn: res.unit_eng,
                     shortcut: res.shortcut,
-                    quantity: res.quantity.id,
+                    //quantity: res.quantity.id,
+                    quantity: res.quantity_name,
                     quantities: [],
-                    baseUnit: res.baseUnit.id,
+                    //baseUnit: res.baseUnit.id,
                     ratio: res.ratio,
                     id: res.id,
 
@@ -135,13 +141,46 @@ class Unitsform extends Component {
         });
     }
 
+    updateUnit(unit) {
+        console.log(unit);
+        const redirect = unit.id != null;
+        fetch('http://api.gabryelkamil.pl/unit/' + unit.id, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(unit)
+        }).then(response => {
+            if (response.status != "204")
+                this.setState({open: true, messageVariant: 'error'})
+            else {
+                this.setState({
+                    namePl: '',
+                    nameEn: '',
+                    shortcut: '',
+                    quantity: '',
+                    baseUnit: '',
+                    ratio: '',
+                    open: true,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: 'success'
+                });
+
+                if (redirect)
+                    setTimeout(() =>
+                        this.props.history.push('/units/units/list'), 800);
+            }
+        });
+    }
+
 
     setBaseUnit(qid) {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/quantity/' + qid)
             .then(response => response.json())
             .then(bunit => {
-                 this.setState({baseUnit: 'jakas jednostka'}) //remove
-                //this.setState({baseUnit: bunit});
+                console.log(bunit)
+                 this.setState({baseUnit: bunit.base_unit})
             });
 
         //git
@@ -185,8 +224,11 @@ class Unitsform extends Component {
                 quantity: this.state.quantity,
                 //baseUnit: this.state.baseUnit,
                 ratio: this.state.ratio,
-                id: this.state.id
+               // id: this.state.id
             };
+
+            this.updateUnit(unit);
+
 
         } else {
 
@@ -198,6 +240,9 @@ class Unitsform extends Component {
                 //baseUnit: this.state.baseUnit,
                 ratio: this.state.ratio
             }
+
+            this.createUnit(unit);
+
         }
 
         // const unit = {
@@ -209,7 +254,6 @@ class Unitsform extends Component {
         //     ratio: this.state.ratio
         // };
 
-        this.createUnit(unit);
 
     };
 
@@ -218,92 +262,96 @@ class Unitsform extends Component {
     };
 
     render() {
-        const { classes } = this.props;
-        const { namePl,nameEn,shortcut,quantities,baseUnit,ratio,quantity } = this.state;
-        const { vertical, horizontal, open, messageVariant } = this.state;
+        const {classes} = this.props;
 
-        const quantitiesItems = quantities.map((qnt) => (
-            <MenuItem value={qnt.quantity_id}>{qnt.quantity_name_pl}</MenuItem>
-        ));
+        if (this.state != null) {
+            const {namePl, nameEn, shortcut, quantities, baseUnit, ratio, quantity} = this.state;
+            const {vertical, horizontal, open, messageVariant} = this.state;
 
-        return (
-            <div>
-                <h1 style={{color:'#CCC', fontSize: 40}}>Wprowadzanie jednostki</h1>
-                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#EEE',borderRadius:'25px'}}>
-                    <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
+            const quantitiesItems = quantities.map((qnt) => (
+                <MenuItem value={qnt.quantity_id}>{qnt.quantity_name_pl}</MenuItem>
+            ));
 
-                        <br/><br/>
-                        <TextField id="namePl" label="Nazwa PL" variant="outlined"
-                                   className={classes.textField} margin="normal" value={namePl}
-                                   onChange={this.onChange} name="namePl"/>
+            return (
+                <div>
+                    <h1 style={{color: '#CCC', fontSize: 40}}>Wprowadzanie jednostki</h1>
+                    <Paper style={{marginLeft: '20%', width: '60%', backgroundColor: '#EEE', borderRadius: '25px'}}>
+                        <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField id="nameEng" label="Nazwa EN" variant="outlined"
-                                   className={classes.textField} margin="normal" value={nameEn}
-                                   onChange={this.onChange} name="nameEn"/>
-                        <br/>
+                            <br/><br/>
+                            <TextField id="namePl" label="Nazwa PL" variant="outlined"
+                                       className={classes.textField} margin="normal" value={namePl}
+                                       onChange={this.onChange} name="namePl"/>
 
-                        <TextField id="shortcut" label="Skrót" variant="outlined"
-                                   className={classes.textField} margin="normal" value={shortcut}
-                                   onChange={this.onChange} name="shortcut"/>
-                        <br/>
+                            <TextField id="nameEng" label="Nazwa EN" variant="outlined"
+                                       className={classes.textField} margin="normal" value={nameEn}
+                                       onChange={this.onChange} name="nameEn"/>
+                            <br/>
 
-
-                        <br/>
-                        <InputLabel htmlFor="quantity">Wielkość fiz/chem</InputLabel>
-                        <Select
-                            value={this.state.quantity}
-                            style={{width:'20%'}}
-                            onChange={this.handleQuantityChange}
-                            placeholder="Wielkość fiz/chem"
-                            input={<Input name="quantity" id="quantity"/>}
-                        >
-                            {quantitiesItems}
-                        </Select>
+                            <TextField id="shortcut" label="Skrót" variant="outlined"
+                                       className={classes.textField} margin="normal" value={shortcut}
+                                       onChange={this.onChange} name="shortcut"/>
+                            <br/>
 
 
-                        <Button style={{marginLeft: '2%',color:'#86C232'}}  className={classes.button} component={Link}
-                                to={{pathname: '/units/quantities/create', state: {fromForm: true}}}>
-                            Dodaj
-                        </Button>
-
-                        <br/>
-
-                        <TextField id="baseUnit" label="Jednostka bazowa" variant="outlined"
-                                   className={classes.textField} margin="normal" disabled value={baseUnit}
-                                   onChange={this.onChange} name="baseUnit"/>
-
-                        <TextField id="ratio" label="Przelicznik" variant="outlined"
-                                   className={classes.textField} margin="normal" value={ratio}
-                                   onChange={this.onChange} name="ratio"/>
-                        <br/>
-
-                        <br/>
+                            <br/>
+                            <InputLabel htmlFor="quantity">Wielkość fiz/chem</InputLabel>
+                            <Select
+                                value={this.state.quantity}
+                                style={{width: '20%'}}
+                                onChange={this.handleQuantityChange}
+                                placeholder="Wielkość fiz/chem"
+                                input={<Input name="quantity" id="quantity"/>}
+                            >
+                                {quantitiesItems}
+                            </Select>
 
 
-                        <Button style={{marginBottom: '5%',marginTop:'5%', backgroundColor: "#86C232"}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
-                                size="large"
-                                disabled={this.state.namePl === '' ||
-                                this.state.nameEn === '' ||
-                                this.state.shortcut === '' ||
-                                this.state.quantity === '' ||
-                                this.state.ratio === ''}>
-                            Dodaj
-                        </Button>
+                            <Button style={{marginLeft: '2%', color: '#86C232'}} className={classes.button}
+                                    component={Link}
+                                    to={{pathname: '/units/quantities/create', state: {fromForm: true}}}>
+                                Dodaj
+                            </Button>
+
+                            <br/>
+
+                            <TextField id="baseUnit" label="Jednostka bazowa" variant="outlined"
+                                       className={classes.textField} margin="normal" disabled value={baseUnit}
+                                       onChange={this.onChange} name="baseUnit"/>
+
+                            <TextField id="ratio" label="Przelicznik" variant="outlined"
+                                       className={classes.textField} margin="normal" value={ratio}
+                                       onChange={this.onChange} name="ratio"/>
+                            <br/>
+
+                            <br/>
 
 
+                            <Button style={{marginBottom: '5%', marginTop: '5%', backgroundColor: "#86C232"}}
+                                    variant="contained" color="primary" className={classes.button} type="submit"
+                                    onSubmit={this.onSubmit}
+                                    size="large"
+                                    disabled={this.state.namePl === '' ||
+                                    this.state.nameEn === '' ||
+                                    this.state.shortcut === '' ||
+                                    this.state.quantity === '' ||
+                                    this.state.ratio === ''}>
+                                Dodaj
+                            </Button>
 
 
-                    </form>
+                        </form>
 
-                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
 
-                </Paper>
+                    </Paper>
 
-            </div>
+                </div>
 
-        )
+            )
 
+        }
+        return null;
     }
 
 }

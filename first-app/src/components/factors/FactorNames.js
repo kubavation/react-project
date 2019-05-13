@@ -32,7 +32,7 @@ class FactorNames extends Component {
     }
 
     getFactorNames() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/sources')
             .then(response => response.json())
             .then(names => {
                 this.setState({items: names});

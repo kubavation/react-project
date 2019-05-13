@@ -32,10 +32,23 @@ class EnergyResources extends Component {
     }
 
     getResources() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/energy_resource')
             .then(response => response.json())
             .then(resources => {
-                this.setState({items: resources});
+                console.log(resources)
+                let list = [];
+                resources.forEach( u => {
+                    const temp  = {
+                        namePl: u.resource_name_pl,
+                        nameEn: u.resource_name_eng,
+                        descPl : u.resource_description_pl,
+                        descEn : u.resource_description_eng,
+                        gus_category: u.gus_category_id,
+                        id: u.resource_id
+                    }
+                    list.push(temp);
+                })
+                this.setState({items: list});
             });
     };
 
@@ -53,7 +66,7 @@ class EnergyResources extends Component {
             <div>
             <h1  style={{color:'#EEE', fontSize: 40}}>Lista surowców energetycznych</h1>
             <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}> 
-                <PaginTable items={items} itemNames={itemNames} link={"/energyresources/energyresources /create"}/>
+                <PaginTable items={items} itemNames={itemNames} link={"/energyresources/energyresources/create"}/>
             </Paper>
             </div>
         )

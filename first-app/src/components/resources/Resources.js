@@ -32,10 +32,22 @@ class Resources extends Component {
     }
 
     getResources() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://api.gabryelkamil.pl/resource')
             .then(response => response.json())
             .then(resources => {
-                this.setState({items: resources});
+                console.log(resources)
+                let list = [];
+                resources.forEach( u => {
+                    const temp  = {
+                        namePl: u.resource_name_pl,
+                        nameEn: u.resource_name_eng,
+                        descPl : u.resource_description_pl,
+                        descEn : u.resource_description_eng,
+                        id: u.resource_id
+                    }
+                    list.push(temp);
+                })
+                this.setState({items: list});
             });
     };
 

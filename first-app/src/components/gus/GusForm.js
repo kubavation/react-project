@@ -56,7 +56,7 @@ const styles = theme => ({
 
 
 
-class QuantitiesForm extends Component {
+class GusForm extends Component {
 
     constructor(props) {
         super(props);
@@ -72,7 +72,9 @@ class QuantitiesForm extends Component {
                 namePl: '',
                 nameEn: '',
                 baseUnit: '',
+                gusId : '',
                 baseUnits: [],
+                source:'',
                 fromForm: props.location.state !== undefined
                     ? props.location.state.fromForm : false,
             };
@@ -87,22 +89,25 @@ class QuantitiesForm extends Component {
 
 
     getForEdit(props) {
-        fetch('http://api.gabryelkamil.pl/quantity/' + props.match.params.id)
+        fetch('http://api.gabryelkamil.pl/gus_category/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
                 console.log(res)
                 this.setState({
-                    namePl: res.quantity_name_pl,
-                    nameEn: res.quantity_name_eng,
-                    id: res.quantity_id,
-                   // baseUnit: res.baseUnit.id,
-                    baseUnit: res.base_unit,
+                    namePl: res.name_pl,
+                    nameEn: res.name_eng,
+                    gusId: res.gus_id,
+                    source: res.source,
+                    unitId: res.unit_id,
+                    shortcutUnit: res.shortcut_unit,
+                    id: res.id,
+                    baseUnit: '',
+                    baseUnits: [],
                     open: false,
                     vertical: 'top',
                     horizontal: 'center',
-                    messageVariant: '',
-                    baseUnits:[]
+                    messageVariant: ''
                 });
             });
     }
@@ -112,7 +117,7 @@ class QuantitiesForm extends Component {
     }
 
     fetchBaseUnits() {
-        fetch('http://api.gabryelkamil.pl/base_unit')
+        fetch('http://api.gabryelkamil.pl/unit')
             .then(response => response.json())
             .then(result => {
                 this.setState({baseUnits: result});
@@ -120,18 +125,19 @@ class QuantitiesForm extends Component {
     }
 
     createQuantity(qnt) {
-        console.log(qnt);   
 
         const qntNew = {
-            namePl: qnt.namePl,
-            nameEn: qnt.nameEn,
-            id: qnt.baseUnit
+            name_pl: qnt.namePl,
+            name_eng: qnt.nameEn,
+            unit_id: qnt.baseUnit,
+            source: qnt.source,
+            gus_id: qnt.gusId
         }
 
         console.log(qntNew);
 
         const redirect = qnt.id != null;
-        fetch('http://api.gabryelkamil.pl/quantity',{
+        fetch('http://api.gabryelkamil.pl/gus_category',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -162,15 +168,17 @@ class QuantitiesForm extends Component {
         console.log(qnt);
 
         const qntNew = {
-            namePl: qnt.namePl,
-            nameEn: qnt.nameEn,
-            id: qnt.baseUnit
+            name_pl: qnt.namePl,
+            name_eng: qnt.nameEn,
+            unit_id: qnt.baseUnit,
+            source: qnt.source,
+            gus_id: qnt.gusId
         }
 
         console.log(qntNew);
 
         const redirect = qnt.id != null;
-        fetch('http://api.gabryelkamil.pl/quantity/' + qnt.id,{
+        fetch('http://api.gabryelkamil.pl/gus_category/' + qnt.id,{
             method: 'PUT',
             headers: {
                 'content-type' : 'application/json'
@@ -216,6 +224,8 @@ class QuantitiesForm extends Component {
                 nameEn: this.state.nameEn,
                 id: this.state.id,
                 baseUnit: this.state.baseUnit,
+                source: this.state.source,
+                gusId: this.state.gusId
             };
 
             this.updateQuantity(quantity)
@@ -224,8 +234,9 @@ class QuantitiesForm extends Component {
             quantity = {
                 namePl: this.state.namePl,
                 nameEn: this.state.nameEn,
-                baseUnit: this.state.baseUnit
-
+                baseUnit: this.state.baseUnit,
+                source: this.state.source,
+                gusId: this.state.gusId
             };
 
             this.createQuantity(quantity);
@@ -236,7 +247,7 @@ class QuantitiesForm extends Component {
     };
 
     onChange(event) {
-       this.setState({[event.target.name] : event.target.value});
+        this.setState({[event.target.name] : event.target.value});
     };
 
     render() {
@@ -244,7 +255,7 @@ class QuantitiesForm extends Component {
         if (this.state != null) {
 
             const {classes} = this.props;
-            const {userId, title, namePl, nameEn, baseUnit } = this.state;
+            const {userId, title, namePl, nameEn, baseUnit,source,gusId } = this.state;
             const {baseUnits} = this.state;
             const {vertical, horizontal, open, messageVariant} = this.state;
             const {fromForm} = this.state;
@@ -306,23 +317,67 @@ class QuantitiesForm extends Component {
                             <br/>
                             <br/>
 
+                            <TextField id="source" label="Źródło"
+                                       className={classes.textField} margin="normal" value="gus.gov.pl/2019"
+                                       onChange={this.onChange} name="source"
+                                       variant="outlined"
+                                       disabled="true"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}
+
+                            />
+                            <br/>
+
+                            <TextField id="gus_id" label="GUS ID"
+                                       className={classes.textField} margin="normal" value={gusId}
+                                       onChange={this.onChange} name="gusId"
+                                       variant="outlined"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}
+
+                            />
+                            <br/>
+
+
                             <br/>
                             <InputLabel style={{marginRight: '2%'}} htmlFor="base-unit">Jednostka bazowa</InputLabel>
                             <Select
                                 value={this.state.baseUnit}
                                 style={{width: '20%'}}
                                 onChange={this.onChange}
-                                placeholder="Jednostka bazowa"
+                                placeholder="Jednostka"
                                 input={<Input name="baseUnit" id="base-unit"/>}
                             >
                                 {/*<div id="xd" style={{height:'400px'}} >*/}
-                                    {unitsItems}
+                                {unitsItems}
                                 {/*</div>*/}
                             </Select>
 
                             <Button style={{marginLeft: '2%', color: "#86C232"}} color="primary"
-                                className={classes.button} component={Link}
-                                    to={{pathname: '/units/baseunits/create', state: {fromForm: true}}}>
+                                    className={classes.button} component={Link}
+                                    to={{pathname: '/units/units/create', state: {fromForm: true}}}>
                                 Dodaj
                             </Button>
                             <br/>
@@ -333,8 +388,8 @@ class QuantitiesForm extends Component {
                                     onSubmit={this.onSubmit}
                                     size="large"
                                     disabled={  this.state.namePl === '' ||
-                                                this.state.nameEn === '' ||
-                                                this.state.baseUnit === '' }
+                                    this.state.nameEn === '' ||
+                                    this.state.baseUnit === '' }
                             >
                                 Dodaj
                             </Button>
@@ -369,4 +424,4 @@ class QuantitiesForm extends Component {
 
 // export default connect(null, {createQuantity})(withStyles(styles)(QuantitiesForm));
 
-export default withStyles(styles)(QuantitiesForm);
+export default withStyles(styles)(GusForm);

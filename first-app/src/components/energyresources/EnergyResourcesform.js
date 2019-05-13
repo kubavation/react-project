@@ -35,50 +35,91 @@ const styles = theme => ({
 class EnergyResourcesForm extends Component {
 
     constructor(props) {
-        super();
+        super(props);
 
-        this.state = {
-            mediumGUS: '',
-            allMediumGUS: [],
-            codeGUS: '',
-            name: '',
-            co2: '',
-            units: [],
-            unit: '',
-            ncv: '',
-            we: '',
+        if (props.match.params.id !== null && props.match.params.id !== undefined) {
+            this.getForEdit(props);
+        }
+        else {
+            this.state = {
+                gus: '',
+                gus_all: [],
+                codeGUS: '',
+                name: '',
+                co2: '',
+                units: [],
+                unit: '',
+                ncv: '',
+                we: '',
 
-            open: false,
-            vertical: 'top',
-            horizontal: 'center',
+                open: false,
+                vertical: 'top',
+                horizontal: 'center',
 
-            messageVariant: ''
-        };
+                messageVariant: ''
+            };
+        }
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
     }
 
+    getForEdit(props) {
+        fetch('http://api.gabryelkamil.pl/energy_resource/' + props.match.params.id)
+            .then(response => response.json())
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    namePl: res.quantity_name_pl,
+                    nameEn: res.quantity_name_eng,
+                    id: res.quantity_id,
+                    // baseUnit: res.baseUnit.id,
+                    baseUnit: res.base_unit,
+                    open: false,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: '',
+                    baseUnits:[]
+                });
+            });
+    }
+
     componentDidMount() {
+        this.fetchGus();
         this.fetchMedium();
         this.fetchUnits();
     }
 
-    createFactorSource(factorSource) {
+    fetchGus() {
+        fetch('http://api.gabryelkamil.pl/gus_category',{
+            method: 'GET',
+            headers: {
+                'content-type' : 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(res => {
+                    console.log(res);
+                    this.setState({gus_all:res})
+                }
+            );
+    }
 
-        fetch('https://jsonplaceholder.typicode.com/todos',{
+    createEnergyResource(esource) {
+
+        fetch('http://api.gabryelkamil.pl/energy_resource',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
-            body: JSON.stringify(factorSource)
+            body: JSON.stringify(esource)
         })
-            /*.then(response => response.json())
+            .then(response => response.json())
             .then(res => {
                     console.log(res)
                 }
-            );*/
+            );
     }
 
     fetchMedium() {
@@ -111,7 +152,7 @@ class EnergyResourcesForm extends Component {
         event.preventDefault();
 
         const energyResource = {
-            mediumGUS: this.state.mediumGUS,
+          //  mediumGUS: this.state.mediumGUS,
             codeGUS: this.state.codeGUS,
             name: this.state.name,
             co2: this.state.co2,
@@ -124,7 +165,7 @@ class EnergyResourcesForm extends Component {
 
         const variant = 'success';  // ? fail?
 
-        this.setState({enmediumGUSergy: '', codeGUS: '',
+        this.setState({mediumGUSergy: '', codeGUS: '',
         name: '', co2: '', unit: '',ncv: '',we: '',
             redirect: true, open: true, messageVariant: variant});
     };
@@ -134,13 +175,16 @@ class EnergyResourcesForm extends Component {
     };
 
     render() {
+
+        if(this.state != null) {
+
         const { classes } = this.props;
-        const { mediumGUS, allMediumGUS, codeGUS, name, co2, unit,units, ncv, we } = this.state;
+        const { mediumGUS, gus_all, codeGUS, name, co2, unit,units, ncv, we } = this.state;
         const { open, messageVariant } = this.state;
 
-        const mediumItems = allMediumGUS.map(med => (
-            <MenuItem value={med.id}>{med.title}</MenuItem>
-        ));
+        // const mediumItems = allMediumGUS.map(med => (
+        //     <MenuItem value={med.id}>{med.title}</MenuItem>
+        // ));
 
         const unitItems = units.map(unit => (
             <MenuItem value={unit.id}>{unit.title}</MenuItem>
@@ -154,16 +198,16 @@ class EnergyResourcesForm extends Component {
 
                         <br/>
 
-                        <InputLabel htmlFor="medium">Nośnik wg GUS</InputLabel>
-                        <Select
-                            value={mediumGUS}
-                            style={{width:'20%',marginRight:'8%'}}
-                            onChange={this.onChange}
-                            placeholder=""
-                            input={<Input name="medium" id="medium"/>}
-                        >
-                            {mediumItems}
-                        </Select> 
+                        {/*<InputLabel htmlFor="medium">Nośnik wg GUS</InputLabel>*/}
+                        {/*<Select*/}
+                            {/*value={mediumGUS}*/}
+                            {/*style={{width:'20%',marginRight:'8%'}}*/}
+                            {/*onChange={this.onChange}*/}
+                            {/*placeholder=""*/}
+                            {/*input={<Input name="medium" id="medium"/>}*/}
+                        {/*>*/}
+                            {/*{mediumItems}*/}
+                        {/*</Select> */}
 
                         <br/>
                         <br/>
@@ -231,6 +275,9 @@ class EnergyResourcesForm extends Component {
             </div>
 
         )
+        }
+        else return null;
+
 
     }
 
