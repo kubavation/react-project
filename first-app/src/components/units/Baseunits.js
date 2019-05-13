@@ -32,7 +32,7 @@ class Baseunits extends Component {
     }
 
     getBaseUnits() {
-        fetch('http://api.gabryelkamil.pl/get_base_unit')
+        fetch('http://api.gabryelkamil.pl/base_unit')
             .then(response => response.json())
             .then(units => {
                 let list = [];

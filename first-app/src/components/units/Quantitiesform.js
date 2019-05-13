@@ -110,7 +110,7 @@ class QuantitiesForm extends Component {
     }
 
     fetchBaseUnits() {
-        fetch('http://api.gabryelkamil.pl/get_base_unit')
+        fetch('http://api.gabryelkamil.pl/base_unit')
             .then(response => response.json())
             .then(result => {
                 this.setState({baseUnits: result});
@@ -118,14 +118,23 @@ class QuantitiesForm extends Component {
     }
 
     createQuantity(qnt) {
-        console.log(qnt);
+        console.log(qnt);   
+
+        const qntNew = {
+            namePl: qnt.namePl,
+            nameEn: qnt.nameEn,
+            id: qnt.baseUnit
+        }
+
+        console.log(qntNew);
+
         const redirect = qnt.id != null;
         fetch('http://api.gabryelkamil.pl/quantity',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
-            body: JSON.stringify(qnt)
+            body: JSON.stringify(qntNew)
         }).then(response => {
             if (response.status != "204")
                 this.setState({open: true, messageVariant: 'error'})

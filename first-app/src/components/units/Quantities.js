@@ -39,7 +39,7 @@ class Quantities extends Component {
     }
 
     getQuantities() {
-        fetch('http://api.gabryelkamil.pl/get_quantity')
+        fetch('http://api.gabryelkamil.pl/quantity')
             .then(response => response.json())
             .then(qnts => {
                 let list = [];

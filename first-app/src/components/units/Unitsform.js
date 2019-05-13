@@ -95,7 +95,7 @@ class Unitsform extends Component {
     }
 
     fetchQuantities() {
-        fetch('http://api.gabryelkamil.pl/get_quantity')
+        fetch('http://api.gabryelkamil.pl/quantity')
             .then(response => response.json())
             .then(result => {
                 this.setState({quantities: result});
