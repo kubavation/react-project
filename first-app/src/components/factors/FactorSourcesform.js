@@ -71,23 +71,26 @@ class FactorSourcesform extends Component {
 
     constructor(props) {
         super();
+        if (props.match.params.id !== null && props.match.params.id !== undefined){
+            this.getForEdit(props);
+        }
+        else{
+            this.state = {
+                date: new Date(),
+                desc: '',
+                doi: '',
+                bibtex: '',
+                fileName: '',
+                file :  React.createRef(),
 
-        this.state = {
-            date: new Date(),
-            desc: '',
-            doi: '',
-            bibtex: '',
-            //file: '',
-           // files: [],
-            fileName: '',
-            file :  React.createRef(),
+                open: false,
+                vertical: 'top',
+                horizontal: 'center',
 
-            open: false,
-            vertical: 'top',
-            horizontal: 'center',
+                messageVariant: '',
+            };
+        }
 
-            messageVariant: '',
-        };
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -105,11 +108,18 @@ class FactorSourcesform extends Component {
 
         fetch('http://api.gabryelkamil.pl/source',{
             method: 'POST',
-            headers: {
+/*            headers: {
                 'content-type' : 'application/json'
-            },
-            body: JSON.stringify(factorSource)
-        })
+            },*/
+            body: factorSource
+        }).then(response => {
+            if (response.status != "204")
+                this.setState({open: true, messageVariant: 'error'})
+            else {
+                    setTimeout(() =>
+                        this.props.history.push('/factors/factorsources/list'), 800);
+            }
+        });
             /*.then(response => response.json())
             .then(res => {
                     console.log(res)
@@ -136,7 +146,6 @@ class FactorSourcesform extends Component {
 
 
     onFileChange(event) {
-        console.log(this.state.file.current.files[0]);
         const name = this.state.file.current.files[0].name;
         this.setState({fileName: name});
     }
@@ -144,7 +153,24 @@ class FactorSourcesform extends Component {
 
     onSubmit(event) {
         event.preventDefault();
+        let formData = new FormData();
 
+        /*this.state.file.current.files[0].map((file, index) => {
+            formData.append(`file${index}`, file);
+        });*/
+
+        const {date} = this.state;
+        let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        formData.append(`file`, this.state.file.current.files[0]);
+        formData.append('date', formatted_date);
+        formData.append('description', this.state.desc);
+        formData.append('doi', this.state.doi);
+        formData.append('bibtex', this.state.bibtex);
+
+        for (var key of formData.entries()) {
+            console.log(key[0] + ', ' + key[1])
+        }
+        //formData.append('date', this.state.date);
 
         const factorSource = {
             date: this.state.date,
@@ -154,7 +180,7 @@ class FactorSourcesform extends Component {
             file: this.state.file.current.files[0]
         };
         
-        this.createFactorSource(factorSource);
+        this.createFactorSource(formData);
 
         const variant = 'success';  // ? fail?
 
@@ -165,31 +191,49 @@ class FactorSourcesform extends Component {
     };
 
     onChange(event) {
-        console.log(event.target.name)
         this.setState({[event.target.name] : event.target.value});
     };
 
     handleDateChange = date => {
-        console.log(date);
         this.setState({ date: date });
     };
+    getForEdit(props) {
+        fetch('http://api.gabryelkamil.pl/source/' + props.match.params.id)
+        //fetch('https://jsonplaceholder.typicode.com/todos/2')
+            .then(response => response.json())
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    doi: res.doi,
+                    bibtex: res.bibtex,
+                    date: res.date,
+                    desc: res.desc,
+                    file: res.file,
+                    open: false,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: '',
+                });
+            });
+    }
 
     render() {
-        const { classes } = this.props;
-        const { date, desc, doi, bibtex, file, files, fileName } = this.state;
-        const { open, messageVariant } = this.state;
+        if(this.state != null) {
+            const {classes} = this.props;
+            const {date, desc, doi, bibtex, file, files, fileName} = this.state;
+            const {open, messageVariant} = this.state;
 
-        // const fileItems = files.map(file => (
-        //     <MenuItem value={file.id}>{file.title}</MenuItem>
-        // ));
+            // const fileItems = files.map(file => (
+            //     <MenuItem value={file.id}>{file.title}</MenuItem>
+            // ));
 
-        return (
-            <div>
-                <h1 style={{color:'#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
-                <Paper style={{marginLeft:'20%',width:'60%', backgroundColor:'#EEE',borderRadius:'25px'}}>
-                    <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
+            return (
+                <div>
+                    <h1 style={{color: '#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
+                    <Paper style={{marginLeft: '20%', width: '60%', backgroundColor: '#EEE', borderRadius: '25px'}}>
+                        <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        {/*<TextField*/}
+                            {/*<TextField*/}
                             {/*id="date"*/}
                             {/*label="Data"*/}
                             {/*value={date}*/}
@@ -198,127 +242,126 @@ class FactorSourcesform extends Component {
                             {/*onChange={this.onChange}*/}
                             {/*className={classes.textField}*/}
                             {/*InputLabelProps={{*/}
-                                {/*shrink: true,*/}
+                            {/*shrink: true,*/}
                             {/*}}*/}
-                        {/*/>*/}
-                      
-                        <br/>
-                        <MuiThemeProvider theme={customTheme}>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            {/* <Grid container className={classes.grid} justify="space-around"> */}
-                                <DatePicker
-                                    id="date"
-                                    margin="normal"
-                                    format="dd-MM-yyyy"
-                                    keyboard
-                                    style={{width:'25%'}}
-                                    label="Date"
-                                    name="date"
-                                    value={date}
-                                    onChange={this.handleDateChange}
-                                />
-                            {/* </Grid> */}
-                        </MuiPickersUtilsProvider>
-                        </MuiThemeProvider>
+                            {/*/>*/}
+
+                            <br/>
+                            <MuiThemeProvider theme={customTheme}>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    {/* <Grid container className={classes.grid} justify="space-around"> */}
+                                    <DatePicker
+                                        id="date"
+                                        margin="normal"
+                                        format="dd-MM-yyyy"
+                                        keyboard
+                                        style={{width: '25%'}}
+                                        label="Date"
+                                        name="date"
+                                        value={date}
+                                        onChange={this.handleDateChange}
+                                    />
+                                </MuiPickersUtilsProvider>
+                            </MuiThemeProvider>
 
 
+                            <TextField id="doi" label="DOI" variant="outlined" style={{marginLeft: '9%', width: '25%'}}
+                                       className={classes.textField} margin="normal" value={doi}
+                                       onChange={this.onChange} name="doi"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
 
-                        <TextField id="doi" label="DOI" variant="outlined"  style={{marginLeft:'9%',width:'25%'}}
-                                   className={classes.textField} margin="normal" value={doi}
-                                   onChange={this.onChange} name="doi"
-                                   InputLabelProps={{
-                                       classes: {
-                                           root: classes.cssLabel,
-                                           focused: classes.cssFocused,
-                                       },
-                                   }}
-                                   InputProps={{
-                                       classes: {
-                                           root: classes.cssOutlinedInput,
-                                           focused: classes.cssFocused,
-                                           notchedOutline: classes.notchedOutline,
-                                       }
-                                   }}/>
-
-                        <br/>
-
-
-                                   
-                        <TextField id="bibtex" label="BibText" variant="outlined"//textarea 
-                                    style={{width:'60%'}}
-                                    multiline
-                                    rows="5"
-                                   className={classes.textField} margin="normal" value={bibtex}
-                                   onChange={this.onChange} name="bibtex"
-                                   InputLabelProps={{
-                                       classes: {
-                                           root: classes.cssLabel,
-                                           focused: classes.cssFocused,
-                                       },
-                                   }}
-                                   InputProps={{
-                                       classes: {
-                                           root: classes.cssOutlinedInput,
-                                           focused: classes.cssFocused,
-                                           notchedOutline: classes.notchedOutline,
-                                       }
-                                   }}/>
-
-                        <br/>
-
-                        <TextField id="desc" label="Opis" variant="outlined"
-                                    style={{width:'60%'}}
-                                   className={classes.textField} margin="normal" value={desc}
-                                   onChange={this.onChange} name="desc"
-                                   InputLabelProps={{
-                                       classes: {
-                                           root: classes.cssLabel,
-                                           focused: classes.cssFocused,
-                                       },
-                                   }}
-                                   InputProps={{
-                                       classes: {
-                                           root: classes.cssOutlinedInput,
-                                           focused: classes.cssFocused,
-                                           notchedOutline: classes.notchedOutline,
-                                       }
-                                   }}/>
-
-                        <br/>
-                    
-               
-                        <br/>
-                        <br/>
-
-                        <div>
-                        <TextField id="fileName" label="Plik" variant="outlined"
-                                   style={{width:'43%',marginLeft:'0%'}} disabled
-                                   className={classes.textField} margin="normal" value={fileName}
-                                   onChange={this.onChange} name="fileName"
-                                   InputLabelProps={{
-                                       classes: {
-                                           root: classes.cssLabel,
-                                           focused: classes.cssFocused,
-                                       },
-                                   }}
-                                   InputProps={{
-                                       classes: {
-                                           root: classes.cssOutlinedInput,
-                                           focused: classes.cssFocused,
-                                           notchedOutline: classes.notchedOutline,
-                                       }
-                                   }}/>
+                            <br/>
 
 
-                       <Button variant="contained" component="label" style={{marginTop:'2%',backgroundColor: "#86C232",color:'#fff'}}
-                        size="large">
-                           Upload file
-                           <input type="file" style={{display: 'none'}} name="file" ref={file} onChange={this.onFileChange}
-                           />
-                       </Button>
-                        </div>
+                            <TextField id="bibtex" label="BibText" variant="outlined"//textarea
+                                       style={{width: '60%'}}
+                                       multiline
+                                       rows="5"
+                                       className={classes.textField} margin="normal" value={bibtex}
+                                       onChange={this.onChange} name="bibtex"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
 
-                        {/* <InputLabel htmlFor="file">Plik</InputLabel>
+                            <br/>
+
+                            <TextField id="desc" label="Opis" variant="outlined"
+                                       style={{width: '60%'}}
+                                       className={classes.textField} margin="normal" value={desc}
+                                       onChange={this.onChange} name="desc"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
+
+                            <br/>
+
+
+                            <br/>
+                            <br/>
+
+                            <div>
+                                <TextField id="fileName" label="Plik" variant="outlined"
+                                           style={{width: '43%', marginLeft: '0%'}} disabled
+                                           className={classes.textField} margin="normal" value={fileName}
+                                           onChange={this.onChange} name="fileName"
+                                           InputLabelProps={{
+                                               classes: {
+                                                   root: classes.cssLabel,
+                                                   focused: classes.cssFocused,
+                                               },
+                                           }}
+                                           InputProps={{
+                                               classes: {
+                                                   root: classes.cssOutlinedInput,
+                                                   focused: classes.cssFocused,
+                                                   notchedOutline: classes.notchedOutline,
+                                               }
+                                           }}/>
+
+
+                                <Button variant="contained" component="label"
+                                        style={{marginTop: '2%', backgroundColor: "#86C232", color: '#fff'}}
+                                        size="large">
+                                    Upload file
+                                    <input type="file" style={{display: 'none'}} name="file" ref={file}
+                                           onChange={this.onFileChange}
+                                    />
+                                </Button>
+                            </div>
+
+                            {/* <InputLabel htmlFor="file">Plik</InputLabel>
                         <Select
                             value={file}
                             style={{width:'20%'}}
@@ -329,24 +372,28 @@ class FactorSourcesform extends Component {
                             {fileItems}
                         </Select> */}
 
-                        <br/>
-                        <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: '#86C232'}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
-                                size="large">
-                            Dodaj
-                        </Button>
+                            <br/>
+                            <Button style={{marginBottom: '5%', marginTop: '5%', backgroundColor: '#86C232'}}
+                                    variant="contained" color="primary" className={classes.button} type="submit"
+                                    onSubmit={this.onSubmit}
+                                    size="large">
+                                Dodaj
+                            </Button>
 
-                    </form>
+                        </form>
 
-                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
 
-                </Paper>
+                    </Paper>
 
-            </div>
+                </div>
 
-        )
+            )
+        }
+        else return null;
 
     }
+
 
 }
 

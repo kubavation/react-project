@@ -59,6 +59,7 @@ class FactorNamesForm extends Component {
             nameEn: '',
             descPl: '',
             descEn: '',
+            shortcut: '',
 
             open: false,
             vertical: 'top',
@@ -80,7 +81,14 @@ class FactorNamesForm extends Component {
                 'content-type' : 'application/json'
             },
             body: JSON.stringify(factorName)
-        })
+        }).then(response => {
+            if (response.status != "204")
+                this.setState({open: true, messageVariant: 'error'})
+            else {
+                setTimeout(() =>
+                    this.props.history.push('/factors/factornames/list'), 800);
+            }
+        });
             /*.then(response => response.json())
             .then(res => {
                     console.log(res)
@@ -104,6 +112,7 @@ class FactorNamesForm extends Component {
             nameEn: this.state.nameEn,
             descPl: this.state.descPl,
             descEn: this.state.descEn,
+            shortcut: this.state.shortcut,
         };
 
         this.createFactorName(factorName);
@@ -111,7 +120,7 @@ class FactorNamesForm extends Component {
         const variant = 'success';  // ? fail?
 
         this.setState({userId: '', title: '',
-            namePl: '', nameEn: '', descPl: '',descEn: '',
+            namePl: '', nameEn: '', descPl: '',descEn: '', shortcut: '',
             redirect: true, open: true, messageVariant: variant});
     };
 
@@ -121,7 +130,7 @@ class FactorNamesForm extends Component {
 
     render() {
         const { classes } = this.props;
-        const { namePl, nameEn, descPl, descEn } = this.state;
+        const { namePl, nameEn, shortcut, descPl, descEn } = this.state;
         const { open, messageVariant } = this.state;
 
         return (
@@ -167,6 +176,22 @@ class FactorNamesForm extends Component {
                                    }}/>
 
                         <br/>
+                        <TextField id="shortcut" label="Skrót" style={{width:'30%'}}
+                                   className={classes.textField} margin="normal" value={shortcut}
+                                   onChange={this.onChange} name="shortcut" variant="outlined"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
                         <br/>
 
                         <TextField id="descPl" label="Opis PL" style={{width:'60%'}}

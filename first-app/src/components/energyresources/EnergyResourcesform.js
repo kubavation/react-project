@@ -59,6 +59,7 @@ class EnergyResourcesForm extends Component {
         }
         else {
             this.state = {
+                redirect: false,
                 gus: '',
                 gus_all: [],
                 codeGUS: '',
@@ -92,14 +93,11 @@ class EnergyResourcesForm extends Component {
                 console.log(res)
                 this.setState({
                     namePl: res.resource_name_pl,
-                    //nameEn: res.quantity_name_eng,
                     ncv: res.NCV,
                     equiv: res.EQUIV,
                     id: res.quantity_id,
                     gus_all: [],
                     gus:'',
-                    // baseUnit: res.baseUnit.id,
-                   // baseUnit: res.base_unit,
                     open: false,
                     vertical: 'top',
                     horizontal: 'center',
@@ -279,7 +277,9 @@ class EnergyResourcesForm extends Component {
                                    className={classes.textField} margin="normal" value={codeGUS}
                                    disabled variant="outlined"
                                    onChange={this.onChange} name="codeGUS"
+
                                    InputLabelProps={{
+                                       shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,
@@ -300,6 +300,7 @@ class EnergyResourcesForm extends Component {
                                    variant="outlined"
                                    onChange={this.onChange} name="name"
                                    InputLabelProps={{
+                                       shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,
@@ -322,6 +323,7 @@ class EnergyResourcesForm extends Component {
                                    variant="outlined"
                                    onChange={this.onChange2} name="co2"
                                    InputLabelProps={{
+                                       shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,
@@ -343,7 +345,9 @@ class EnergyResourcesForm extends Component {
                                    className={classes.textField} value={ncv}
                                    variant="outlined"
                                    onChange={this.onChange2} name="ncv"
+                                   defaultValue={ncv}
                                    InputLabelProps={{
+                                       shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,
@@ -367,6 +371,7 @@ class EnergyResourcesForm extends Component {
                                    variant="outlined"
                                    onChange={this.onChange} name="we"
                                    InputLabelProps={{
+                                       shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,

@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['userId','id','title'] //namePl,nameEn,descPl,descEn
+const itemNames = ['Nazwa Polska','Nazwa Angielska','Opis Polski','Opis Angielski'] //namePl,nameEn,descPl,descEn
 
 class Resources extends Component {
 

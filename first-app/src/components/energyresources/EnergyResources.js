@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['userId','id','title'] //?
+const itemNames = ['Nazwa Polska','NCV','EQUIV'] //?
 
 class EnergyResources extends Component {
 
@@ -40,11 +40,8 @@ class EnergyResources extends Component {
                 resources.forEach( u => {
                     const temp  = {
                         namePl: u.resource_name_pl,
-                       // nameEn: u.resource_name_eng,
                         ncv : u.NCV,
                         equiv: u.EQUIV,
-                        //descEn : u.resource_description_eng,
-                        //gus_category: u.gus_category_id,
                         id: u.id
                     }
                     list.push(temp);
@@ -66,7 +63,7 @@ class EnergyResources extends Component {
         return (
             <div>
             <h1  style={{color:'#EEE', fontSize: 40}}>Lista surowców energetycznych</h1>
-            <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}> 
+            <Paper className={classes.root} style={{backgroundColor:'#EEE',borderRadius:'25px'}}>
                 <PaginTable items={items} itemNames={itemNames} link={"/energyresources/energyresources/create"}/>
             </Paper>
             </div>

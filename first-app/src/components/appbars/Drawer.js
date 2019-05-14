@@ -277,7 +277,7 @@ class MyDrawer extends Component {
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
 
-                    <ExpansionPanel className={classes.panel}  >
+                    {/*<ExpansionPanel className={classes.panel}  >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon}/>} >
                             <Typography style={{fontSize: '25px',color:'#86C232'}}>Pliki</Typography>
                         </ExpansionPanelSummary>
@@ -293,9 +293,9 @@ class MyDrawer extends Component {
                                 <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                             </ListItem>}
                         </ExpansionPanelDetails>
-                    </ExpansionPanel>
+                    </ExpansionPanel>*/}
 
-                    <ExpansionPanel className={classes.panel} >
+                    {/*<ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon}/>} >
                             <Typography style={{fontSize: '25px',color:'#86C232'}}>Foldery</Typography>
                         </ExpansionPanelSummary>
@@ -311,7 +311,7 @@ class MyDrawer extends Component {
                                 <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                             </ListItem>}
                         </ExpansionPanelDetails>
-                    </ExpansionPanel>
+                    </ExpansionPanel>*/}
 
                     <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon}/>} >
@@ -351,7 +351,7 @@ class MyDrawer extends Component {
 
                     <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon}/>} >
-                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Inne Źródła</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Źródła</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column'}}>
                             <ListItem key="list1" button component={Link} to={'/factors/factorsources/list'} onClick={this.handleOnClickDrawer}>
@@ -387,7 +387,7 @@ class MyDrawer extends Component {
 
                     <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon} />} >
-                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Żródła</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Surowce</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column'}}>
                             <ListItem key="list1" button component={Link} to={'/resources/resources/list'} onClick={this.handleOnClickDrawer}>

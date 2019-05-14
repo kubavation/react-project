@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['userId','id','title'] //namePl,nameEn,descPl,descEn
+const itemNames = ['Nazwa Polska','Nazwa Angielska','Opis Polski','Opis Angielski','Skrót'] //namePl,nameEn,descPl,descEn
 
 class FactorNames extends Component {
 
@@ -32,10 +32,24 @@ class FactorNames extends Component {
     }
 
     getFactorNames() {
-        fetch('http://api.gabryelkamil.pl/sources')
+        fetch('http://api.gabryelkamil.pl/factor_name')
             .then(response => response.json())
             .then(names => {
-                this.setState({items: names});
+                console.log(names)
+                let list = [];
+                names.forEach( u => {
+                    const temp  = {
+                        namePL: u.factor_name_pl,
+                        nameEn: u.factor_name_eng,
+                        descPl: u.factor_description_pl,
+                        descEn: u.factor_description_eng,
+                        shortcut: u.shortcut,
+                        id: u.factor_id,
+
+                    }
+                    list.push(temp);
+                })
+                this.setState({items: list});
             });
     };
 
@@ -52,7 +66,7 @@ class FactorNames extends Component {
         return (
             <div>
             <h1 style={{color:'#EEE', fontSize: 40}}>Lista współczynników</h1>
-            <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}>
+            <Paper className={classes.root} style={{backgroundColor:'#EEE',borderRadius:'25px'}}>
                 <PaginTable items={items} itemNames={itemNames} link={"/factors/factornames/create"}/>
             </Paper> 
              </div>

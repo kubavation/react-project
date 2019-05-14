@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['userId','id','title'] //date,desc,doi,bibtex,//?file
+const itemNames = ['Data','Opis','DOI','Bibtex'] //date,desc,doi,bibtex,//?file
 
 class FactorSources extends Component {
 
@@ -35,7 +35,20 @@ class FactorSources extends Component {
         fetch('http://api.gabryelkamil.pl/source')
             .then(response => response.json())
             .then(sources => {
-                this.setState({items: sources});
+                console.log(sources);
+                let list = [];
+                sources.forEach( u => {
+                    const temp  = {
+                        date: u.source_date,
+                        desc: u.source_description,
+                        doi: u.doi,
+                        bibtex: u.bibtex,
+                        id: u.source_id,
+
+                    }
+                    list.push(temp);
+                })
+                this.setState({items: list});
             });
     };
 
@@ -51,8 +64,8 @@ class FactorSources extends Component {
 
         return (
             <div>
-            <h1 style={{color:'#EEE', fontSize: 40}}>Lista źródeł</h1>
-            <Paper className={classes.root} style={{backgroundColor:'#CCC',borderRadius:'25px'}}>
+            <h1 style={{color:'#CCC', fontSize: 40}}>Lista źródeł</h1>
+            <Paper className={classes.root} style={{backgroundColor:'#EEE',borderRadius:'25px'}}>
                 <PaginTable items={items} itemNames={itemNames} link={"/factors/factorsources/create"}/>
             </Paper>
             </div>
