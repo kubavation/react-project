@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17b8e583-9650-42b2-9ca9-a9266330ea73" name="Default" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/components/gus/Gus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/gus/GusForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/appbars/Drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/appbars/Drawer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/energyresources/EnergyResources.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/energyresources/EnergyResources.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/factors/FactorNames.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/factors/FactorNames.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/factors/FactorSources.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/factors/FactorSources.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/Files.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/Files.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/Folders.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/Folders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/resources/Resources.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/resources/Resources.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/resources/Resourcesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/resources/Resourcesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Baseunitsform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Baseunitsform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Quantitiesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Quantitiesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Units.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Units.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Unitsform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Unitsform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/view/Pagintable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/view/Pagintable.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +17,8 @@
       <file pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/units/Quantitiesform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="105" column="19" lean-forward="true" selection-end-line="371" selection-end-column="50" />
+            <state relative-caret-position="1496">
+              <caret line="105" column="19" selection-end-line="371" selection-end-column="50" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -43,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/units/Quantities.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="40" column="21" lean-forward="true" selection-end-line="83" selection-end-column="46" />
+            <state relative-caret-position="442">
+              <caret line="40" column="21" selection-end-line="83" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -52,7 +38,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/factors/FactorSourcesform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2073">
+            <state relative-caret-position="2448">
               <caret line="164" column="36" selection-start-line="164" selection-start-column="36" selection-end-line="164" selection-end-column="36" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -64,8 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/energyresources/EnergyResources.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-341">
-              <caret line="34" column="15" lean-forward="true" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="57" />
+            <state relative-caret-position="458">
+              <caret line="40" column="35" lean-forward="true" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -76,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="103" column="47" selection-start-line="103" selection-start-column="47" selection-end-line="103" selection-end-column="47" />
+            <state relative-caret-position="135">
+              <caret line="199" column="26" selection-start-line="199" selection-start-column="26" selection-end-line="199" selection-end-column="26" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -88,8 +74,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/gus/Gus.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+            <state relative-caret-position="612">
+              <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -115,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/appbars/Drawer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6475">
+            <state relative-caret-position="969">
               <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
             </state>
           </provider>
@@ -124,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/gus/GusForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
+            <state relative-caret-position="2992">
               <caret line="193" column="33" selection-start-line="193" selection-start-column="33" selection-end-line="193" selection-end-column="33" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -196,17 +182,17 @@
         <option value="$PROJECT_DIR$/src/components/view/Pagintable.js" />
         <option value="$PROJECT_DIR$/src/components/resources/Resourcesform.js" />
         <option value="$PROJECT_DIR$/src/components/resources/Resources.js" />
-        <option value="$PROJECT_DIR$/src/components/energyresources/EnergyResources.js" />
         <option value="$PROJECT_DIR$/src/components/appbars/Drawer.js" />
         <option value="$PROJECT_DIR$/src/components/gus/Gus.js" />
         <option value="$PROJECT_DIR$/src/components/gus/GusForm.js" />
+        <option value="$PROJECT_DIR$/src/components/energyresources/EnergyResources.js" />
         <option value="$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-112" />
-    <option name="y" value="68" />
+    <option name="x" value="-113" />
+    <option name="y" value="67" />
     <option name="width" value="1300" />
     <option name="height" value="780" />
   </component>
@@ -216,8 +202,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -322,7 +308,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/durys/React/first-app/src/components/units/Quantities.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557782330773" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557783435681" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Meet-project/EurekaServer" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -449,7 +435,8 @@
       <workItem from="1556103376565" duration="16585000" />
       <workItem from="1556130541067" duration="29000" />
       <workItem from="1557747562850" duration="8059000" />
-      <workItem from="1557759236529" duration="20024000" />
+      <workItem from="1557759236529" duration="20800000" />
+      <workItem from="1557817006966" duration="2318000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1551021324397</created>
@@ -462,13 +449,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280715000" />
+    <option name="totallyTimeSpent" value="283809000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22281879" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2261745" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -483,7 +469,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5026846" side_tool="true" weight="0.3243626" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49731544" visible="true" weight="0.2592068" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49731544" visible="true" weight="0.2592068" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
@@ -751,20 +737,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/factors/FactorSourcesform.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2073">
-          <caret line="164" column="36" selection-start-line="164" selection-start-column="36" selection-end-line="164" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/units/Quantitiesform.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="105" column="19" lean-forward="true" selection-end-line="371" selection-end-column="50" />
+        <state relative-caret-position="1496">
+          <caret line="105" column="19" selection-end-line="371" selection-end-column="50" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -773,8 +749,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/units/Quantities.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="40" column="21" lean-forward="true" selection-end-line="83" selection-end-column="46" />
+        <state relative-caret-position="442">
+          <caret line="40" column="21" selection-end-line="83" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/factors/FactorSourcesform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2448">
+          <caret line="164" column="36" selection-start-line="164" selection-start-column="36" selection-end-line="164" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/gus/Gus.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -792,34 +785,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/energyresources/EnergyResources.js">
+    <entry file="file://$PROJECT_DIR$/src/components/appbars/Drawer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-341">
-          <caret line="34" column="15" lean-forward="true" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="57" />
+        <state relative-caret-position="969">
+          <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/gus/GusForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2992">
+          <caret line="193" column="33" selection-start-line="193" selection-start-column="33" selection-end-line="193" selection-end-column="33" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/appbars/Drawer.js">
+    <entry file="file://$PROJECT_DIR$/src/components/energyresources/EnergyResources.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6475">
-          <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/gus/Gus.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/gus/GusForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="193" column="33" selection-start-line="193" selection-start-column="33" selection-end-line="193" selection-end-column="33" />
+        <state relative-caret-position="458">
+          <caret line="40" column="35" lean-forward="true" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -828,8 +814,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="103" column="47" selection-start-line="103" selection-start-column="47" selection-end-line="103" selection-end-column="47" />
+        <state relative-caret-position="135">
+          <caret line="199" column="26" selection-start-line="199" selection-start-column="26" selection-end-line="199" selection-end-column="26" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>

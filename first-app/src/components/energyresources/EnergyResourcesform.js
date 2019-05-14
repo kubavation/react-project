@@ -66,16 +66,21 @@ class EnergyResourcesForm extends Component {
     }
 
     getForEdit(props) {
+        console.log(props);
         fetch('http://api.gabryelkamil.pl/energy_resource/' + props.match.params.id)
             .then(response => response.json())
             .then(res => {
                 console.log(res)
                 this.setState({
-                    namePl: res.quantity_name_pl,
-                    nameEn: res.quantity_name_eng,
+                    namePl: res.resource_name_pl,
+                    //nameEn: res.quantity_name_eng,
+                    ncv: res.NCV,
+                    equiv: res.EQUIV,
                     id: res.quantity_id,
+                    gus_all: [],
+                    gus:'',
                     // baseUnit: res.baseUnit.id,
-                    baseUnit: res.base_unit,
+                   // baseUnit: res.base_unit,
                     open: false,
                     vertical: 'top',
                     horizontal: 'center',
@@ -179,18 +184,25 @@ class EnergyResourcesForm extends Component {
         if(this.state != null) {
 
         const { classes } = this.props;
-        const { mediumGUS, gus_all, codeGUS, name, co2, unit,units, ncv, we } = this.state;
+        const { mediumGUS, gus_all, codeGUS, name, co2, unit,units, ncv, we, gus } = this.state;
         const { open, messageVariant } = this.state;
 
         // const mediumItems = allMediumGUS.map(med => (
         //     <MenuItem value={med.id}>{med.title}</MenuItem>
         // ));
 
-        const unitItems = units.map(unit => (
-            <MenuItem value={unit.id}>{unit.title}</MenuItem>
-        ));
+        // const unitItems = units.map(unit => (
+        //     <MenuItem value={unit.id}>{unit.title}</MenuItem>
+        // ));
 
-        return (
+            let gusItems;
+            if(gus_all != null) {
+                 gusItems = gus_all.map(g => (
+                    <MenuItem value={g.id}>{g.name_pl}</MenuItem>
+                ));
+            }
+
+            return (
             <div>
                 <h1 style={{color:'#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
                 <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#EEE',borderRadius:'25px'}}>
@@ -198,16 +210,16 @@ class EnergyResourcesForm extends Component {
 
                         <br/>
 
-                        {/*<InputLabel htmlFor="medium">Nośnik wg GUS</InputLabel>*/}
-                        {/*<Select*/}
-                            {/*value={mediumGUS}*/}
-                            {/*style={{width:'20%',marginRight:'8%'}}*/}
-                            {/*onChange={this.onChange}*/}
-                            {/*placeholder=""*/}
-                            {/*input={<Input name="medium" id="medium"/>}*/}
-                        {/*>*/}
-                            {/*{mediumItems}*/}
-                        {/*</Select> */}
+                        <InputLabel htmlFor="gus">Nośnik wg GUS</InputLabel>
+                        <Select
+                            value={gus}
+                            style={{width:'20%',marginRight:'8%'}}
+                            onChange={this.onChange}
+                            placeholder=""
+                            input={<Input name="gus" id="gus"/>}
+                        >
+                            {gusItems}
+                        </Select>
 
                         <br/>
                         <br/>
@@ -234,15 +246,6 @@ class EnergyResourcesForm extends Component {
                                    variant="outlined"
                                    onChange={this.onChange} name="co2"/>
 
-                        <Select
-                            value={mediumGUS}
-                            style={{width:'20%',marginLeft:'2%'}}
-                            onChange={this.onChange}
-                            placeholder=""
-                            input={<Input name="unit" id="unit"/>}
-                        >
-                            {unitItems}
-                        </Select> 
 
                         <br/><br/>
 

@@ -40,11 +40,12 @@ class EnergyResources extends Component {
                 resources.forEach( u => {
                     const temp  = {
                         namePl: u.resource_name_pl,
-                        nameEn: u.resource_name_eng,
-                        descPl : u.resource_description_pl,
-                        descEn : u.resource_description_eng,
-                        gus_category: u.gus_category_id,
-                        id: u.resource_id
+                       // nameEn: u.resource_name_eng,
+                        ncv : u.NCV,
+                        equiv: u.EQUIV,
+                        //descEn : u.resource_description_eng,
+                        //gus_category: u.gus_category_id,
+                        id: u.id
                     }
                     list.push(temp);
                 })
