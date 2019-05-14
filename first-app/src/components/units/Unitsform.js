@@ -28,7 +28,24 @@ const styles = theme => ({
     },
     menu: {
         width: 200,
-    }
+    },
+    cssLabel: {
+        '&$cssFocused': {
+            color: '#86C232'
+        },
+    },
+    cssFocused: {},
+    cssUnderline: {
+        '&:after': {
+            borderBottomColor: '#86C232'
+        },
+    },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: '#86C232'
+        }
+    },
+    notchedOutline: {}
 });
 
 class Unitsform extends Component {
@@ -144,7 +161,7 @@ class Unitsform extends Component {
     updateUnit(unit) {
         console.log(unit);
         const redirect = unit.id != null;
-        fetch('http://api.gabryelkamil.pl/unit/' + unit.id, {
+        fetch('http://api.gabryelkamil.pl/unit/' + 92, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -281,16 +298,55 @@ class Unitsform extends Component {
                             <br/><br/>
                             <TextField id="namePl" label="Nazwa PL" variant="outlined"
                                        className={classes.textField} margin="normal" value={namePl}
-                                       onChange={this.onChange} name="namePl"/>
+                                       onChange={this.onChange} name="namePl"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
 
                             <TextField id="nameEng" label="Nazwa EN" variant="outlined"
                                        className={classes.textField} margin="normal" value={nameEn}
-                                       onChange={this.onChange} name="nameEn"/>
+                                       onChange={this.onChange} name="nameEn"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
                             <br/>
 
                             <TextField id="shortcut" label="Skrót" variant="outlined"
                                        className={classes.textField} margin="normal" value={shortcut}
-                                       onChange={this.onChange} name="shortcut"/>
+                                       onChange={this.onChange} name="shortcut"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
                             <br/>
 
 
@@ -317,11 +373,37 @@ class Unitsform extends Component {
 
                             <TextField id="baseUnit" label="Jednostka bazowa" variant="outlined"
                                        className={classes.textField} margin="normal" disabled value={baseUnit}
-                                       onChange={this.onChange} name="baseUnit"/>
+                                       onChange={this.onChange} name="baseUnit"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
 
                             <TextField id="ratio" label="Przelicznik" variant="outlined"
                                        className={classes.textField} margin="normal" value={ratio}
-                                       onChange={this.onChange} name="ratio"/>
+                                       onChange={this.onChange} name="ratio"
+                                       InputLabelProps={{
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
                             <br/>
 
                             <br/>

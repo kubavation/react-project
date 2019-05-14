@@ -162,13 +162,13 @@ class MyDrawer extends Component {
     render() {
 
         const auth = localStorage.getItem('token');
-        const isLoggedIn = !(auth === '' || auth === null);
+        const isLoggedIn = true;
 
         const { classes, theme } = this.props;
         const { open } = this.state;
 
         let authButton;
-        console.log("IS LOGGED IN " + isLoggedIn);
+        /*console.log("IS LOGGED IN " + isLoggedIn);
         if(!isLoggedIn) {
             authButton =
                 <Button style={{fontSize: '22px', color: '#fff'}} component={Link}
@@ -177,7 +177,7 @@ class MyDrawer extends Component {
             authButton =
                 <Button style={{fontSize: '22px', color: '#fff'}} component={Link}
                         to={'/header'} onClick={() => this.logout()}>Log out</Button>;
-        }
+        }*/
 
         return (
         <div className={classes.root}>
@@ -333,16 +333,16 @@ class MyDrawer extends Component {
 
                     <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon} />} >
-                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Atrybuty</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>GUS</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column'}}>
-                            <ListItem key="list8" button component={Link} to={'/categories/categories/list'} onClick={this.handleOnClickDrawer}>
+                            <ListItem key="list8" button component={Link} to={'/gus/list'} onClick={this.handleOnClickDrawer}>
                                 <ListItemIcon style={{color:'#CCC',fontSize:'30px'}}><MdEventNote /></ListItemIcon>
                                 <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Lista" />
                             </ListItem>
 
                             {isLoggedIn &&
-                            <ListItem key="list9" button component={Link} to={'/categories/categories/create'} onClick={this.handleOnClickDrawer}>
+                            <ListItem key="list9" button component={Link} to={'/gus/create'} onClick={this.handleOnClickDrawer}>
                                 <ListItemIcon style={{color:'#CCC', fontSize:'30px'}}><MdAddCircleOutline/></ListItemIcon>
                                 <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Dodaj" />
                             </ListItem>}

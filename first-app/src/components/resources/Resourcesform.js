@@ -45,7 +45,24 @@ const styles = theme => ({
     },
     table: {
         maxWidth: '90%',
-    }
+    },
+    cssLabel: {
+        '&$cssFocused': {
+            color: '#86C232'
+        },
+    },
+    cssFocused: {},
+    cssUnderline: {
+        '&:after': {
+            borderBottomColor: '#86C232'
+        },
+    },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: '#86C232'
+        }
+    },
+    notchedOutline: {}
 });
 
 
@@ -276,22 +293,74 @@ class Resourcesform extends Component {
                         <br/>
                         <TextField id="namePl" label="Nazwa PL" variant="outlined" style={{width:'20%'}}
                                    className={classes.textField} margin="normal" value={namePl}
-                                   onChange={this.onChange} name="namePl"/>
+                                   onChange={this.onChange} name="namePl"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <TextField id="nameEn" label="Nazwa EN" variant="outlined" style={{width:'20%',marginLeft:'9%'}}
                                    className={classes.textField} margin="normal" value={nameEn}
-                                   onChange={this.onChange} name="nameEn"/>
+                                   onChange={this.onChange} name="nameEn"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
                         <br/>
 
                         <TextField id="descPl" label="Opis PL" variant="outlined" style={{width:'50%'}}
                                    className={classes.textField} margin="normal" value={descPl}
-                                   onChange={this.onChange} name="descPl"/>
+                                   onChange={this.onChange} name="descPl"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <br/>
 
                         <TextField id="descEn" label="Opis EN" variant="outlined"  style={{width:'50%'}}
                                    className={classes.textField} margin="normal" value={descEn}
-                                   onChange={this.onChange} name="descEn"/>
+                                   onChange={this.onChange} name="descEn"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <br/>
 

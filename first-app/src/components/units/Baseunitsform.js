@@ -30,7 +30,24 @@ const styles = theme => ({
     },
     menu: {
         width: 200,
-    }
+    },
+    cssLabel: {
+        '&$cssFocused': {
+            color: '#86C232'
+        },
+    },
+    cssFocused: {},
+    cssUnderline: {
+        '&:after': {
+            borderBottomColor: '#86C232'
+        },
+    },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: '#86C232'
+        }
+    },
+    notchedOutline: {}
 });
 
 
@@ -64,14 +81,15 @@ class BaseunitsForm extends Component {
     }
         
     getForEdit(props) {
-        fetch('http://api.gabryelkamil.pl/base_unit/' + props.match.params.id)
+        fetch('http://api.gabryelkamil.pl/unit/108')
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
+                res = res[0];
                 console.log(res)
                 this.setState({
-                    namePl: res.namePl,
-                    nameEn: res.nameEn,
+                    namePl: res.unit_pl,
+                    nameEn: res.unit_eng,
                     shortcut: res.shortcut,
                     open: false,
                     vertical: 'top',
@@ -98,6 +116,8 @@ class BaseunitsForm extends Component {
                 shortcut: this.state.shortcut,
                 id: this.state.id
             };
+
+            this.updateBaseUnit(baseUnit);
         } else {
 
             baseUnit = {
@@ -105,6 +125,9 @@ class BaseunitsForm extends Component {
                 nameEn: this.state.nameEn,
                 shortcut: this.state.shortcut
             };
+
+
+            this.createBaseUnit(baseUnit);
         }
 
         // const baseUnit = {
@@ -113,7 +136,6 @@ class BaseunitsForm extends Component {
         //     shortcut: this.state.shortcut
         // };
 
-        this.createBaseUnit(baseUnit);
     };
 
     handleClose(event, reason) {
@@ -152,6 +174,31 @@ class BaseunitsForm extends Component {
     }
 
 
+
+    updateBaseUnit(unit) {
+
+        const redirect = unit.id != null;
+
+        console.log(unit);
+        fetch('http://api.gabryelkamil.pl/base_unit/108',{
+            method: 'PUT',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(unit)
+        }).then(response => {
+            if(response.status != "204")
+                this.setState({open: true, messageVariant: 'error'})
+            else {
+                this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: 'success'})
+
+                if(redirect)
+                    setTimeout(() =>
+                        this.props.history.push('/units/baseunits/list'), 800);
+            }
+        });
+    }
+
      render() {
 
          if (this.state != null) {
@@ -171,16 +218,55 @@ class BaseunitsForm extends Component {
                              <br/>
                              <TextField id="namePl" label="Nazwa PL" variant="outlined"
                                         className={classes.textField} margin="normal" value={namePl}
-                                        onChange={this.onChange} name="namePl"/>
+                                        onChange={this.onChange} name="namePl"
+                                        InputLabelProps={{
+                                            classes: {
+                                                root: classes.cssLabel,
+                                                focused: classes.cssFocused,
+                                            },
+                                        }}
+                                        InputProps={{
+                                            classes: {
+                                                root: classes.cssOutlinedInput,
+                                                focused: classes.cssFocused,
+                                                notchedOutline: classes.notchedOutline,
+                                            }
+                                        }}/>
 
                              <TextField id="nameEng" label="Nazwa EN" variant="outlined"
                                         className={classes.textField} margin="normal" value={nameEn}
-                                        onChange={this.onChange} name="nameEn"/>
+                                        onChange={this.onChange} name="nameEn"
+                                        InputLabelProps={{
+                                            classes: {
+                                                root: classes.cssLabel,
+                                                focused: classes.cssFocused,
+                                            },
+                                        }}
+                                        InputProps={{
+                                            classes: {
+                                                root: classes.cssOutlinedInput,
+                                                focused: classes.cssFocused,
+                                                notchedOutline: classes.notchedOutline,
+                                            }
+                                        }}/>
                              <br/>
 
                              <TextField id="shortcut" label="Skrót" variant="outlined"
                                         className={classes.textField} margin="normal" value={shortcut}
-                                        onChange={this.onChange} name="shortcut"/>
+                                        onChange={this.onChange} name="shortcut"
+                                        InputLabelProps={{
+                                            classes: {
+                                                root: classes.cssLabel,
+                                                focused: classes.cssFocused,
+                                            },
+                                        }}
+                                        InputProps={{
+                                            classes: {
+                                                root: classes.cssOutlinedInput,
+                                                focused: classes.cssFocused,
+                                                notchedOutline: classes.notchedOutline,
+                                            }
+                                        }}/>
 
                              <br/>
 

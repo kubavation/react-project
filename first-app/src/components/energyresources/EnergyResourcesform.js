@@ -28,7 +28,24 @@ const styles = theme => ({
     },
     menu: {
         width: 200,
-    }
+    },
+    cssLabel: {
+        '&$cssFocused': {
+            color: '#86C232'
+        },
+    },
+    cssFocused: {},
+    cssUnderline: {
+        '&:after': {
+            borderBottomColor: '#86C232'
+        },
+    },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: '#86C232'
+        }
+    },
+    notchedOutline: {}
 });
 
 
@@ -63,6 +80,8 @@ class EnergyResourcesForm extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.onChange2 = this.onChange2.bind(this);
+        this.onChange3 = this.onChange3.bind(this);
     }
 
     getForEdit(props) {
@@ -113,12 +132,21 @@ class EnergyResourcesForm extends Component {
 
     createEnergyResource(esource) {
 
+        const src = {
+          resource_name_pl : esource.name,
+          gus_id : esource.gus,
+          EQUIV : esource.co2,
+            NCV: esource.ncv
+        };
+
+        console.log(src)
+
         fetch('http://api.gabryelkamil.pl/energy_resource',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
-            body: JSON.stringify(esource)
+            body: JSON.stringify(src)
         })
             .then(response => response.json())
             .then(res => {
@@ -163,7 +191,8 @@ class EnergyResourcesForm extends Component {
             co2: this.state.co2,
             unit: this.state.unit,
             ncv: this.state.ncv,
-            we: this.state.we
+            we: this.state.we,
+            gus: this.state.gus
         };
 
         this.createEnergyResource(energyResource);
@@ -177,6 +206,34 @@ class EnergyResourcesForm extends Component {
 
     onChange(event) {
         this.setState({[event.target.name] : event.target.value});
+
+    };
+    onChange2(event) {
+        this.setState({[event.target.name] : event.target.value},() => {
+            if(this.state.ncv != null && this.state.co2 != null && this.state.ncv != '' && this.state.co2 != ''
+            ){
+                this.setState({"we": parseFloat(this.state.co2 / this.state.ncv).toFixed(2)})
+            }
+            else {
+                this.setState({"we": ''})
+            }
+        });
+
+    };
+    onChange3(event) {
+        this.setState({[event.target.name] : event.target.value}, ()=>{
+            fetch('http://api.gabryelkamil.pl/gus_category/' + this.state.gus,{
+                method: 'GET',
+                headers: {
+                    'content-type' : 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(res => {
+                        this.setState({codeGUS:res.gus_id})
+                    }
+                );
+        });
     };
 
     render() {
@@ -187,13 +244,6 @@ class EnergyResourcesForm extends Component {
         const { mediumGUS, gus_all, codeGUS, name, co2, unit,units, ncv, we, gus } = this.state;
         const { open, messageVariant } = this.state;
 
-        // const mediumItems = allMediumGUS.map(med => (
-        //     <MenuItem value={med.id}>{med.title}</MenuItem>
-        // ));
-
-        // const unitItems = units.map(unit => (
-        //     <MenuItem value={unit.id}>{unit.title}</MenuItem>
-        // ));
 
             let gusItems;
             if(gus_all != null) {
@@ -214,7 +264,7 @@ class EnergyResourcesForm extends Component {
                         <Select
                             value={gus}
                             style={{width:'20%',marginRight:'8%'}}
-                            onChange={this.onChange}
+                            onChange={this.onChange3}
                             placeholder=""
                             input={<Input name="gus" id="gus"/>}
                         >
@@ -228,14 +278,40 @@ class EnergyResourcesForm extends Component {
                         <TextField id="codeGUS" label="Kod GUS" style={{width:'20%',marginRight:'21%'}}
                                    className={classes.textField} margin="normal" value={codeGUS}
                                    disabled variant="outlined"
-                                   onChange={this.onChange} name="codeGUS"/>
+                                   onChange={this.onChange} name="codeGUS"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <br/>
 
                         <TextField id="name" label="Nazwa" style={{width:'40%'}}
                                    className={classes.textField} margin="normal" value={name}
                                    variant="outlined"
-                                   onChange={this.onChange} name="name"/>
+                                   onChange={this.onChange} name="name"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <br/>
                         <br/>
@@ -244,7 +320,20 @@ class EnergyResourcesForm extends Component {
                         <TextField id="co2" label="Wartość" style={{width:'20%',marginLeft:'2%'}}
                                    className={classes.textField} value={co2}
                                    variant="outlined"
-                                   onChange={this.onChange} name="co2"/>
+                                   onChange={this.onChange2} name="co2"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
 
                         <br/><br/>
@@ -253,15 +342,43 @@ class EnergyResourcesForm extends Component {
                         <TextField id="ncv" label="Wartość" style={{width:'20%',marginLeft:'2%'}}
                                    className={classes.textField} value={ncv}
                                    variant="outlined"
-                                   onChange={this.onChange} name="ncv"/>
+                                   onChange={this.onChange2} name="ncv"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}
+                        />
 
                         <br/><br/>
 
                         <InputLabel htmlFor="we">WE [kg/GJ]</InputLabel>
                         <TextField id="we" label="Wartość" style={{width:'20%',marginLeft:'2%'}}
                                    className={classes.textField} value={we}
+                                   disabled="true"
                                    variant="outlined"
-                                   onChange={this.onChange} name="we"/>
+                                   onChange={this.onChange} name="we"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
                         <br/>
                         <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: "#86C232"}}
                                 variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}

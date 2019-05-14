@@ -28,7 +28,24 @@ const styles = theme => ({
     },
     menu: {
         width: 200,
-    }
+    },
+    cssLabel: {
+        '&$cssFocused': {
+            color: '#86C232'
+        },
+    },
+    cssFocused: {},
+    cssUnderline: {
+        '&:after': {
+            borderBottomColor: '#86C232'
+        },
+    },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: '#86C232'
+        }
+    },
+    notchedOutline: {}
 });
 
 const fileTypes = ["pdf","xls","csv","doc","txt","png","jpg"];
@@ -186,7 +203,20 @@ class Filesform extends Component {
 
                         <TextField id="hddFilePath" label="Hdd file path" style={{marginLeft:'4%',marginTop:'2%',width:'30%'}}
                                    className={classes.textField}  value={hddFilePath}
-                                   onChange={this.onChange} name="hddFilePath" variant="outlined"/>
+                                   onChange={this.onChange} name="hddFilePath" variant="outlined"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <br/>
                         <InputLabel htmlFor="file-forder" style={{marginLeft:'1%'}}>Folder</InputLabel>

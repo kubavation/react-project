@@ -28,7 +28,24 @@ const styles = theme => ({
     },
     menu: {
         width: 200,
-    }
+    },
+    cssLabel: {
+        '&$cssFocused': {
+            color: '#86C232'
+        },
+    },
+    cssFocused: {},
+    cssUnderline: {
+        '&:after': {
+            borderBottomColor: '#86C232'
+        },
+    },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: '#86C232'
+        }
+    },
+    notchedOutline: {}
 });
 
 
@@ -154,7 +171,20 @@ class Foldersform extends Component {
                         <TextField id="folderDescPl" label="Opis PL" variant="outlined"
                                    className={classes.textField} margin="normal"
                                    style={{width:'60%'}} value={folderDescPl}
-                                   onChange={this.onChange} name="folderDescPl"/>
+                                   onChange={this.onChange} name="folderDescPl"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <br/>
 
@@ -162,7 +192,20 @@ class Foldersform extends Component {
                                    style={{width:'60%'}}
                                    className={classes.textField} margin="normal" value={folderDescEn}
                                    variant="outlined"
-                                   onChange={this.onChange} name="folderDescEn"/>
+                                   onChange={this.onChange} name="folderDescEn"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
                         <br/>
 
                     

@@ -18,7 +18,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['NazwaPL','NazwaEN','Mnożnik','Skrót']; //namePl,nameEn,ratio,quantity_id,unit
+const itemNames = ['Nazwa Polska','Nazwa Angielska','Mnożnik','Skrót']; //namePl,nameEn,ratio,quantity_id,unit
 
 class Units extends Component {
 
@@ -39,7 +39,7 @@ class Units extends Component {
                         name_pl: u.unit_pl,
                         name_en: u.unit_eng,
                         ratio: u.ratio,
-                        shortcut: u.quantity_name,
+                        shortcut: u.shortcut,
                         id: u.id
                     }
                     list.push(temp);

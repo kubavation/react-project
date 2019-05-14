@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['NazwaPL','NazwaEN','Skrót'] //namePl,nameEn,shortcut
+const itemNames = ['Nazwa Polska','Nazwa Angielska','Skrót'] //namePl,nameEn,shortcut
 
 class Baseunits extends Component {
 
@@ -41,7 +41,7 @@ class Baseunits extends Component {
                         name_pl: u.unit_pl,
                         name_en: u.unit_eng,
                         //ratio: u.ratio,
-                        shortcut: u.quantity_name
+                        shortcut: u.shortcut
                     }
                     list.push(temp);
                 })

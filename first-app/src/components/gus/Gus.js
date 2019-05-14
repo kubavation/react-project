@@ -27,7 +27,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['NazwaPL','NazwaEN','Jednostka Bazowa']
+const itemNames = ['Nazwa Polska','Nazwa Angielska','Kod GUS','Jednostka Bazowa']
 
 class GusList extends Component {
 
@@ -49,10 +49,10 @@ class GusList extends Component {
                         namePl: q.name_pl,
                         nameEn: q.name_eng,
                         gusId: q.gus_id,
-                        source: q.source,
-                        id: q.id,
+                        //source: q.source,
+                        //id: q.id,
                         shortcutUnit: q.shortcut_unit,
-                        unit: q.unit_id
+                        //unit: q.unit_id
                     }
                     list.push(temp);
                 })

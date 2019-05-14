@@ -35,7 +35,24 @@ const styles = theme => ({
     },
     menu: {
         width: 200,
-    }
+    },
+    cssLabel: {
+        '&$cssFocused': {
+            color: '#86C232'
+        },
+    },
+    cssFocused: {},
+    cssUnderline: {
+        '&:after': {
+            borderBottomColor: '#86C232'
+        },
+    },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: '#86C232'
+        }
+    },
+    notchedOutline: {}
 });
 
 export const customTheme = createMuiTheme({
@@ -208,7 +225,20 @@ class FactorSourcesform extends Component {
 
                         <TextField id="doi" label="DOI" variant="outlined"  style={{marginLeft:'9%',width:'25%'}}
                                    className={classes.textField} margin="normal" value={doi}
-                                   onChange={this.onChange} name="doi"/>
+                                   onChange={this.onChange} name="doi"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <br/>
 
@@ -219,14 +249,40 @@ class FactorSourcesform extends Component {
                                     multiline
                                     rows="5"
                                    className={classes.textField} margin="normal" value={bibtex}
-                                   onChange={this.onChange} name="bibtex"/>
+                                   onChange={this.onChange} name="bibtex"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <br/>
 
                         <TextField id="desc" label="Opis" variant="outlined"
                                     style={{width:'60%'}}
                                    className={classes.textField} margin="normal" value={desc}
-                                   onChange={this.onChange} name="desc"/>
+                                   onChange={this.onChange} name="desc"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
                         <br/>
                     
@@ -238,7 +294,20 @@ class FactorSourcesform extends Component {
                         <TextField id="fileName" label="Plik" variant="outlined"
                                    style={{width:'43%',marginLeft:'0%'}} disabled
                                    className={classes.textField} margin="normal" value={fileName}
-                                   onChange={this.onChange} name="fileName"/>
+                                   onChange={this.onChange} name="fileName"
+                                   InputLabelProps={{
+                                       classes: {
+                                           root: classes.cssLabel,
+                                           focused: classes.cssFocused,
+                                       },
+                                   }}
+                                   InputProps={{
+                                       classes: {
+                                           root: classes.cssOutlinedInput,
+                                           focused: classes.cssFocused,
+                                           notchedOutline: classes.notchedOutline,
+                                       }
+                                   }}/>
 
 
                        <Button variant="contained" component="label" style={{marginTop:'2%',backgroundColor: "#86C232",color:'#fff'}}

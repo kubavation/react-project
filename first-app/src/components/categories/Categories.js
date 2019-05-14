@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['NazwaPL','NazwaEN','OpisPL','OpisEN'] //namePl,nameEn,descPl,descEn
+const itemNames = ['Nazwa Polska','Nazwa Angielska','Opis Polski','Opis Angielski'] //namePl,nameEn,descPl,descEn
 
 class Categories extends Component {
 
@@ -32,7 +32,7 @@ class Categories extends Component {
     }
 
     getCategories() {
-        fetch('http://api.gabryelkamil.pl/get_category')
+        fetch('http://api.gabryelkamil.pl/category')
             .then(response => response.json())
             .then(categories => {
                 let list = [];

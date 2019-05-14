@@ -27,7 +27,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['NazwaPL','NazwaEN','Jednostka Bazowa']
+const itemNames = ['Nazwa Polska','Nazwa Angielska','Jednostka Bazowa']
 
 class Quantities extends Component {
 
