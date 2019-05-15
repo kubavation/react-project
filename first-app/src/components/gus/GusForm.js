@@ -161,7 +161,7 @@ class GusForm extends Component {
 
                 if(redirect)
                     setTimeout(() =>
-                        this.props.history.push('/units/quantities/list'), 800);
+                        this.props.history.push('/gus/list'), 800);
             }
         });
     }
@@ -181,7 +181,7 @@ class GusForm extends Component {
 
         const redirect = qnt.id != null;
         fetch('http://api.gabryelkamil.pl/gus_category/' + qnt.id,{
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
@@ -202,7 +202,7 @@ class GusForm extends Component {
 
                 if(redirect)
                     setTimeout(() =>
-                        this.props.history.push('/units/quantities/list'), 800);
+                        this.props.history.push('/gus/list'), 800);
             }
         });
     }

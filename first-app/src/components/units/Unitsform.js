@@ -151,7 +151,6 @@ class Unitsform extends Component {
                     messageVariant: 'success'
                 });
 
-                if (redirect)
                     setTimeout(() =>
                         this.props.history.push('/units/units/list'), 800);
             }
@@ -184,7 +183,7 @@ class Unitsform extends Component {
                     messageVariant: 'success'
                 });
 
-                if (redirect)
+             //   if (redirect)
                     setTimeout(() =>
                         this.props.history.push('/units/units/list'), 800);
             }

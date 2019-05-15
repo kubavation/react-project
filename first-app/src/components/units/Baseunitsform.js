@@ -167,7 +167,7 @@ class BaseunitsForm extends Component {
             else {
                this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: 'success'})
 
-               if(redirect)
+             //  if(redirect)
                setTimeout(() =>
                    this.props.history.push('/units/baseunits/list'), 800);
            }
@@ -193,7 +193,7 @@ class BaseunitsForm extends Component {
             else {
                 this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: 'success'})
 
-                if(redirect)
+                //if(redirect)
                     setTimeout(() =>
                         this.props.history.push('/units/baseunits/list'), 800);
             }

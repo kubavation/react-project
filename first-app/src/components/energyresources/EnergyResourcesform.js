@@ -87,15 +87,15 @@ class EnergyResourcesForm extends Component {
 
     getForEdit(props) {
         console.log(props);
-        fetch('http://api.gabryelkamil.pl/energy_resource/' + props.match.params.id)
+            fetch('http://api.gabryelkamil.pl/energy_resource/' + props.match.params.id)
             .then(response => response.json())
             .then(res => {
-                console.log(res)
+                console.log(res);
                 this.setState({
-                    namePl: res.resource_name_pl,
+                    name: res.resource_name_pl,
                     ncv: res.NCV,
-                    equiv: res.EQUIV,
-                    id: res.quantity_id,
+                    co2: res.EQUIV,
+                    id: res.id,
                     gus_all: [],
                     gus:'',
                     open: false,
@@ -146,11 +146,46 @@ class EnergyResourcesForm extends Component {
             },
             body: JSON.stringify(src)
         })
-            .then(response => response.json())
-            .then(res => {
-                    console.log(res)
+            .then(response => {
+                if (response.status != "204")
+                    this.setState({open: true, messageVariant: 'error'})
+                else {
+                    this.setState({open: true, messageVariant: 'success'})
+                    setTimeout(() =>
+                        this.props.history.push('/energyresources/energyresources/list'), 800);
                 }
-            );
+            });
+    }
+
+
+
+    updateEnergyResource(esource) {
+
+        const src = {
+            resource_name_pl : esource.name,
+            gus_id : esource.gus,
+            EQUIV : esource.co2,
+            NCV: esource.ncv
+        };
+
+        console.log(src)
+
+        fetch('http://api.gabryelkamil.pl/energy_resource/' + this.state.id,{
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(src)
+        })
+            .then(response => {
+                if (response.status != "204")
+                    this.setState({open: true, messageVariant: 'error'})
+                else {
+                    this.setState({open: true, messageVariant: 'success'})
+                    setTimeout(() =>
+                        this.props.history.push('/energyresources/energyresources/list'), 800);
+                }
+            });
     }
 
     fetchMedium() {
@@ -193,13 +228,18 @@ class EnergyResourcesForm extends Component {
             gus: this.state.gus
         };
 
-        this.createEnergyResource(energyResource);
+        console.log(energyResource);
 
-        const variant = 'success';  // ? fail?
+        if(this.state.id != null)
+            this.updateEnergyResource(energyResource)
+        else
+            this.createEnergyResource(energyResource);
 
-        this.setState({mediumGUSergy: '', codeGUS: '',
-        name: '', co2: '', unit: '',ncv: '',we: '',
-            redirect: true, open: true, messageVariant: variant});
+        // const variant = 'success';  // ? fail?
+        //
+        // this.setState({mediumGUSergy: '', codeGUS: '',
+        // name: '', co2: '', unit: '',ncv: '',we: '',
+        //     redirect: true, open: true, messageVariant: variant});
     };
 
     onChange(event) {

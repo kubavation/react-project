@@ -180,12 +180,48 @@ class Categoriesform extends Component {
                 });
 
 
-                if (redirect)
+              //  if (redirect)
                     setTimeout(() =>
                         this.props.history.push('/categories/categories/list'), 800);
             }
         });
     }
+
+    updateCategory(category) {
+        console.log(category);
+        const redirect = category.id != null;
+
+        fetch('http://api.gabryelkamil.pl/category/' + this.state.id,{
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(category)
+        }).then(response => {
+            if (response.status != "204")
+                this.setState({open: true, messageVariant: 'error'})
+            else {
+                this.setState({
+                    namePl: '',
+                    nameEn: '',
+                    descPl: '',
+                    descEn: '',
+                    parentCategories: [],
+                    open: true,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: 'success'
+                });
+
+
+              //  if (redirect)
+                    setTimeout(() =>
+                        this.props.history.push('/categories/categories/list'), 800);
+            }
+        });
+    }
+
+
 
     handleClose(event, reason) {
         if (reason === 'clickaway') {
@@ -207,8 +243,11 @@ class Categoriesform extends Component {
                 descPl: this.state.descPl,
                 descEn: this.state.descEn,
                 parentCategories: this.state.parentCategories,
-                id: this.state.id
+              //  id: this.state.id
             };
+
+            this.updateCategory(category);
+
         } else {
             category = {
                 namePl: this.state.namePl,
@@ -217,9 +256,11 @@ class Categoriesform extends Component {
                 descEn: this.state.descEn,
                 parentCategories: this.state.parentCategories
             };
+
+
+            this.createCategory(category);
         }
 
-        this.createCategory(category);
 
         // const variant = 'success';  // ? fail?
         //

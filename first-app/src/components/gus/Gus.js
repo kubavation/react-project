@@ -73,7 +73,7 @@ class GusList extends Component {
 
         return (
             <div>
-                <h1 style={{color:'#CCC', fontSize: 40}}>Lista wielkości fiz/chem</h1>
+                <h1 style={{color:'#CCC', fontSize: 40}}>Lista GUS</h1>
                 <Paper className={classes.root} style={{backgroundColor:'#EEE',borderRadius:'25px'}}>
                     <PaginTable items={items} itemNames={itemNames} link={"/gus/create"}/>
                 </Paper>

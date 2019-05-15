@@ -151,7 +151,7 @@ class QuantitiesForm extends Component {
                     messageVariant: 'success'
                 });
 
-                if(redirect)
+              //  if(redirect)
                     setTimeout(() =>
                         this.props.history.push('/units/quantities/list'), 800);
             }
@@ -190,7 +190,7 @@ class QuantitiesForm extends Component {
                     messageVariant: 'success'
                 });
 
-                if(redirect)
+              //  if(redirect)
                     setTimeout(() =>
                         this.props.history.push('/units/quantities/list'), 800);
             }
