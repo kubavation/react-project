@@ -114,10 +114,12 @@ class Categoriesform extends Component {
     }
 
     getForEdit(props) {
-        //fetch('http://api.gabryelkamil.pl/get_category/' + props.match.params.id)
-        fetch('https://jsonplaceholder.typicode.com/todos/2')
+        console.log(props.match.params.id)
+        fetch('http://api.gabryelkamil.pl/category/' + props.match.params.id)
+        //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
+                console.log(res)
                 this.setState({
                     namePl: res.cat_name_pl, //todo zmiany jsonow
                     nameEn: res.nameEn,
@@ -269,6 +271,8 @@ class Categoriesform extends Component {
                                        className={classes.textField} margin="normal" value={namePl}
                                        onChange={this.onChange} name="namePl" variant="outlined"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -286,6 +290,8 @@ class Categoriesform extends Component {
                                        className={classes.textField} margin="normal" value={nameEn}
                                        onChange={this.onChange} name="nameEn" variant="outlined"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -304,6 +310,8 @@ class Categoriesform extends Component {
                                        className={classes.textField} margin="normal" value={descPl}
                                        onChange={this.onChange} name="descPl" variant="outlined"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -322,6 +330,8 @@ class Categoriesform extends Component {
                                        className={classes.textField} margin="normal" value={descEn}
                                        onChange={this.onChange} name="descEn" variant="outlined"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,

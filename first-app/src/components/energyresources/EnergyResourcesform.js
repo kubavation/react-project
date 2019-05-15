@@ -277,15 +277,14 @@ class EnergyResourcesForm extends Component {
                                    className={classes.textField} margin="normal" value={codeGUS}
                                    disabled variant="outlined"
                                    onChange={this.onChange} name="codeGUS"
-
                                    InputLabelProps={{
+                                       style: {fontSize: 25},
                                        shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,
                                        },
-                                   }}
-                                   InputProps={{
+                                   }}                                   InputProps={{
                                        classes: {
                                            root: classes.cssOutlinedInput,
                                            focused: classes.cssFocused,
@@ -300,6 +299,7 @@ class EnergyResourcesForm extends Component {
                                    variant="outlined"
                                    onChange={this.onChange} name="name"
                                    InputLabelProps={{
+                                       style: {fontSize: 25},
                                        shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
@@ -323,6 +323,7 @@ class EnergyResourcesForm extends Component {
                                    variant="outlined"
                                    onChange={this.onChange2} name="co2"
                                    InputLabelProps={{
+                                       style: {fontSize: 25},
                                        shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
@@ -347,6 +348,7 @@ class EnergyResourcesForm extends Component {
                                    onChange={this.onChange2} name="ncv"
                                    defaultValue={ncv}
                                    InputLabelProps={{
+                                       style: {fontSize: 25},
                                        shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
@@ -371,6 +373,7 @@ class EnergyResourcesForm extends Component {
                                    variant="outlined"
                                    onChange={this.onChange} name="we"
                                    InputLabelProps={{
+                                       style: {fontSize: 25},
                                        shrink: true,
                                        classes: {
                                            root: classes.cssLabel,

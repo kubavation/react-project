@@ -91,13 +91,13 @@ class Unitsform extends Component {
             .then(response => response.json())
             .then(res => {
                 res = res[0];
-                console.log(res[0]);
+                console.log(res);
                 this.setState({
                     namePl: res.unit_pl,
                     nameEn: res.unit_eng,
                     shortcut: res.shortcut,
                     //quantity: res.quantity.id,
-                    quantity: res.quantity_name,
+                    quantity: res.id_quantity,//res.quantity_name,
                     quantities: [],
                     //baseUnit: res.baseUnit.id,
                     ratio: res.ratio,
@@ -108,7 +108,7 @@ class Unitsform extends Component {
                     horizontal: 'center',
                     messageVariant: ''
 
-                });
+                }, () => this.setBaseUnit(res.id_quantity));
             });
     }
 
@@ -161,8 +161,8 @@ class Unitsform extends Component {
     updateUnit(unit) {
         console.log(unit);
         const redirect = unit.id != null;
-        fetch('http://api.gabryelkamil.pl/unit/' + 92, {
-            method: 'PUT',
+        fetch('http://api.gabryelkamil.pl/unit/' + this.state.id, {
+            method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
@@ -300,6 +300,8 @@ class Unitsform extends Component {
                                        className={classes.textField} margin="normal" value={namePl}
                                        onChange={this.onChange} name="namePl"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -317,6 +319,8 @@ class Unitsform extends Component {
                                        className={classes.textField} margin="normal" value={nameEn}
                                        onChange={this.onChange} name="nameEn"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -335,6 +339,8 @@ class Unitsform extends Component {
                                        className={classes.textField} margin="normal" value={shortcut}
                                        onChange={this.onChange} name="shortcut"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -370,11 +376,14 @@ class Unitsform extends Component {
                             </Button>
 
                             <br/>
+                            <br/>
 
                             <TextField id="baseUnit" label="Jednostka bazowa" variant="outlined"
                                        className={classes.textField} margin="normal" disabled value={baseUnit}
                                        onChange={this.onChange} name="baseUnit"
                                        InputLabelProps={{
+                                           style: {fontSize: 22},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -392,6 +401,8 @@ class Unitsform extends Component {
                                        className={classes.textField} margin="normal" value={ratio}
                                        onChange={this.onChange} name="ratio"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,

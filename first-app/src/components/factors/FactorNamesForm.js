@@ -54,47 +54,73 @@ class FactorNamesForm extends Component {
     constructor(props) {
         super();
 
-        this.state = {
-            namePl: '',
-            nameEn: '',
-            descPl: '',
-            descEn: '',
-            shortcut: '',
+        if (props.match.params.id !== null && props.match.params.id !== undefined){
+            this.getForEdit(props);
+        }
+        else {
 
-            open: false,
-            vertical: 'top',
-            horizontal: 'center',
+            this.state = {
+                namePl: '',
+                nameEn: '',
+                descPl: '',
+                descEn: '',
+                shortcut: '',
 
-            messageVariant: ''
-        };
+                open: false,
+                vertical: 'top',
+                horizontal: 'center',
 
+                messageVariant: ''
+            };
+
+        }
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
     }
 
+    getForEdit(props) {
+        fetch('http://api.gabryelkamil.pl/factor_name/' + props.match.params.id)
+        //fetch('https://jsonplaceholder.typicode.com/todos/2')
+            .then(response => response.json())
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    namePl: res.factor_name_pl,
+                    nameEn: res.factor_name_eng,
+                    descPl: res.factor_description_pl,
+                    descEn: res.factor_description_eng,
+                    id: res.factor_id,
+                    shortcut: res.shortcut,
+                    open: false,
+                    vertical: 'top',
+                    horizontal: 'center',
+                    messageVariant: '',
+                });
+            });
+    }
+
+
     createFactorName(factorName) {
         console.log(factorName);
-        fetch('http://api.gabryelkamil.pl/factor_name',{
+        fetch('http://api.gabryelkamil.pl/factor_name', {
             method: 'POST',
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(factorName)
         }).then(response => {
             if (response.status != "204")
                 this.setState({open: true, messageVariant: 'error'})
             else {
+                this.setState({open: true, messageVariant: 'success'})
                 setTimeout(() =>
                     this.props.history.push('/factors/factornames/list'), 800);
             }
         });
-            /*.then(response => response.json())
-            .then(res => {
-                    console.log(res)
-                }
-            );*/
     }
+
+
 
     handleClose(event, reason) {
         if (reason === 'clickaway') {
@@ -115,138 +141,171 @@ class FactorNamesForm extends Component {
             shortcut: this.state.shortcut,
         };
 
-        this.createFactorName(factorName);
+        if(this.id != null)
+            this.updateFactorName(factorName);
+        else
+            this.createFactorName(factorName);
 
-        const variant = 'success';  // ? fail?
 
-        this.setState({userId: '', title: '',
-            namePl: '', nameEn: '', descPl: '',descEn: '', shortcut: '',
-            redirect: true, open: true, messageVariant: variant});
     };
+
+    updateFactorName(factorName) {
+        console.log(factorName);
+        fetch('http://api.gabryelkamil.pl/factor_name/' + this.state.id, {
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(factorName)
+        }).then(response => {
+            if (response.status != "204")
+                this.setState({open: true, messageVariant: 'error'})
+            else {
+                this.setState({open: true, messageVariant: 'success'})
+                setTimeout(() =>
+                    this.props.history.push('/factors/factornames/list'), 800);
+            }
+        });
+    }
 
     onChange(event) {
         this.setState({[event.target.name] : event.target.value});
     };
 
     render() {
-        const { classes } = this.props;
-        const { namePl, nameEn, shortcut, descPl, descEn } = this.state;
-        const { open, messageVariant } = this.state;
 
-        return (
-            <div>
-                <h1 style={{color:'#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
-                <Paper style={{marginLeft:'20%',width:'60%',backgroundColor:'#EEE',borderRadius:'25px'}}>
-                    <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
+        if(this.state != null) {
 
-                        <br/>
-                        <TextField id="namePl" label="Nazwa PL" style={{width:'25%'}}
-                                   className={classes.textField} margin="normal" value={namePl}
-                                   onChange={this.onChange} name="namePl" variant="outlined"
-                                   InputLabelProps={{
-                                       classes: {
-                                           root: classes.cssLabel,
-                                           focused: classes.cssFocused,
-                                       },
-                                   }}
-                                   InputProps={{
-                                       classes: {
-                                           root: classes.cssOutlinedInput,
-                                           focused: classes.cssFocused,
-                                           notchedOutline: classes.notchedOutline,
-                                       }
-                                   }}/>
+            const {classes} = this.props;
+            const {namePl, nameEn, shortcut, descPl, descEn} = this.state;
+            const {open, messageVariant} = this.state;
 
+            return (
+                <div>
+                    <h1 style={{color: '#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
+                    <Paper style={{marginLeft: '20%', width: '60%', backgroundColor: '#EEE', borderRadius: '25px'}}>
+                        <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
-                        <TextField id="nameEn" label="Nazwa EN" style={{marginLeft:'9%',width:'25%'}}
-                                   className={classes.textField} margin="normal" value={nameEn}
-                                   onChange={this.onChange} name="nameEn" variant="outlined"
-                                   InputLabelProps={{
-                                       classes: {
-                                           root: classes.cssLabel,
-                                           focused: classes.cssFocused,
-                                       },
-                                   }}
-                                   InputProps={{
-                                       classes: {
-                                           root: classes.cssOutlinedInput,
-                                           focused: classes.cssFocused,
-                                           notchedOutline: classes.notchedOutline,
-                                       }
-                                   }}/>
-
-                        <br/>
-                        <TextField id="shortcut" label="Skrót" style={{width:'30%'}}
-                                   className={classes.textField} margin="normal" value={shortcut}
-                                   onChange={this.onChange} name="shortcut" variant="outlined"
-                                   InputLabelProps={{
-                                       classes: {
-                                           root: classes.cssLabel,
-                                           focused: classes.cssFocused,
-                                       },
-                                   }}
-                                   InputProps={{
-                                       classes: {
-                                           root: classes.cssOutlinedInput,
-                                           focused: classes.cssFocused,
-                                           notchedOutline: classes.notchedOutline,
-                                       }
-                                   }}/>
-                        <br/>
-
-                        <TextField id="descPl" label="Opis PL" style={{width:'60%'}}
-                                   className={classes.textField} margin="normal" value={descPl}
-                                   onChange={this.onChange} name="descPl" variant="outlined"
-                                   InputLabelProps={{
-                                       classes: {
-                                           root: classes.cssLabel,
-                                           focused: classes.cssFocused,
-                                       },
-                                   }}
-                                   InputProps={{
-                                       classes: {
-                                           root: classes.cssOutlinedInput,
-                                           focused: classes.cssFocused,
-                                           notchedOutline: classes.notchedOutline,
-                                       }
-                                   }}/>
-                        <br/>
+                            <br/>
+                            <TextField id="namePl" label="Nazwa PL" style={{width: '25%'}}
+                                       className={classes.textField} margin="normal" value={namePl}
+                                       onChange={this.onChange} name="namePl" variant="outlined"
+                                       InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
 
 
-                        <TextField id="descEn" label="Opis EN" style={{width:'60%'}}
-                                   className={classes.textField} margin="normal" value={descEn}
-                                   onChange={this.onChange} name="descEn" variant="outlined"
-                                   InputLabelProps={{
-                                       classes: {
-                                           root: classes.cssLabel,
-                                           focused: classes.cssFocused,
-                                       },
-                                   }}
-                                   InputProps={{
-                                       classes: {
-                                           root: classes.cssOutlinedInput,
-                                           focused: classes.cssFocused,
-                                           notchedOutline: classes.notchedOutline,
-                                       }
-                                   }}/>
+                            <TextField id="nameEn" label="Nazwa EN" style={{marginLeft: '9%', width: '25%'}}
+                                       className={classes.textField} margin="normal" value={nameEn}
+                                       onChange={this.onChange} name="nameEn" variant="outlined"
+                                       InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
 
-                        <br/>
-                        <Button style={{marginBottom: '5%',marginTop:'5%',backgroundColor: "#86C232"}}
-                                variant="contained" color="primary" className={classes.button} type="submit" onSubmit={this.onSubmit}
-                                size="large">
-                            Dodaj
-                        </Button>
+                            <br/>
+                            <TextField id="shortcut" label="Skrót" style={{width: '30%'}}
+                                       className={classes.textField} margin="normal" value={shortcut}
+                                       onChange={this.onChange} name="shortcut" variant="outlined"
+                                       InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
+                            <br/>
 
-                    </form>
+                            <TextField id="descPl" label="Opis PL" style={{width: '60%'}}
+                                       className={classes.textField} margin="normal" value={descPl}
+                                       onChange={this.onChange} name="descPl" variant="outlined"
+                                       InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
+                            <br/>
 
-                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
 
-                </Paper>
+                            <TextField id="descEn" label="Opis EN" style={{width: '60%'}}
+                                       className={classes.textField} margin="normal" value={descEn}
+                                       onChange={this.onChange} name="descEn" variant="outlined"
+                                       InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
+                                           classes: {
+                                               root: classes.cssLabel,
+                                               focused: classes.cssFocused,
+                                           },
+                                       }}
+                                       InputProps={{
+                                           classes: {
+                                               root: classes.cssOutlinedInput,
+                                               focused: classes.cssFocused,
+                                               notchedOutline: classes.notchedOutline,
+                                           }
+                                       }}/>
 
-            </div>
+                            <br/>
+                            <Button style={{marginBottom: '5%', marginTop: '5%', backgroundColor: "#86C232"}}
+                                    variant="contained" color="primary" className={classes.button} type="submit"
+                                    onSubmit={this.onSubmit}
+                                    size="large">
+                                Dodaj
+                            </Button>
 
-        )
+                        </form>
 
+                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+
+                    </Paper>
+
+                </div>
+
+            )
+
+        }else return null;
     }
 
 }

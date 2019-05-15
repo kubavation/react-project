@@ -135,7 +135,7 @@ class Resourcesform extends Component {
        // fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(result => {
-                result = result.slice(3,7); //pobieranie names //todo remove
+                //result = result.slice(3,7); //pobieranie names //todo remove
                 this.setState({allFactorNames: result.slice(),
                     actualFactorNames: result.slice()});
             });
@@ -295,6 +295,8 @@ class Resourcesform extends Component {
                                    className={classes.textField} margin="normal" value={namePl}
                                    onChange={this.onChange} name="namePl"
                                    InputLabelProps={{
+                                       style: {fontSize: 25},
+                                       shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,
@@ -312,6 +314,8 @@ class Resourcesform extends Component {
                                    className={classes.textField} margin="normal" value={nameEn}
                                    onChange={this.onChange} name="nameEn"
                                    InputLabelProps={{
+                                       style: {fontSize: 25},
+                                       shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,
@@ -330,6 +334,8 @@ class Resourcesform extends Component {
                                    className={classes.textField} margin="normal" value={descPl}
                                    onChange={this.onChange} name="descPl"
                                    InputLabelProps={{
+                                       style: {fontSize: 25},
+                                       shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,
@@ -349,6 +355,8 @@ class Resourcesform extends Component {
                                    className={classes.textField} margin="normal" value={descEn}
                                    onChange={this.onChange} name="descEn"
                                    InputLabelProps={{
+                                       style: {fontSize: 25},
+                                       shrink: true,
                                        classes: {
                                            root: classes.cssLabel,
                                            focused: classes.cssFocused,

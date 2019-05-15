@@ -96,8 +96,8 @@ class QuantitiesForm extends Component {
                     namePl: res.quantity_name_pl,
                     nameEn: res.quantity_name_eng,
                     id: res.quantity_id,
-                   // baseUnit: res.baseUnit.id,
-                    baseUnit: res.base_unit,
+                    //baseUnit: res.baseUnit.id,
+                    baseUnit: res.id_unit,
                     open: false,
                     vertical: 'top',
                     horizontal: 'center',
@@ -171,7 +171,7 @@ class QuantitiesForm extends Component {
 
         const redirect = qnt.id != null;
         fetch('http://api.gabryelkamil.pl/quantity/' + qnt.id,{
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
@@ -270,6 +270,8 @@ class QuantitiesForm extends Component {
                                        onChange={this.onChange} name="namePl"
                                        variant="outlined"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -290,6 +292,8 @@ class QuantitiesForm extends Component {
                                        onChange={this.onChange} name="nameEn"
                                        variant="outlined"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,

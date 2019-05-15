@@ -81,6 +81,7 @@ class BaseunitsForm extends Component {
     }
         
     getForEdit(props) {
+        console.log(props)
         fetch('http://api.gabryelkamil.pl/unit/108')
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
@@ -180,8 +181,8 @@ class BaseunitsForm extends Component {
         const redirect = unit.id != null;
 
         console.log(unit);
-        fetch('http://api.gabryelkamil.pl/base_unit/108',{
-            method: 'PUT',
+        fetch('http://api.gabryelkamil.pl/base_unit/' + this.state.id,{
+            method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
@@ -220,6 +221,8 @@ class BaseunitsForm extends Component {
                                         className={classes.textField} margin="normal" value={namePl}
                                         onChange={this.onChange} name="namePl"
                                         InputLabelProps={{
+                                            style: {fontSize: 25},
+                                            shrink: true,
                                             classes: {
                                                 root: classes.cssLabel,
                                                 focused: classes.cssFocused,
@@ -237,6 +240,8 @@ class BaseunitsForm extends Component {
                                         className={classes.textField} margin="normal" value={nameEn}
                                         onChange={this.onChange} name="nameEn"
                                         InputLabelProps={{
+                                            style: {fontSize: 25},
+                                            shrink: true,
                                             classes: {
                                                 root: classes.cssLabel,
                                                 focused: classes.cssFocused,
@@ -255,6 +260,8 @@ class BaseunitsForm extends Component {
                                         className={classes.textField} margin="normal" value={shortcut}
                                         onChange={this.onChange} name="shortcut"
                                         InputLabelProps={{
+                                            style: {fontSize: 25},
+                                            shrink: true,
                                             classes: {
                                                 root: classes.cssLabel,
                                                 focused: classes.cssFocused,

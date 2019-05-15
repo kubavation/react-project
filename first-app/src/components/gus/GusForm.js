@@ -102,19 +102,21 @@ class GusForm extends Component {
                     unitId: res.unit_id,
                     shortcutUnit: res.shortcut_unit,
                     id: res.id,
-                    baseUnit: '',
+                    baseUnit: res.unit_id,
                     baseUnits: [],
                     open: false,
                     vertical: 'top',
                     horizontal: 'center',
                     messageVariant: ''
                 });
-            });
+        });
     }
 
     componentDidMount() {
         this.fetchBaseUnits();
     }
+
+
 
     fetchBaseUnits() {
         fetch('http://api.gabryelkamil.pl/unit')
@@ -281,6 +283,8 @@ class GusForm extends Component {
                                        onChange={this.onChange} name="namePl"
                                        variant="outlined"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -301,6 +305,8 @@ class GusForm extends Component {
                                        onChange={this.onChange} name="nameEn"
                                        variant="outlined"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -323,6 +329,8 @@ class GusForm extends Component {
                                        variant="outlined"
                                        disabled="true"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -344,6 +352,8 @@ class GusForm extends Component {
                                        onChange={this.onChange} name="gusId"
                                        variant="outlined"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,

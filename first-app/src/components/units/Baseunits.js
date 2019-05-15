@@ -35,13 +35,15 @@ class Baseunits extends Component {
         fetch('http://api.gabryelkamil.pl/base_unit')
             .then(response => response.json())
             .then(units => {
+                console.log(units)
                 let list = [];
                 units.forEach( u => {
                     const temp  = {
                         name_pl: u.unit_pl,
                         name_en: u.unit_eng,
                         //ratio: u.ratio,
-                        shortcut: u.shortcut
+                        shortcut: u.shortcut,
+                        id: u.id
                     }
                     list.push(temp);
                 })

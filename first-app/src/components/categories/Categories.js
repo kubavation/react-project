@@ -41,7 +41,8 @@ class Categories extends Component {
                         cat_name_pl: u.cat_name_pl,
                         cat_name_eng: u.cat_name_eng,
                         desc_pl: u.cat_description_pl,
-                        desc_en: u.cat_description_eng
+                        desc_en: u.cat_description_eng,
+                        id: u.cat_id
                     }
                     list.push(temp);
                 })

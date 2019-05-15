@@ -116,6 +116,7 @@ class FactorSourcesform extends Component {
             if (response.status != "204")
                 this.setState({open: true, messageVariant: 'error'})
             else {
+                this.setState({open: true, messageVariant: 'success'})
                     setTimeout(() =>
                         this.props.history.push('/factors/factorsources/list'), 800);
             }
@@ -127,14 +128,33 @@ class FactorSourcesform extends Component {
             );*/
     }
 
-    // fetchFiles() {
-    //     fetch('https://jsonplaceholder.typicode.com/todos')
-    //         .then(response => response.json())
-    //         .then(files => {
-    //             files = files.slice(3,8);   //remove
-    //             this.setState({files: files});
-    //         });
-    // }
+    updateFactorSource(factorSource) {
+
+        console.log(factorSource);
+
+        fetch('http://api.gabryelkamil.pl/source/' + this.state.id, {
+            method: 'POST',
+            /*            headers: {
+                            'content-type' : 'application/json'
+                        },*/
+            body: factorSource
+        }).then(response => {
+            if (response.status != "204")
+                this.setState({open: true, messageVariant: 'error'})
+            else {
+                this.setState({open: true, messageVariant: 'success'})
+                setTimeout(() =>
+                    this.props.history.push('/factors/factorsources/list'), 800);
+            }
+        });
+        /*.then(response => response.json())
+        .then(res => {
+                console.log(res)
+            }
+        );*/
+    }
+
+
 
     handleClose(event, reason) {
         if (reason === 'clickaway') {
@@ -146,6 +166,8 @@ class FactorSourcesform extends Component {
 
 
     onFileChange(event) {
+        //todo cos tu nie dziala
+        console.log(this.state)
         const name = this.state.file.current.files[0].name;
         this.setState({fileName: name});
     }
@@ -160,12 +182,14 @@ class FactorSourcesform extends Component {
         });*/
 
         const {date} = this.state;
+        console.log(date)
         let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
         formData.append(`file`, this.state.file.current.files[0]);
         formData.append('date', formatted_date);
         formData.append('description', this.state.desc);
         formData.append('doi', this.state.doi);
         formData.append('bibtex', this.state.bibtex);
+
 
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1])
@@ -179,14 +203,17 @@ class FactorSourcesform extends Component {
             bibtex: this.state.bibtex,
             file: this.state.file.current.files[0]
         };
-        
-        this.createFactorSource(formData);
 
-        const variant = 'success';  // ? fail?
+        if(this.state.id)
+            this.updateFactorSource(formData)
+        else
+            this.createFactorSource(formData);
 
-        this.setState({userId: '', title: '',
-            date: '', desc: '', doi: '',bibtex: '',file: React.createRef(),
-            redirect: true, open: true, messageVariant: variant});
+        // const variant = 'success';  // ? fail?
+        //
+        // this.setState({userId: '', title: '',
+        //     date: '', desc: '', doi: '',bibtex: '',file: React.createRef(),
+        //     redirect: true, open: true, messageVariant: variant});
 
     };
 
@@ -197,6 +224,7 @@ class FactorSourcesform extends Component {
     handleDateChange = date => {
         this.setState({ date: date });
     };
+
     getForEdit(props) {
         fetch('http://api.gabryelkamil.pl/source/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
@@ -206,14 +234,25 @@ class FactorSourcesform extends Component {
                 this.setState({
                     doi: res.doi,
                     bibtex: res.bibtex,
-                    date: res.date,
-                    desc: res.desc,
-                    file: res.file,
+                    date: new Date(res.source_date),
+                    desc: res.source_description,
+                    id: res.source_id,
+                    //file: res.file_id,
+                    file: React.createRef(),
                     open: false,
                     vertical: 'top',
                     horizontal: 'center',
                     messageVariant: '',
-                });
+                }, () => this.fetchFile(res.file_id));
+            });
+    }
+
+    fetchFile(id) {
+        fetch('http://api.gabryelkamil.pl/file/' + id)
+            .then(response => response.json())
+            .then(res => {
+                console.log(res);
+               // this.setState({fileName: res.file_name})
             });
     }
 
@@ -269,6 +308,8 @@ class FactorSourcesform extends Component {
                                        className={classes.textField} margin="normal" value={doi}
                                        onChange={this.onChange} name="doi"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -292,6 +333,8 @@ class FactorSourcesform extends Component {
                                        className={classes.textField} margin="normal" value={bibtex}
                                        onChange={this.onChange} name="bibtex"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -312,6 +355,8 @@ class FactorSourcesform extends Component {
                                        className={classes.textField} margin="normal" value={desc}
                                        onChange={this.onChange} name="desc"
                                        InputLabelProps={{
+                                           style: {fontSize: 25},
+                                           shrink: true,
                                            classes: {
                                                root: classes.cssLabel,
                                                focused: classes.cssFocused,
@@ -337,6 +382,8 @@ class FactorSourcesform extends Component {
                                            className={classes.textField} margin="normal" value={fileName}
                                            onChange={this.onChange} name="fileName"
                                            InputLabelProps={{
+                                               style: {fontSize: 25},
+                                               shrink: true,
                                                classes: {
                                                    root: classes.cssLabel,
                                                    focused: classes.cssFocused,

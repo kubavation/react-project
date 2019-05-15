@@ -50,7 +50,7 @@ class GusList extends Component {
                         nameEn: q.name_eng,
                         gusId: q.gus_id,
                         //source: q.source,
-                        //id: q.id,
+                        id: q.id,
                         shortcutUnit: q.shortcut_unit,
                         //unit: q.unit_id
                     }
