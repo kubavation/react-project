@@ -88,7 +88,9 @@ class Resourcesform extends Component {
                 factorNames: [], //wybrane
                 createdFactor: '', //utworzony
                 actualFactorNames: [], //aktualnie dostepne
-
+                units: [],
+                unit: '',
+                unit2: '',
 
                 open: false,
                 vertical: 'top',
@@ -102,6 +104,7 @@ class Resourcesform extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.factorChange = this.factorChange.bind(this);
         this.addFactor = this.addFactor.bind(this);
+        this.unitChange = this.unitChange.bind(this);
     }
 
     getForEdit(props) {
@@ -128,18 +131,48 @@ class Resourcesform extends Component {
 
     componentDidMount() {
         this.fetchFactorNames();
+        this.fetchUnits();
     }
 
     fetchFactorNames() {
-        fetch('http://api.gabryelkamil.pl/get_factor_name')
+        fetch('http://api.gabryelkamil.pl/factor_name')
        // fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(result => {
+                console.log("here")
+                console.log(result)
                 //result = result.slice(3,7); //pobieranie names //todo remove
                 this.setState({allFactorNames: result.slice(),
-                    actualFactorNames: result.slice()});
+                    actualFactorNames: result.slice()}, () => console.log(result.slice()));
             });
     }
+
+
+    fetchUnits() {
+        fetch('http://api.gabryelkamil.pl/unit')
+        // fetch('https://jsonplaceholder.typicode.com/todos')
+            .then(response => response.json())
+            .then(result => {
+                console.log("here2")
+                console.log(result)
+                //result = result.slice(3,7); //pobieranie names //todo remove
+                this.setState({units: result.slice()});
+            });
+    }
+
+    fetchUnitsById(id) {
+        fetch('http://api.gabryelkamil.pl/unit/' + id)
+        // fetch('https://jsonplaceholder.typicode.com/todos')
+            .then(response => response.json())
+            .then(result => {
+                console.log("here2")
+                console.log(result)
+                //result = result.slice(3,7); //pobieranie names //todo remove
+                this.setState({units: result.slice()});
+            });
+    }
+
+
 
     createResource(resource) {
 
@@ -188,27 +221,53 @@ class Resourcesform extends Component {
 
     factorsById(id) {
 
-        const x =  this.state.allFactorNames.find(f => f.id == id);
+        const x =  this.state.allFactorNames.find(f => f.factor_id == id);
+        //console.log(x);
+        return x;
+    }
+    unitsById(id) {
+
+        console.log("id " + id)
+        console.log(this.state.units);
+        const x =  this.state.units.find(f => f.id == id);
         //console.log(x);
         return x;
     }
 
     addFactor(event) {
-        const { factorNames, createdFactor, allFactorNames, actualFactorNames } = this.state;
+        const { factorNames, allFactorNames, actualFactorNames, unit, unit2 } = this.state;
+
+        let createdFactor = this.state.createdFactor;
+        console.log(createdFactor)
+
+        // createdFactor = {
+        //     factor_id: createdFactor.factor_id,
+        //     value: createdFactor.value,
+        //     error: createdFactor.error,
+        //     unit1: unit,
+        //     unit2: unit2
+        // }
+
+        console.log(createdFactor)
+
         factorNames.push(createdFactor);
 
 
+
+
         const index = actualFactorNames.findIndex(f =>
-            f.id == createdFactor.factorId);
+            f.factor_id == createdFactor.factor_id);
 
         actualFactorNames.splice(index,1);
 
-        this.setState({factorNames: factorNames});
+        this.setState({factorNames: factorNames, unit2: "", unit: ""});
         this.setState({
             createdFactor: {
-                factorId: "",
+                factor_id: "",
                 value: "",
-                error: ""
+                error: "",
+                unit: "",
+                unit2: "",
             }
         })
     }
@@ -216,6 +275,9 @@ class Resourcesform extends Component {
     factorChange(event) {
 
         const target = event.target;
+        console.log("XDDDD")
+
+        console.log(target.name + "  " + target.value)
 
         this.setState(prev => ({
           createdFactor: {
@@ -223,6 +285,22 @@ class Resourcesform extends Component {
               [target.name] : target.value
           }
         }));
+    };
+    unitChange(event) {
+
+        const target = event.target;
+        console.log("XDDDD")
+
+        console.log(target.name + "  " + target.value)
+
+        this.setState(prev => ({
+            createdFactor: {
+                ...prev.createdFactor,
+                [target.name] : target.value,
+
+            }
+        }));
+        this.setState({[event.target.name] : event.target.value});
     };
 
     isDisabled() {
@@ -232,10 +310,10 @@ class Resourcesform extends Component {
     delete(rowId) {
         //console.log(rowId);
         const { factorNames, actualFactorNames } = this.state;
-        const id = this.factorsById(rowId).id;
+        const id = this.factorsById(rowId).factor_id;
         const toAdd = this.factorsById(rowId);
         const index = factorNames.findIndex(f =>
-            f.factorId == id);
+            f.factor_id == id);
 
       //  console.log(toAdd);
         factorNames.splice(index,1);
@@ -271,18 +349,24 @@ class Resourcesform extends Component {
     };
 
     onChange(event) {
+        console.log(event.target.name + "  " + event.target.value)
         this.setState({[event.target.name] : event.target.value});
     };
 
     render() {
         const { classes } = this.props;
-        const {  namePl, nameEn, descPl, descEn, allFactorNames, factorNames,createdFactor, actualFactorNames } = this.state;
+        const {  namePl, nameEn, descPl, descEn, allFactorNames, factorNames,createdFactor, actualFactorNames, units, unit, unit2 } = this.state;
         const { vertical, horizontal, open, messageVariant } = this.state;
 
 
         const factorNamesItems = actualFactorNames.map(name => (
-            <MenuItem  value={name.id}>{name.title}</MenuItem>
+            <MenuItem  value={name.factor_id}>{name.factor_name_pl}</MenuItem>
         ));
+
+        const unitsItems = units.map(u => (
+            <MenuItem  value={u.id}>{u.shortcut}</MenuItem>
+        ));
+
 
         return (
             <div>
@@ -387,16 +471,24 @@ class Resourcesform extends Component {
                                 </TableHead>
                                 <TableBody>
                                     {factorNames.map(row => (
-                                        <TableRow key={row.factorId} style={{border:'1px solid black'}}>
-                                            <TableCell align="center" style={{border:'1px solid black'}}> {this.factorsById(row.factorId).title}</TableCell>
-                                            <TableCell style={{border:'1px solid black'}}>{row.value}</TableCell>
+                                        <TableRow key={row.factor_id} style={{border:'1px solid black'}}>
+                                            <TableCell align="center" style={{border:'1px solid black'}}> {this.factorsById(row.factor_id).factor_name_pl}
+                                            </TableCell>
+                                            <TableCell style={{border:'1px solid black'}}>{row.value}
+
+                                                { row.unit != '' ? this.unitsById(row.unit).shortcut : ''}  /
+
+                                                { row.unit != '' ? this.unitsById(row.unit2).shortcut : ''}
+
+
+                                            </TableCell>
                                             <TableCell style={{border:'1px solid black'}}>{row.error}</TableCell>
                                             <TableCell style={{border:'1px solid black'}}>
                                                 <Button
                                                     variant="contained" style={{backgroundColor: "#86C232"}} 
                                                     size="small"
                                                     color="primary" className={classes.button}
-                                                    onClick={() => this.delete(row.factorId)}>
+                                                    onClick={() => this.delete(row.factor_id)}>
                                                     Usuń
                                                 </Button>
                                             </TableCell>
@@ -408,11 +500,11 @@ class Resourcesform extends Component {
 
                                             <InputLabel htmlFor="names">Nazwa</InputLabel>
                                             <Select
-                                                value={createdFactor.factorId}
+                                                value={createdFactor.factor_id}
                                                 onChange={this.factorChange}
                                                 style={{width:'100px'}}
                                                 placeholder="Nazwa"
-                                                input={<Input name="factorId" id="names"/>}
+                                                input={<Input name="factor_id" id="names"/>}
                                             >
                                                 {factorNamesItems}
                                             </Select>
@@ -423,6 +515,25 @@ class Resourcesform extends Component {
                                             <TextField id="factorvalue" label="Wartość"
                                                        className={classes.textField} margin="normal" value={createdFactor.value}
                                                        onChange={this.factorChange} name="value"/>
+                                            <Select
+                                                value={unit}
+                                                onChange={this.unitChange}
+                                                style={{width:'50px'}}
+                                                placeholder="Nazwa"
+                                                input={<Input name="unit" id="unit"/>}
+                                            >
+                                                {unitsItems}
+                                            </Select>
+                                            /
+                                            <Select
+                                                value={unit2}
+                                                onChange={this.unitChange}
+                                                style={{width:'50px'}}
+                                                placeholder="Nazwa"
+                                                input={<Input name="unit2" id="unit2"/>}
+                                            >
+                                                {unitsItems}
+                                            </Select>
                                         </TableCell>
                                         <TableCell style={{border:'1px solid black'}}>
                                             <TextField id="factorerror" label="Niepewność"

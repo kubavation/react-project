@@ -82,7 +82,7 @@ class BaseunitsForm extends Component {
         
     getForEdit(props) {
         console.log(props)
-        fetch('http://api.gabryelkamil.pl/unit/108')
+        fetch('http://api.gabryelkamil.pl/unit/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {

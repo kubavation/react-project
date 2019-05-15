@@ -97,13 +97,13 @@ class EnergyResourcesForm extends Component {
                     co2: res.EQUIV,
                     id: res.id,
                     gus_all: [],
-                    gus:'',
+                    gus: res.id_gus,
                     open: false,
                     vertical: 'top',
                     horizontal: 'center',
                     messageVariant: '',
                     baseUnits:[]
-                });
+                },()=> this.fetchGus2(res.id_gus));
             });
     }
 
@@ -127,6 +127,23 @@ class EnergyResourcesForm extends Component {
                 }
             );
     }
+
+    fetchGus2(id) {
+        fetch('http://api.gabryelkamil.pl/gus_category/' + id,{
+            method: 'GET',
+            headers: {
+                'content-type' : 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(res => {
+                    console.log(res);
+                    this.setState({codeGUS:res.gus_id})
+                }
+            );
+    }
+
+
 
     createEnergyResource(esource) {
 

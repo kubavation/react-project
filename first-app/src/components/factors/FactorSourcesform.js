@@ -185,6 +185,7 @@ class FactorSourcesform extends Component {
         console.log(date)
         let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
         formData.append(`file`, this.state.file.current.files[0]);
+        console.log(this.state.file.current.files[0])
         formData.append('date', formatted_date);
         formData.append('description', this.state.desc);
         formData.append('doi', this.state.doi);
@@ -252,7 +253,7 @@ class FactorSourcesform extends Component {
             .then(response => response.json())
             .then(res => {
                 console.log(res);
-               // this.setState({fileName: res.file_name})
+               this.setState({fileName: res.file_name})
             });
     }
 

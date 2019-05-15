@@ -122,9 +122,9 @@ class Categoriesform extends Component {
                 console.log(res)
                 this.setState({
                     namePl: res.cat_name_pl, //todo zmiany jsonow
-                    nameEn: res.nameEn,
-                    descPl: res.descPl,
-                    descEn: res.descEn,
+                    nameEn: res.cat_name_eng,
+                    descPl: res.cat_description_pl,
+                    descEn: res.cat_description_eng,
                     id: res.cat_id,
                     //todo change parentCategories: res.parentCategories,
                     parentCategories: [],

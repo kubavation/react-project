@@ -272,7 +272,7 @@ class GusForm extends Component {
 
             return (
                 <div>
-                    <h1 style={{color: '#CCC', fontSize: 40}}>Wprowadzanie wielkości fiz/chem</h1>
+                    <h1 style={{color: '#CCC', fontSize: 40}}>Wprowadzanie kategorii GUS</h1>
                     <Paper style={{marginLeft: '30%', width: '40%', backgroundColor: '#EEE', borderRadius: '25px'}}>
                         <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
@@ -372,7 +372,7 @@ class GusForm extends Component {
 
 
                             <br/>
-                            <InputLabel style={{marginRight: '2%'}} htmlFor="base-unit">Jednostka bazowa</InputLabel>
+                            <InputLabel style={{marginRight: '2%'}} htmlFor="base-unit">Jednostka</InputLabel>
                             <Select
                                 value={this.state.baseUnit}
                                 style={{width: '20%'}}
