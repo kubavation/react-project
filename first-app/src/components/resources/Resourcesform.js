@@ -177,13 +177,37 @@ class Resourcesform extends Component {
     createResource(resource) {
 
         const redirect = resource.id != null;
-        console.log(resource);
+
+        //console.log(resource);
+        let factors = [];
+        resource.factorNames.forEach(el => {
+           let temp = {
+               resourceUnit1: el.unit,
+               resourceUnit2: el.unit2,
+               uncertainty: el.error,
+               factorId: el.factor_id,
+               sourceId : 10,
+               factor: 10 //?
+           };
+           factors.push(temp);
+        });
+
+        let res = {
+            resourceNamePl: resource.namePl,
+            resourceNameEng: resource.nameEn,
+            descriptionPl: resource.descPl,
+            descriptionEng: resource.descEn,
+            factors: factors
+        };
+
+        console.log(res);
+
         fetch('http://api.gabryelkamil.pl/resource',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
             },
-            body: JSON.stringify(resource)
+            body: JSON.stringify(res)
         }).then(response => {
             if (response.status != "204")
                 this.setState({open: true, messageVariant: 'error'})
@@ -201,7 +225,7 @@ class Resourcesform extends Component {
                     messageVariant: 'success'
                 });
 
-                if(redirect)
+                //if(redirect)
                     setTimeout(() =>
                         this.props.history.push('/resources/resources/list'), 800);
             }
@@ -512,14 +536,16 @@ class Resourcesform extends Component {
 
                                         </TableCell>
                                         <TableCell style={{border:'1px solid black'}}>
+
                                             <TextField id="factorvalue" label="Wartość"
-                                                       className={classes.textField} margin="normal" value={createdFactor.value}
+                                                       className={classes.textField} style={{width:'200px'}}
+                                                       value={createdFactor.value}
                                                        onChange={this.factorChange} name="value"/>
-                                            <Select
+
+                                        <Select
                                                 value={unit}
                                                 onChange={this.unitChange}
-                                                style={{width:'50px'}}
-                                                placeholder="Nazwa"
+                                                style={{width:'100px'}}
                                                 input={<Input name="unit" id="unit"/>}
                                             >
                                                 {unitsItems}
@@ -528,12 +554,13 @@ class Resourcesform extends Component {
                                             <Select
                                                 value={unit2}
                                                 onChange={this.unitChange}
-                                                style={{width:'50px'}}
-                                                placeholder="Nazwa"
+                                                style={{width:'100px'}}
                                                 input={<Input name="unit2" id="unit2"/>}
                                             >
                                                 {unitsItems}
                                             </Select>
+
+
                                         </TableCell>
                                         <TableCell style={{border:'1px solid black'}}>
                                             <TextField id="factorerror" label="Niepewność"
