@@ -187,7 +187,8 @@ class Resourcesform extends Component {
                uncertainty: el.error,
                factorId: el.factor_id,
                sourceId : 1,
-               factor: 10 //?
+               factor: 10,
+               factorUnit: 3
            };
            factors.push(temp);
         });

@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17b8e583-9650-42b2-9ca9-a9266330ea73" name="Default" comment="init">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/appbars/Drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/appbars/Drawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/factors/FactorNamesForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/factors/FactorNamesForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/factors/FactorSourcesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/factors/FactorSourcesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/gus/GusForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gus/GusForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/resources/Resourcesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/resources/Resourcesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Baseunitsform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Baseunitsform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Quantitiesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Quantitiesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Unitsform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Unitsform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/view/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/view/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/view/Pagintable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/view/Pagintable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/view/Tableheadpagin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/view/Tableheadpagin.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/resources/Resourcesform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="199" column="24" lean-forward="true" selection-start-line="199" selection-start-column="24" selection-end-line="199" selection-end-column="24" />
+            <state relative-caret-position="162">
+              <caret line="189" column="26" lean-forward="true" selection-start-line="189" selection-start-column="26" selection-end-line="189" selection-end-column="26" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -320,7 +308,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/durys/React/first-app/src/components/units/Quantities.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558434223320" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558434344131" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Meet-project/EurekaServer" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -463,7 +451,7 @@
       <workItem from="1557934864210" duration="2496000" />
       <workItem from="1557943745361" duration="1422000" />
       <workItem from="1558024910574" duration="44000" />
-      <workItem from="1558430854469" duration="3362000" />
+      <workItem from="1558430854469" duration="3431000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1551021324397</created>
@@ -476,7 +464,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315334000" />
+    <option name="totallyTimeSpent" value="315403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -843,8 +831,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/resources/Resourcesform.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="199" column="24" lean-forward="true" selection-start-line="199" selection-start-column="24" selection-end-line="199" selection-end-column="24" />
+        <state relative-caret-position="162">
+          <caret line="189" column="26" lean-forward="true" selection-start-line="189" selection-start-column="26" selection-end-line="189" selection-end-column="26" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
