@@ -30,10 +30,11 @@ class Header extends React.Component {
 
         return (
            <div>
-               <h1 className="header">Knowledge Bank</h1>
+               <h1 className="header" >Bank wiedzy</h1>
                <div className="content">
-                   <p>This website was created to store information about carbon footprint.</p>
-                   <p>Help us to make it bigger and insert new data.</p>
+                   <p>Ta strona internetowa została stworzona w celu przechowywania informacji o śladzie węglowym.</p>
+
+                   <p>Pomóż nam rozwinąć naszą bazę i wstaw nowe dane.</p>
                </div>
            </div>
 

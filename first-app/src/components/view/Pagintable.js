@@ -48,7 +48,7 @@ class PaginTable extends React.Component {
             <TableRow key={qnt.id}>
                 { Object.keys(qnt).map(key => {
                 if(key !== 'id')
-                     return <TableCell >{qnt[key]}</TableCell>})
+                     return <TableCell style={{fontSize: '20px'}}>{qnt[key]}</TableCell>})
                 }
                 <TableCell><Button variant="contained"
                                    component={Link} to={link + '/' + qnt.id}>Edytuj</Button></TableCell>
@@ -64,6 +64,7 @@ class PaginTable extends React.Component {
                     </TableBody>
                 </Table>
                 <TablePagination
+                    labelRowsPerPage='Ilość rekordów'
                     rowsPerPageOptions={[5, 10, 25]}
                     component="div"
                     count={items.length}

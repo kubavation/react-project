@@ -269,7 +269,7 @@ class FactorSourcesform extends Component {
 
             return (
                 <div>
-                    <h1 style={{color: '#CCC', fontSize: 40}}>Dodawanie nowego współczynnika</h1>
+                    <h1 style={{color: '#CCC', fontSize: 40}}>Dodawanie nowego źródła</h1>
                     <Paper style={{marginLeft: '20%', width: '60%', backgroundColor: '#EEE', borderRadius: '25px'}}>
                         <form onSubmit={this.onSubmit} style={{marginTop: '10%'}}>
 
@@ -355,6 +355,8 @@ class FactorSourcesform extends Component {
                                        style={{width: '60%'}}
                                        className={classes.textField} margin="normal" value={desc}
                                        onChange={this.onChange} name="desc"
+                                       multiline
+                                       rows="3"
                                        InputLabelProps={{
                                            style: {fontSize: 25},
                                            shrink: true,
@@ -425,7 +427,16 @@ class FactorSourcesform extends Component {
                                     variant="contained" color="primary" className={classes.button} type="submit"
                                     onSubmit={this.onSubmit}
                                     size="large">
-                                Dodaj
+                                {this.state.id != null ? 'Zmień' : 'Dodaj'}
+                            </Button>
+
+
+                            <Button style={{marginBottom: '5%', marginTop: '5%', backgroundColor: "#86C232",
+                                marginLeft:'2%'}}
+                                    variant="contained" color="primary" className={classes.button}
+                                    onClick={() => window.history.go(-1)}
+                                    size="large">
+                                Anuluj
                             </Button>
 
                         </form>

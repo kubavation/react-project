@@ -199,7 +199,7 @@ class MyDrawer extends Component {
                     </IconButton>
 
                         <Button component={Link} to={'/header'} onClick={this.handleOnClickDrawer}
-                        style={{fontSize:'22px',color:'#fff'}}>Knowledge Bank</Button>
+                        style={{fontSize:'22px',color:'#fff'}}>Bank wiedzy</Button>
 
                     <Typography style={{marginLeft:'75%'}}>
                         {authButton}

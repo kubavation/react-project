@@ -19,7 +19,7 @@ class TableHeadPagin extends Component {
         const { items }  = this.state;
 
         const tableCells = items.map(row => (
-            <TableCell key={row}>{row}</TableCell>
+            <TableCell style={{fontSize:'24px'}} key={row}>{row}</TableCell>
         ));
 
         return (

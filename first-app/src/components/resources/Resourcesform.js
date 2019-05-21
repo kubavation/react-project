@@ -178,7 +178,7 @@ class Resourcesform extends Component {
 
         const redirect = resource.id != null;
 
-        //console.log(resource);
+        console.log(resource);
         let factors = [];
         resource.factorNames.forEach(el => {
            let temp = {
@@ -186,7 +186,7 @@ class Resourcesform extends Component {
                resourceUnit2: el.unit2,
                uncertainty: el.error,
                factorId: el.factor_id,
-               sourceId : 10,
+               sourceId : 1,
                factor: 10 //?
            };
            factors.push(temp);
@@ -589,9 +589,17 @@ class Resourcesform extends Component {
                                 variant="contained" color="primary" className={classes.button} type="submit"
                                 size="large"
                                 onSubmit={this.onSubmit}>
-                            Dodaj
+                            {this.state.id != null ? 'Zmień' : 'Dodaj'}
                         </Button>
 
+
+                        <Button style={{marginBottom: '5%', marginTop: '5%', backgroundColor: "#86C232",
+                            marginLeft:'2%'}}
+                                variant="contained" color="primary" className={classes.button}
+                                onClick={() => window.history.go(-1)}
+                                size="large">
+                            Anuluj
+                        </Button>
 
                     </form>
 

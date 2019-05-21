@@ -292,7 +292,16 @@ class FactorNamesForm extends Component {
                                     variant="contained" color="primary" className={classes.button} type="submit"
                                     onSubmit={this.onSubmit}
                                     size="large">
-                                Dodaj
+                                {this.state.id != null ? 'Zmień' : 'Dodaj'}
+                            </Button>
+
+
+                            <Button style={{marginBottom: '5%', marginTop: '5%', backgroundColor: "#86C232",
+                                marginLeft:'2%'}}
+                                    variant="contained" color="primary" className={classes.button}
+                                    onClick={() => window.history.go(-1)}
+                                    size="large">
+                                Anuluj
                             </Button>
 
                         </form>
