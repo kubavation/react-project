@@ -21,7 +21,8 @@ class PaginTable extends React.Component {
             itemNames: props.itemNames,
             page: 0,
             rowsPerPage: 10,
-            link: props.link
+            link: props.link,
+            edit: props.edit
         }
 
         this.handleChangePage = this.handleChangePage.bind(this);
@@ -41,7 +42,11 @@ class PaginTable extends React.Component {
     render() {
         const { classes } = this.props;
         const { items, itemNames } = this.props;
-        const { page, rowsPerPage, link } = this.state;
+        const { page, rowsPerPage, link, edit } = this.state;
+
+        var show = 'visible'
+        if(edit != null)
+            show = 'hidden'
 
 
         const itemComponents = items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(qnt => (
@@ -50,7 +55,7 @@ class PaginTable extends React.Component {
                 if(key !== 'id')
                      return <TableCell style={{fontSize: '20px'}}>{qnt[key]}</TableCell>})
                 }
-                <TableCell><Button variant="contained"
+                <TableCell><Button variant="contained" style={{visibility:show}}
                                    component={Link} to={link + '/' + qnt.id}>Edytuj</Button></TableCell>
             </TableRow>
         ));

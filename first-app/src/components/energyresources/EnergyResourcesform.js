@@ -398,7 +398,7 @@ class EnergyResourcesForm extends Component {
 
                         <br/><br/>
 
-                        <InputLabel htmlFor="ncv">NCV [MJ/kg]</InputLabel>
+                        <InputLabel htmlFor="ncv">NCV [MJ/unit]</InputLabel>
                         <TextField id="ncv" label="Wartość" style={{width:'20%',marginLeft:'2%'}}
                                    className={classes.textField} value={ncv}
                                    variant="outlined"
@@ -423,7 +423,7 @@ class EnergyResourcesForm extends Component {
 
                         <br/><br/>
 
-                        <InputLabel htmlFor="we">WE [kg/GJ]</InputLabel>
+                        <InputLabel htmlFor="we">WE [kg/unit]</InputLabel>
                         <TextField id="we" label="Wartość" style={{width:'20%',marginLeft:'2%'}}
                                    className={classes.textField} value={we}
                                    disabled="true"
