@@ -406,7 +406,7 @@ class MyDrawer extends Component {
 
                     <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon} />} >
-                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Energy Resources</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Surowce Energetyczne</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column'}}>
                             <ListItem key="list1" button component={Link} to={'/energyresources/energyresources/list'} onClick={this.handleOnClickDrawer}>
