@@ -186,9 +186,7 @@ class Resourcesform extends Component {
                resourceUnit2: el.unit2,
                uncertainty: el.error,
                factorId: el.factor_id,
-               sourceId : 1,
-               factor: 10,
-               factorUnit: 3
+               factor: el.value
            };
            factors.push(temp);
         });
@@ -198,9 +196,9 @@ class Resourcesform extends Component {
             resourceNameEng: resource.nameEn,
             descriptionPl: resource.descPl,
             descriptionEng: resource.descEn,
-            factors: factors
+            factorNames: factors
         };
-
+        console.log("przesylany json " );
         console.log(res);
 
         fetch('http://api.gabryelkamil.pl/resource',{
@@ -210,8 +208,10 @@ class Resourcesform extends Component {
             },
             body: JSON.stringify(res)
         }).then(response => {
-            if (response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
+            if (response.status != "204") {
+                this.setState({open: true, messageVariant: 'error'});
+                console.log(response);
+            }
             else {
                 this.setState({
                     namePl: '',
