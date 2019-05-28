@@ -56,6 +56,7 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { MdEventNote } from "react-icons/md";
 import GusForm from "../gus/GusForm";
 import GusList from "../gus/Gus";
+import Charts from "../charts/charts";
 
 
 const drawerWidth = 260;
@@ -454,6 +455,7 @@ class MyDrawer extends Component {
                     <Route path='/resources/resources/create/:id?' component={Resourcesform} />
                     <Route path='/energyresources/energyresources/list' component={EnergyResources} />
                     <Route path='/energyresources/energyresources/create/:id?' component={EnergyResourcesForm} />
+                    <Route path='/charts' component={Charts} />
                     <Route path='/gus/create/:id?' component={GusForm} />
                     <Route path='/gus/list' component={GusList} />
                     <Route path='/header' component={Header} />
