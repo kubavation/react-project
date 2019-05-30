@@ -1,14 +1,11 @@
 import React, { PureComponent } from 'react';
 import {
-    PieChart, Pie, Legend, Tooltip, Cell,
+    PieChart, Pie, Legend, Tooltip, Cell,BarChart, Bar, XAxis, YAxis, CartesianGrid,  ResponsiveContainer
 } from 'recharts';
 
-const data01 = [
-    { name: 'Group A', value: 400 }, { name: 'Group B', value: 300 },
-    { name: 'Group C', value: 300 }, { name: 'Group D', value: 200 },
-    { name: 'Group E', value: 278 }, { name: 'Group F', value: 189 },
-];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORSCo2 = ['F98866', '#89DA59', '#FF420E', '#80BD9E'];
+const COLORSWater = ['#505160', '#598234', '#68829E', '#AEBD38'];
 
 
 class Charts extends PureComponent {
@@ -16,9 +13,9 @@ class Charts extends PureComponent {
     constructor(props) {
         super();
         this.state = {
-            energy_resources: [],
-            resources: [],
-            products: []
+            chartEqco2: [],
+            chartProducts: [],
+            chartWater: []
         }
         this.getCharts(props);
     }
@@ -132,52 +129,74 @@ class Charts extends PureComponent {
         }).then(response => response.json()
         ).then(data => {
             console.log(data)
-            let energy_resources = [];
-            data.energy_resources.forEach( u => {
+            let chartEqco2 = [];
+            data.chartEqco2.forEach( u => {
                 const temp  = {
                     name: u.name,
                     value: u.ammount
                 }
-                energy_resources.push(temp);
+                chartEqco2.push(temp);
             });
-            let products = [];
-            data.products.forEach( u => {
+            let chartWater = [];
+            data.chartWater.forEach( u => {
                 const temp  = {
                     name: u.name,
                     value: u.ammount
                 }
-                products.push(temp);
+                chartWater.push(temp);
             });
-            let resources = data.resources;
-            this.setState({energy_resources: energy_resources});
-            this.setState({products: products});
-            this.setState({resources: data.resources});
+            let chartProducts = [];
+            data.chartProducts.forEach( u => {
+                const temp  = {
+                    name: u.name,
+                    value: u.ammount
+                }
+                chartProducts.push(temp);
+            });
+
+            this.setState({chartEqco2: chartEqco2});
+            this.setState({chartProducts: chartProducts});
+            this.setState({chartWater: chartWater});
 
         });
     }
 
     render() {
-        const energy_resources = this.state.energy_resources;
-        const products = this.state.products;
-        const resources = this.state.resources;
+        const chartEqco2 = this.state.chartEqco2;
+        const chartProducts = this.state.chartProducts;
+        const chartWater = this.state.chartWater;
         return (
-            <div style={{backgroundColor:'grey'}}>
-
-                <PieChart width={800} height={400} >
-                    <Pie dataKey="value" isAnimationActive={true} data={energy_resources} cx={400} cy={200} outerRadius={80} fill="#8884d8" label >
+            <ResponsiveContainer height={400} width="100%">
+                <PieChart style={{backgroundColor:"#EEE", borderRadius:'25px'}} >
+                    <text x="20%" y="10%" textAnchor="middle" dominantBaseline="middle" style={{fontWeight:'bold'}}>
+                        Emisja CO2
+                    </text>
+                    <Pie dataKey="value" isAnimationActive={false} data={chartEqco2} cx="20%" cy={200} outerRadius={100} fill="#8884d8" label >
                         {
-                            energy_resources.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                            chartEqco2.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSCo2[index % COLORS.length]} />)
                         }
                     </Pie>
+                    <text x="50%" y="10%" textAnchor="middle" dominantBaseline="middle" style={{fontWeight:'bold'}}>
+                        Emisja wody
+                    </text>
+                    <Pie dataKey="value" isAnimationActive={false} data={chartWater} cx="50%" cy={200} outerRadius={100} fill="#8884d8" label >
+                        {
+                            chartWater.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSWater[index % COLORS.length]} />)
+                        }
+                    </Pie>
+                    <text x="80%" y="10%" textAnchor="middle" dominantBaseline="middle" style={{fontWeight:'bold'}}>
+                        Produkty
+                    </text>
+                    <Pie dataKey="value" isAnimationActive={false} data={chartProducts} cx="80%" cy={200} outerRadius={100} fill="#8884d8" label >
+                        {
+                            chartProducts.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                        }
+                    </Pie>
+
+                    <Tooltip />
                     <Legend />
-                    <Tooltip />
                 </PieChart>
-                <PieChart width={400} height={400}>
-                    <Pie dataKey="value" isAnimationActive={true} data={products} cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
-                    <Tooltip />
-                    <Legend/>
-                </PieChart>
-            </div>
+            </ResponsiveContainer>
         );
     }
 
