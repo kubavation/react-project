@@ -57,6 +57,7 @@ import { MdEventNote } from "react-icons/md";
 import GusForm from "../gus/GusForm";
 import GusList from "../gus/Gus";
 import Charts from "../charts/charts";
+import ChartsForm from "../charts/chartsForm";
 
 
 const drawerWidth = 260;
@@ -423,6 +424,20 @@ class MyDrawer extends Component {
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
 
+                    <ExpansionPanel className={classes.panel} >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon} />} >
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Wykresy</Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+                            <ListItem key="list1" button component={Link} to={'/charts'} onClick={this.handleOnClickDrawer}>
+                                <ListItemIcon style={{color:'#CCC',fontSize:'30px'}}><MdEventNote /></ListItemIcon>
+                                <ListItemText classes={{ primary: this.props.classes.whiteText }} style={{fontSize: '16px'}} primary="Stwórz" />
+                            </ListItem>
+
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+
+
 
 
                 </List>
@@ -456,6 +471,7 @@ class MyDrawer extends Component {
                     <Route path='/energyresources/energyresources/list' component={EnergyResources} />
                     <Route path='/energyresources/energyresources/create/:id?' component={EnergyResourcesForm} />
                     <Route path='/charts' component={Charts} />
+                    <Route path='/create/chart' component={ChartsForm} />
                     <Route path='/gus/create/:id?' component={GusForm} />
                     <Route path='/gus/list' component={GusList} />
                     <Route path='/header' component={Header} />
