@@ -52,11 +52,84 @@ class Charts extends Component {
 
     constructor(props) {
         super();
+
+        let chartIn = {
+            energy_resources: [
+                {
+                    gus: "060",
+                    name: "Węgiel kamienny energetyczny z wyłączeniem brykietów",
+                    unit: "tona",
+                    ammount: 1234.2
+                },
+                {
+                    gus: "088",
+                    name: "benzyna silnikowa bezołowiowa",
+                    unit: "tona",
+                    ammount: 3214.2
+                },
+                {
+                    gus: "024",
+                    name: "energia elektryczna",
+                    unit: "MWh",
+                    ammount: 3122.4
+                }
+            ],
+            resources: [
+                {
+                    res_id: 1,
+                    name: "WATER",
+                    unit: "m3",
+                    ammount: 255255
+                },
+                {
+                    res_id: 14,
+                    name: "BROKUŁ RÓŻA JESIENNY",
+                    unit: "kg",
+                    ammount: 1093508
+                },
+                {
+                    res_id: 18,
+                    name: "GROSZEK",
+                    unit: "kg",
+                    ammount: 1011485
+                }
+            ],
+            products: [
+                {
+                    prod_id: 11,
+                    name: "Mrożony groszek",
+                    unit: "kg",
+                    ammount: 981100,
+                    resources: [
+                        18, 1
+                    ],
+                    energy_resources: [
+                        "024"
+                    ]
+                },
+                {
+                    prod_id: 32,
+                    name: "Mrożony brokuł",
+                    unit: "kg",
+                    ammount: 231128,
+                    resources: [
+                        14, 1
+                    ],
+                    energy_resources: [
+                        "024",
+                        "088",
+                        "060"
+                    ]
+                }
+            ]
+        };
+
+
         this.state = {
             chartEqco2: [],
             chartProducts: [],
             chartWater: [],
-            json: ''
+            json: JSON.stringify(chartIn)
         }
        // this.getCharts(props);
 
@@ -142,7 +215,7 @@ class Charts extends Component {
             ]
         };
 
-        const {json} = this.state
+        const {json} = this.state;
 
 
         this.getCharts(json);

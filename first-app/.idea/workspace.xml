@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17b8e583-9650-42b2-9ca9-a9266330ea73" name="Default" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/components/charts/chartsForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/appbars/Drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/appbars/Drawer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/charts/charts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/charts.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,13 +49,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/charts/charts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="342" column="45" selection-start-line="342" selection-start-column="45" selection-end-line="342" selection-end-column="45" />
+            <state relative-caret-position="224">
+              <caret line="129" column="28" selection-start-line="129" selection-start-column="28" selection-end-line="129" selection-end-column="28" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
+                <element signature="e#1360#3418#0" />
                 <element signature="e#1806#3864#0" />
               </folding>
             </state>
@@ -106,10 +105,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/appbars/Drawer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-474">
+            <state relative-caret-position="6324">
               <caret line="431" column="86" selection-start-line="431" selection-start-column="86" selection-end-line="431" selection-end-column="86" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -206,8 +205,8 @@
         <option value="$PROJECT_DIR$/src/components/resources/Resources.js" />
         <option value="$PROJECT_DIR$/src/components/charts/chartsForm.js" />
         <option value="$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js" />
-        <option value="$PROJECT_DIR$/src/components/charts/charts.js" />
         <option value="$PROJECT_DIR$/src/components/appbars/Drawer.js" />
+        <option value="$PROJECT_DIR$/src/components/charts/charts.js" />
       </list>
     </option>
   </component>
@@ -223,6 +222,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -321,8 +322,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -478,6 +477,9 @@
       <workItem from="1559418915922" duration="4885000" />
       <workItem from="1559463129101" duration="2746000" />
       <workItem from="1559465999347" duration="175000" />
+      <workItem from="1559468034333" duration="10000" />
+      <workItem from="1559474505924" duration="247000" />
+      <workItem from="1559554984533" duration="289000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1551021324397</created>
@@ -490,12 +492,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="325010000" />
+    <option name="totallyTimeSpent" value="325556000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2872483" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29932886" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -854,6 +856,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/appbars/Drawer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6324">
+          <caret line="431" column="86" selection-start-line="431" selection-start-column="86" selection-end-line="431" selection-end-column="86" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/view/Pagintable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
@@ -866,21 +878,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/charts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="342" column="45" selection-start-line="342" selection-start-column="45" selection-end-line="342" selection-end-column="45" />
+        <state relative-caret-position="224">
+          <caret line="129" column="28" selection-start-line="129" selection-start-column="28" selection-end-line="129" selection-end-column="28" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
+            <element signature="e#1360#3418#0" />
             <element signature="e#1806#3864#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/appbars/Drawer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-474">
-          <caret line="431" column="86" selection-start-line="431" selection-start-column="86" selection-end-line="431" selection-end-column="86" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
