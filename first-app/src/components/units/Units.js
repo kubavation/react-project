@@ -30,7 +30,7 @@ class Units extends Component {
     }
 
     getUnits() {
-        fetch('http://api.gabryelkamil.pl/unit')
+        fetch(process.env.REACT_APP_HOST + '/unit')
             .then(response => response.json())
             .then(units => {
                 let list = [];

@@ -39,7 +39,7 @@ class GusList extends Component {
     }
 
     getQuantities() {
-        fetch('http://api.gabryelkamil.pl/gus_category')
+        fetch(process.env.REACT_APP_HOST + '/gus_category')
             .then(response => response.json())
             .then(qnts => {
                 let list = [];

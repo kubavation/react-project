@@ -82,7 +82,7 @@ class BaseunitsForm extends Component {
         
     getForEdit(props) {
         console.log(props)
-        fetch('http://api.gabryelkamil.pl/unit/' + props.match.params.id)
+        fetch(process.env.REACT_APP_HOST + '/unit/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
@@ -155,7 +155,7 @@ class BaseunitsForm extends Component {
         const redirect = unit.id != null;
 
         console.log(unit);
-        fetch('http://api.gabryelkamil.pl/base_unit',{
+        fetch(process.env.REACT_APP_HOST + '/base_unit',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -181,7 +181,7 @@ class BaseunitsForm extends Component {
         const redirect = unit.id != null;
 
         console.log(unit);
-        fetch('http://api.gabryelkamil.pl/base_unit/' + this.state.id,{
+        fetch(process.env.REACT_APP_HOST + '/base_unit/' + this.state.id,{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

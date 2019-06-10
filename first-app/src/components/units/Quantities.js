@@ -39,7 +39,7 @@ class Quantities extends Component {
     }
 
     getQuantities() {
-        fetch('http://api.gabryelkamil.pl/quantity')
+        fetch(process.env.REACT_APP_HOST + '/quantity')
             .then(response => response.json())
             .then(qnts => {
                 let list = [];

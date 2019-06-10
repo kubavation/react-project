@@ -106,7 +106,7 @@ class FactorSourcesform extends Component {
 
         console.log(factorSource);
 
-        fetch('http://api.gabryelkamil.pl/source',{
+        fetch(process.env.REACT_APP_HOST + '/source',{
             method: 'POST',
 /*            headers: {
                 'content-type' : 'application/json'
@@ -132,7 +132,7 @@ class FactorSourcesform extends Component {
 
         console.log(factorSource);
 
-        fetch('http://api.gabryelkamil.pl/source/' + this.state.id, {
+        fetch(process.env.REACT_APP_HOST + '/source/' + this.state.id, {
             method: 'POST',
             /*            headers: {
                             'content-type' : 'application/json'
@@ -227,7 +227,7 @@ class FactorSourcesform extends Component {
     };
 
     getForEdit(props) {
-        fetch('http://api.gabryelkamil.pl/source/' + props.match.params.id)
+        fetch(process.env.REACT_APP_HOST + '/source/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
@@ -249,7 +249,7 @@ class FactorSourcesform extends Component {
     }
 
     fetchFile(id) {
-        fetch('http://api.gabryelkamil.pl/file/' + id)
+        fetch(process.env.REACT_APP_HOST + '/file/' + id)
             .then(response => response.json())
             .then(res => {
                 console.log(res);

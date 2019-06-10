@@ -32,7 +32,7 @@ class EnergyResources extends Component {
     }
 
     getResources() {
-        fetch('http://api.gabryelkamil.pl/energy_resource')
+        fetch(process.env.REACT_APP_HOST + '/energy_resource')
             .then(response => response.json())
             .then(resources => {
                 console.log(resources)

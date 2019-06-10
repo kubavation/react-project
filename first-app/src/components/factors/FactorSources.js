@@ -32,7 +32,7 @@ class FactorSources extends Component {
     }
 
     getFactorSources() {
-        fetch('http://api.gabryelkamil.pl/source')
+        fetch(process.env.REACT_APP_HOST + '/source')
             .then(response => response.json())
             .then(sources => {
                 console.log(sources);

@@ -115,7 +115,7 @@ class Categoriesform extends Component {
 
     getForEdit(props) {
         console.log(props.match.params.id)
-        fetch('http://api.gabryelkamil.pl/category/' + props.match.params.id)
+        fetch(process.env.REACT_APP_HOST + '/category/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
@@ -145,7 +145,7 @@ class Categoriesform extends Component {
     }
 
     fetchCategories() {
-        fetch('http://api.gabryelkamil.pl/category')
+        fetch(process.env.REACT_APP_HOST + '/category')
             .then(response => response.json())
             .then(categories => {
                 //categories = categories.slice(3,8);   //remove
@@ -157,7 +157,7 @@ class Categoriesform extends Component {
         console.log(category);
         const redirect = category.id != null;
 
-        fetch('http://api.gabryelkamil.pl/category',{
+        fetch(process.env.REACT_APP_HOST + '/category',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -191,7 +191,7 @@ class Categoriesform extends Component {
         console.log(category);
         const redirect = category.id != null;
 
-        fetch('http://api.gabryelkamil.pl/category/' + this.state.id,{
+        fetch(process.env.REACT_APP_HOST + '/category/' + this.state.id,{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

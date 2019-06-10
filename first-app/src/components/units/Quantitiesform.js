@@ -87,7 +87,7 @@ class QuantitiesForm extends Component {
 
 
     getForEdit(props) {
-        fetch('http://api.gabryelkamil.pl/quantity/' + props.match.params.id)
+        fetch(process.env.REACT_APP_HOST + '/quantity/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
@@ -112,7 +112,7 @@ class QuantitiesForm extends Component {
     }
 
     fetchBaseUnits() {
-        fetch('http://api.gabryelkamil.pl/base_unit')
+        fetch(process.env.REACT_APP_HOST + '/base_unit')
             .then(response => response.json())
             .then(result => {
                 this.setState({baseUnits: result});
@@ -131,7 +131,7 @@ class QuantitiesForm extends Component {
         console.log(qntNew);
 
         const redirect = qnt.id != null;
-        fetch('http://api.gabryelkamil.pl/quantity',{
+        fetch(process.env.REACT_APP_HOST + '/quantity',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -170,7 +170,7 @@ class QuantitiesForm extends Component {
         console.log(qntNew);
 
         const redirect = qnt.id != null;
-        fetch('http://api.gabryelkamil.pl/quantity/' + qnt.id,{
+        fetch(process.env.REACT_APP_HOST + '/quantity/' + qnt.id,{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

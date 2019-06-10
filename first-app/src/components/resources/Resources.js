@@ -32,7 +32,7 @@ class Resources extends Component {
     }
 
     getResources() {
-        fetch('http://api.gabryelkamil.pl/resource')
+        fetch(process.env.REACT_APP_HOST +'/resource')
             .then(response => response.json())
             .then(resources => {
                 console.log(resources)

@@ -86,7 +86,7 @@ class Unitsform extends Component {
 
     getForEdit(xd) {
         console.log(xd)
-        fetch('http://api.gabryelkamil.pl/unit/' + xd)
+        fetch(process.env.REACT_APP_HOST + '/unit/' + xd)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
@@ -118,7 +118,7 @@ class Unitsform extends Component {
     }
 
     fetchQuantities() {
-        fetch('http://api.gabryelkamil.pl/quantity')
+        fetch(process.env.REACT_APP_HOST + '/quantity')
             .then(response => response.json())
             .then(result => {
                 this.setState({quantities: result});
@@ -128,7 +128,7 @@ class Unitsform extends Component {
     createUnit(unit) {
         console.log(unit);
         const redirect = unit.id != null;
-        fetch('http://api.gabryelkamil.pl/unit', {
+        fetch(process.env.REACT_APP_HOST + '/unit', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -160,7 +160,7 @@ class Unitsform extends Component {
     updateUnit(unit) {
         console.log(unit);
         const redirect = unit.id != null;
-        fetch('http://api.gabryelkamil.pl/unit/' + this.state.id, {
+        fetch(process.env.REACT_APP_HOST + '/unit/' + this.state.id, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -192,7 +192,7 @@ class Unitsform extends Component {
 
 
     setBaseUnit(qid) {
-        fetch('http://api.gabryelkamil.pl/quantity/' + qid)
+        fetch(process.env.REACT_APP_HOST + '/quantity/' + qid)
             .then(response => response.json())
             .then(bunit => {
                 console.log(bunit)

@@ -32,7 +32,7 @@ class FactorNames extends Component {
     }
 
     getFactorNames() {
-        fetch('http://api.gabryelkamil.pl/factor_name')
+        fetch(process.env.REACT_APP_HOST + '/factor_name')
             .then(response => response.json())
             .then(names => {
                 console.log(names)

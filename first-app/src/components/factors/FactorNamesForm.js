@@ -80,7 +80,7 @@ class FactorNamesForm extends Component {
     }
 
     getForEdit(props) {
-        fetch('http://api.gabryelkamil.pl/factor_name/' + props.match.params.id)
+        fetch(process.env.REACT_APP_HOST + '/factor_name/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
@@ -103,7 +103,7 @@ class FactorNamesForm extends Component {
 
     createFactorName(factorName) {
         console.log(factorName);
-        fetch('http://api.gabryelkamil.pl/factor_name', {
+        fetch(process.env.REACT_APP_HOST + '/factor_name', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -151,7 +151,7 @@ class FactorNamesForm extends Component {
 
     updateFactorName(factorName) {
         console.log(factorName);
-        fetch('http://api.gabryelkamil.pl/factor_name/' + this.state.id, {
+        fetch(process.env.REACT_APP_HOST + '/factor_name/' + this.state.id, {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

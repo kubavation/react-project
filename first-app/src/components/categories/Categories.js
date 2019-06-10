@@ -32,7 +32,7 @@ class Categories extends Component {
     }
 
     getCategories() {
-        fetch('http://api.gabryelkamil.pl/category')
+        fetch(process.env.REACT_APP_HOST + '/category')
             .then(response => response.json())
             .then(categories => {
                 let list = [];

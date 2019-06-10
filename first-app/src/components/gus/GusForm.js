@@ -89,7 +89,7 @@ class GusForm extends Component {
 
 
     getForEdit(props) {
-        fetch('http://api.gabryelkamil.pl/gus_category/' + props.match.params.id)
+        fetch(process.env.REACT_APP_HOST + '/gus_category/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
@@ -119,7 +119,7 @@ class GusForm extends Component {
 
 
     fetchBaseUnits() {
-        fetch('http://api.gabryelkamil.pl/unit')
+        fetch(process.env.REACT_APP_HOST + '/unit')
             .then(response => response.json())
             .then(result => {
                 this.setState({baseUnits: result});
@@ -139,7 +139,7 @@ class GusForm extends Component {
         console.log(qntNew);
 
         const redirect = qnt.id != null;
-        fetch('http://api.gabryelkamil.pl/gus_category',{
+        fetch(process.env.REACT_APP_HOST + '/gus_category',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -180,7 +180,7 @@ class GusForm extends Component {
         console.log(qntNew);
 
         const redirect = qnt.id != null;
-        fetch('http://api.gabryelkamil.pl/gus_category/' + qnt.id,{
+        fetch(process.env.REACT_APP_HOST + '/gus_category/' + qnt.id,{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

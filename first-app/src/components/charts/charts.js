@@ -54,6 +54,8 @@ class Charts extends Component {
     constructor(props) {
         super();
 
+        console.log(process.env.REACT_APP_HOST);
+
         let chartIn = {
             energy_resources: [
                 {
@@ -258,7 +260,7 @@ class Charts extends Component {
         console.log("GET_CHARTS")
 
 
-        fetch('http://api.gabryelkamil.pl/calc', {
+        fetch(process.env.REACT_APP_HOST + '/calc', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -87,7 +87,7 @@ class EnergyResourcesForm extends Component {
 
     getForEdit(props) {
         console.log(props);
-            fetch('http://api.gabryelkamil.pl/energy_resource/' + props.match.params.id)
+            fetch(process.env.REACT_APP_HOST + '/energy_resource/' + props.match.params.id)
             .then(response => response.json())
             .then(res => {
                 console.log(res);
@@ -114,7 +114,7 @@ class EnergyResourcesForm extends Component {
     }
 
     fetchGus() {
-        fetch('http://api.gabryelkamil.pl/gus_category',{
+        fetch(process.env.REACT_APP_HOST + '/gus_category',{
             method: 'GET',
             headers: {
                 'content-type' : 'application/json'
@@ -129,7 +129,7 @@ class EnergyResourcesForm extends Component {
     }
 
     fetchGus2(id) {
-        fetch('http://api.gabryelkamil.pl/gus_category/' + id,{
+        fetch(process.env.REACT_APP_HOST + '/gus_category/' + id,{
             method: 'GET',
             headers: {
                 'content-type' : 'application/json'
@@ -156,7 +156,7 @@ class EnergyResourcesForm extends Component {
 
         console.log(src)
 
-        fetch('http://api.gabryelkamil.pl/energy_resource',{
+        fetch(process.env.REACT_APP_HOST + '/energy_resource',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -187,7 +187,7 @@ class EnergyResourcesForm extends Component {
 
         console.log(src)
 
-        fetch('http://api.gabryelkamil.pl/energy_resource/' + this.state.id,{
+        fetch(process.env.REACT_APP_HOST + '/energy_resource/' + this.state.id,{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -277,7 +277,7 @@ class EnergyResourcesForm extends Component {
     };
     onChange3(event) {
         this.setState({[event.target.name] : event.target.value}, ()=>{
-            fetch('http://api.gabryelkamil.pl/gus_category/' + this.state.gus,{
+            fetch(process.env.REACT_APP_HOST + '/gus_category/' + this.state.gus,{
                 method: 'GET',
                 headers: {
                     'content-type' : 'application/json'

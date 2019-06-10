@@ -109,7 +109,7 @@ class Resourcesform extends Component {
 
     getForEdit(props) {
         console.log(props)
-        fetch('http://api.gabryelkamil.pl/resource/' + props.match.params.id)
+        fetch(process.env.REACT_APP_HOST + '/resource/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
@@ -135,7 +135,7 @@ class Resourcesform extends Component {
     }
 
     fetchFactorNames() {
-        fetch('http://api.gabryelkamil.pl/factor_name')
+        fetch(process.env.REACT_APP_HOST + '/factor_name')
        // fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(result => {
@@ -149,7 +149,7 @@ class Resourcesform extends Component {
 
 
     fetchUnits() {
-        fetch('http://api.gabryelkamil.pl/unit')
+        fetch(process.env.REACT_APP_HOST + '/unit')
         // fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(result => {
@@ -161,7 +161,7 @@ class Resourcesform extends Component {
     }
 
     fetchUnitsById(id) {
-        fetch('http://api.gabryelkamil.pl/unit/' + id)
+        fetch(process.env.REACT_APP_HOST + '/unit/' + id)
         // fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(result => {
@@ -201,7 +201,7 @@ class Resourcesform extends Component {
         console.log("przesylany json " );
         console.log(res);
 
-        fetch('http://api.gabryelkamil.pl/resource',{
+        fetch(process.env.REACT_APP_HOST + '/resource',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

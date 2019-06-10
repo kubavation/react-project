@@ -32,7 +32,7 @@ class Baseunits extends Component {
     }
 
     getBaseUnits() {
-        fetch('http://api.gabryelkamil.pl/base_unit')
+        fetch(process.env.REACT_APP_HOST + '/base_unit')
             .then(response => response.json())
             .then(units => {
                 console.log(units)
