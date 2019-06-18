@@ -82,6 +82,7 @@ class FactorSourcesform extends Component {
                 bibtex: '',
                 fileName: '',
                 file :  React.createRef(),
+                response: '',
 
                 open: false,
                 vertical: 'top',
@@ -113,10 +114,13 @@ class FactorSourcesform extends Component {
             },*/
             body: factorSource
         }).then(response => {
-            if (response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
+            if (response.status != "204"){
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
+            }
             else {
-                this.setState({open: true, messageVariant: 'success'})
+                this.setState({open: true, messageVariant: 'success', response: 'Pomyślnie dodano rekord.'})
                     setTimeout(() =>
                         this.props.history.push('/factors/factorsources/list'), 800);
             }
@@ -139,10 +143,14 @@ class FactorSourcesform extends Component {
                         },*/
             body: factorSource
         }).then(response => {
-            if (response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
+            console.log(response)
+            if (response.status != "204"){
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
+            }
             else {
-                this.setState({open: true, messageVariant: 'success'})
+                this.setState({open: true, messageVariant: 'success', response: 'Pomyślnie wyedytowano rekord.'})
                 setTimeout(() =>
                     this.props.history.push('/factors/factorsources/list'), 800);
             }
@@ -261,7 +269,7 @@ class FactorSourcesform extends Component {
         if(this.state != null) {
             const {classes} = this.props;
             const {date, desc, doi, bibtex, file, files, fileName} = this.state;
-            const {open, messageVariant} = this.state;
+            const {open, messageVariant, response} = this.state;
 
             // const fileItems = files.map(file => (
             //     <MenuItem value={file.id}>{file.title}</MenuItem>
@@ -441,7 +449,7 @@ class FactorSourcesform extends Component {
 
                         </form>
 
-                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant} message={response}/>
 
                     </Paper>
 

@@ -69,6 +69,7 @@ class EnergyResourcesForm extends Component {
                 unit: '',
                 ncv: '',
                 we: '',
+                response: '',
 
                 open: false,
                 vertical: 'top',
@@ -164,10 +165,13 @@ class EnergyResourcesForm extends Component {
             body: JSON.stringify(src)
         })
             .then(response => {
-                if (response.status != "204")
-                    this.setState({open: true, messageVariant: 'error'})
+                if (response.status != "204"){
+                    response.json().then( res => {
+                        this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                    })
+                }
                 else {
-                    this.setState({open: true, messageVariant: 'success'})
+                    this.setState({open: true, messageVariant: 'success', response: 'Pomyślnie dodano rekord.'})
                     setTimeout(() =>
                         this.props.history.push('/energyresources/energyresources/list'), 800);
                 }
@@ -195,10 +199,13 @@ class EnergyResourcesForm extends Component {
             body: JSON.stringify(src)
         })
             .then(response => {
-                if (response.status != "204")
-                    this.setState({open: true, messageVariant: 'error'})
+                if (response.status != "204"){
+                    response.json().then( res => {
+                        this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                    })
+                }
                 else {
-                    this.setState({open: true, messageVariant: 'success'})
+                    this.setState({open: true, messageVariant: 'success', response: 'Pomyślnie wyedytowano rekord.'})
                     setTimeout(() =>
                         this.props.history.push('/energyresources/energyresources/list'), 800);
                 }
@@ -297,7 +304,7 @@ class EnergyResourcesForm extends Component {
 
         const { classes } = this.props;
         const { mediumGUS, gus_all, codeGUS, name, co2, unit,units, ncv, we, gus } = this.state;
-        const { open, messageVariant } = this.state;
+        const { open, messageVariant, response } = this.state;
 
 
             let gusItems;
@@ -462,7 +469,7 @@ class EnergyResourcesForm extends Component {
 
                     </form>
 
-                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant} message={response}/>
 
                 </Paper>
 

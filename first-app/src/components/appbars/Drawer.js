@@ -227,7 +227,7 @@ class MyDrawer extends Component {
                 <List>
                     <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon}/>} >
-                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Współczynniki</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Wielkości fiz/chem</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column'}}>
                             <ListItem key="list1" button component={Link} to={'/units/quantities/list'} onClick={this.handleOnClickDrawer}>
@@ -371,7 +371,7 @@ class MyDrawer extends Component {
 
                     <ExpansionPanel className={classes.panel} >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={classes.expandIcon}/>} >
-                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Czynniki</Typography>
+                            <Typography style={{fontSize: '25px',color:'#86C232'}}>Współczynniki</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails style={{flexDirection: 'column'}}>
                             <ListItem key="list1" button component={Link} to={'/factors/factornames/list'} onClick={this.handleOnClickDrawer}>

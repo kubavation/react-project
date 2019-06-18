@@ -73,6 +73,7 @@ class QuantitiesForm extends Component {
                 nameEn: '',
                 baseUnit: '',
                 baseUnits: [],
+                response: '',
                 fromForm: props.location.state !== undefined
                     ? props.location.state.fromForm : false,
             };
@@ -138,8 +139,11 @@ class QuantitiesForm extends Component {
             },
             body: JSON.stringify(qntNew)
         }).then(response => {
-            if (response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
+            if (response.status != "204"){
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
+            }
             else {
                 this.setState({
                     namePl: '',
@@ -148,7 +152,8 @@ class QuantitiesForm extends Component {
                     open: true,
                     vertical: 'top',
                     horizontal: 'center',
-                    messageVariant: 'success'
+                    messageVariant: 'success',
+                    response: 'Pomyślnie dodano rekord.'
                 });
 
               //  if(redirect)
@@ -177,8 +182,11 @@ class QuantitiesForm extends Component {
             },
             body: JSON.stringify(qntNew)
         }).then(response => {
-            if (response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
+            if (response.status != "204"){
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
+            }
             else {
                 this.setState({
                     namePl: '',
@@ -187,7 +195,8 @@ class QuantitiesForm extends Component {
                     open: true,
                     vertical: 'top',
                     horizontal: 'center',
-                    messageVariant: 'success'
+                    messageVariant: 'success',
+                    response: 'Pomyślnie wyedytowano rekord.'
                 });
 
               //  if(redirect)
@@ -246,7 +255,7 @@ class QuantitiesForm extends Component {
             const {classes} = this.props;
             const {userId, title, namePl, nameEn, baseUnit } = this.state;
             const {baseUnits} = this.state;
-            const {vertical, horizontal, open, messageVariant} = this.state;
+            const {vertical, horizontal, open, messageVariant, response} = this.state;
             const {fromForm} = this.state;
 
             let unitsItems;
@@ -362,7 +371,7 @@ class QuantitiesForm extends Component {
 
                         </form>
 
-                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant} message={response}/>
 
                     </Paper>
 

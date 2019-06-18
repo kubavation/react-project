@@ -91,6 +91,7 @@ class Resourcesform extends Component {
                 units: [],
                 unit: '',
                 unit2: '',
+                response: '',
 
                 open: false,
                 vertical: 'top',
@@ -209,8 +210,9 @@ class Resourcesform extends Component {
             body: JSON.stringify(res)
         }).then(response => {
             if (response.status != "204") {
-                this.setState({open: true, messageVariant: 'error'});
-                console.log(response);
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
             }
             else {
                 this.setState({
@@ -223,7 +225,8 @@ class Resourcesform extends Component {
                     open: true,
                     vertical: 'top',
                     horizontal: 'center',
-                    messageVariant: 'success'
+                    messageVariant: 'success',
+                    response: 'Pomyślnie dodano rekord.'
                 });
 
                 //if(redirect)
@@ -381,7 +384,7 @@ class Resourcesform extends Component {
     render() {
         const { classes } = this.props;
         const {  namePl, nameEn, descPl, descEn, allFactorNames, factorNames,createdFactor, actualFactorNames, units, unit, unit2 } = this.state;
-        const { vertical, horizontal, open, messageVariant } = this.state;
+        const { vertical, horizontal, open, messageVariant, response } = this.state;
 
 
         const factorNamesItems = actualFactorNames.map(name => (
@@ -604,7 +607,7 @@ class Resourcesform extends Component {
 
                     </form>
 
-                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                    <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant} message={response}/>
 
                 </Paper>
 

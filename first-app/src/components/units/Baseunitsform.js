@@ -70,6 +70,7 @@ class BaseunitsForm extends Component {
                 vertical: 'top',
                 horizontal: 'center',
                 messageVariant: '',
+                response: '',
                 fromForm: props.location.state !== undefined
                     ? props.location.state.fromForm : false
             };
@@ -162,10 +163,13 @@ class BaseunitsForm extends Component {
             },
             body: JSON.stringify(unit)
         }).then(response => {
-           if(response.status != "204")
-               this.setState({open: true, messageVariant: 'error'})
+           if(response.status != "204"){
+               response.json().then( res => {
+                   this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+               })
+           }
             else {
-               this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: 'success'})
+               this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: 'success', response: 'Pomyślnie dodano rekord.'})
 
              //  if(redirect)
                setTimeout(() =>
@@ -188,10 +192,13 @@ class BaseunitsForm extends Component {
             },
             body: JSON.stringify(unit)
         }).then(response => {
-            if(response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
+            if(response.status != "204"){
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
+            }
             else {
-                this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: 'success'})
+                this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: 'success', response: 'Pomyślnie wyedytowano rekord'})
 
                 //if(redirect)
                     setTimeout(() =>
@@ -205,7 +212,7 @@ class BaseunitsForm extends Component {
          if (this.state != null) {
 
              const {classes} = this.props;
-             const {namePl, nameEn, shortcut, open, messageVariant, id} = this.state;
+             const {namePl, nameEn, shortcut, open, messageVariant, id, response} = this.state;
              const {fromForm} = this.state;
 
              return (
@@ -307,7 +314,7 @@ class BaseunitsForm extends Component {
 
                          </form>
 
-                         <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                         <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant} message={response}/>
 
                      </Paper>
 

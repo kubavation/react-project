@@ -97,7 +97,7 @@ class Categoriesform extends Component {
                 descPl: '',
                 descEn: '',
                 parentCategories: [],
-
+                response: '',
                 categories: [],
 
                 open: false,
@@ -164,9 +164,12 @@ class Categoriesform extends Component {
             },
             body: JSON.stringify(category)
         }).then(response => {
-            if (response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
-            else {
+            if (response.status != "204"){
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
+            }
+            else{
                 this.setState({
                     namePl: '',
                     nameEn: '',
@@ -176,13 +179,11 @@ class Categoriesform extends Component {
                     open: true,
                     vertical: 'top',
                     horizontal: 'center',
-                    messageVariant: 'success'
-                });
-
-
-              //  if (redirect)
-                    setTimeout(() =>
-                        this.props.history.push('/categories/categories/list'), 800);
+                    messageVariant: 'success',
+                    response: 'Pomyślnie dodano rekord.'
+                })
+                setTimeout(() =>
+                    this.props.history.push('/categories/categories/list'), 800);
             }
         });
     }
@@ -198,8 +199,11 @@ class Categoriesform extends Component {
             },
             body: JSON.stringify(category)
         }).then(response => {
-            if (response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
+            if (response.status != "204"){
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
+            }
             else {
                 this.setState({
                     namePl: '',
@@ -210,7 +214,8 @@ class Categoriesform extends Component {
                     open: true,
                     vertical: 'top',
                     horizontal: 'center',
-                    messageVariant: 'success'
+                    messageVariant: 'success',
+                    response: 'Pomyślnie dodano rekord.'
                 });
 
 
@@ -235,8 +240,8 @@ class Categoriesform extends Component {
         event.preventDefault();
 
         let category;
-
         if(this.state.id !== undefined && this.state.id !== '') {
+            console.log('Tu jestem')
             category = {
                 namePl: this.state.namePl,
                 nameEn: this.state.nameEn,
@@ -283,7 +288,7 @@ class Categoriesform extends Component {
 
             const {classes} = this.props;
             const {namePl, nameEn, descPl, descEn, parentCategories, categories} = this.state;
-            const {open, messageVariant} = this.state;
+            const {open, messageVariant, response} = this.state;
 
             let categoriesList;
             if(categories != null) {
@@ -419,7 +424,7 @@ class Categoriesform extends Component {
 
                         </form>
 
-                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant} message={response}/>
 
                     </Paper>
 

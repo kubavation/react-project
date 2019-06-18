@@ -69,6 +69,7 @@ class Unitsform extends Component {
                 quantities: [],
                 baseUnit: '',
                 ratio: '',
+                response:'',
 
                 open: false,
                 vertical: 'top',
@@ -135,8 +136,12 @@ class Unitsform extends Component {
             },
             body: JSON.stringify(unit)
         }).then(response => {
-            if (response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
+            console.log(response);
+            if (response.status != "204"){
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
+            }
             else {
                 this.setState({
                     namePl: '',
@@ -148,7 +153,8 @@ class Unitsform extends Component {
                     open: true,
                     vertical: 'top',
                     horizontal: 'center',
-                    messageVariant: 'success'
+                    messageVariant: 'success',
+                    response: 'Pomyślnie dodano rekord.'
                 });
 
                     setTimeout(() =>
@@ -167,8 +173,11 @@ class Unitsform extends Component {
             },
             body: JSON.stringify(unit)
         }).then(response => {
-            if (response.status != "204")
-                this.setState({open: true, messageVariant: 'error'})
+            if (response.status != "204"){
+                response.json().then( res => {
+                    this.setState({open: true, messageVariant: 'error', response: res.error[0]})
+                })
+            }
             else {
                 this.setState({
                     namePl: '',
@@ -180,7 +189,8 @@ class Unitsform extends Component {
                     open: true,
                     vertical: 'top',
                     horizontal: 'center',
-                    messageVariant: 'success'
+                    messageVariant: 'success',
+                    response: 'Pomyślnie wyedytowano rekord.'
                 });
 
              //   if (redirect)
@@ -282,7 +292,7 @@ class Unitsform extends Component {
 
         if (this.state != null) {
             const {namePl, nameEn, shortcut, quantities, baseUnit, ratio, quantity} = this.state;
-            const {vertical, horizontal, open, messageVariant} = this.state;
+            const {vertical, horizontal, open, messageVariant, response} = this.state;
 
             const quantitiesItems = quantities.map((qnt) => (
                 <MenuItem value={qnt.quantity_id}>{qnt.quantity_name_pl}</MenuItem>
@@ -443,7 +453,7 @@ class Unitsform extends Component {
 
                         </form>
 
-                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant}/>
+                        <SnackbarFormWrapper open={open} onClose={this.handleClose} variant={messageVariant} message={response}/>
 
                     </Paper>
 
