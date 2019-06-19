@@ -332,11 +332,12 @@ class QuantitiesForm extends Component {
                                     {unitsItems}
                                 {/*</div>*/}
                             </Select>
-
+                            <p/>
+                            Jeżeli jednostki nie ma na liście<br/>
                             <Button style={{marginLeft: '2%', color: "#86C232"}} color="primary"
                                 className={classes.button} component={Link}
                                     to={{pathname: '/units/baseunits/create', state: {fromForm: true}}}>
-                                Dodaj
+                                Przejdź do formularza jednostki bazowej
                             </Button>
                             <br/>
 
@@ -362,11 +363,11 @@ class QuantitiesForm extends Component {
                             </Button>
 
 
-                            {fromForm ? <Button style={{marginLeft: '5%', backgroundColor: "#86C232"}}
+                            {/* {fromForm ? <Button style={{marginLeft: '5%', backgroundColor: "#86C232"}}
                                                 variant="contained" className={classes.button} color="primary"
                                                 component={Link}
                                                 size="large"
-                                                to={'/units/units/create'}>Powrót</Button> : ""}
+                                                to={'/units/units/create'}>Powrót</Button> : ""} */}
 
 
                         </form>

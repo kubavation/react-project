@@ -305,11 +305,11 @@ class BaseunitsForm extends Component {
 
 
 
-                             {fromForm ? <Button style={{marginLeft: '5%', backgroundColor: "#86C232"}}
+                             {/* {fromForm ? <Button style={{marginLeft: '5%', backgroundColor: "#86C232"}}
                                                  variant="contained" color="primary" className={classes.button}
                                                  component={Link} size="large"
 
-                                                 to={'/units/quantities/create'}>Powrót</Button> : ""}
+                                                 to={'/units/quantities/create'}>Powrót</Button> : ""} */}
 
 
                          </form>

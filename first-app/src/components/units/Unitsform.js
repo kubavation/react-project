@@ -377,11 +377,13 @@ class Unitsform extends Component {
                                 {quantitiesItems}
                             </Select>
 
-
+                            <p/>
+                            
+                            Jeżeli wielkości nie ma na liście<br/>
                             <Button style={{marginLeft: '2%', color: '#86C232'}} className={classes.button}
                                     component={Link}
                                     to={{pathname: '/units/quantities/create', state: {fromForm: true}}}>
-                                Dodaj
+                                    Przejdź do formularza wielkości fiz/chem
                             </Button>
 
                             <br/>

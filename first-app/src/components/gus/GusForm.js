@@ -394,10 +394,12 @@ class GusForm extends Component {
                                 {/*</div>*/}
                             </Select>
 
+                            <p/>
+                            Jeżeli jednostki nie ma na liście<br/>
                             <Button style={{marginLeft: '2%', color: "#86C232"}} color="primary"
                                     className={classes.button} component={Link}
                                     to={{pathname: '/units/units/create', state: {fromForm: true}}}>
-                                Dodaj
+                                Przejdź do formularza jednostki
                             </Button>
                             <br/>
 
