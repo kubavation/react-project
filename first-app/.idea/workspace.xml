@@ -2,27 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17b8e583-9650-42b2-9ca9-a9266330ea73" name="Default" comment="init">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/categories/Categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/categories/Categories.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/categories/Categoriesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/categories/Categoriesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/charts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/charts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/energyresources/EnergyResources.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/energyresources/EnergyResources.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/factors/FactorNames.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/factors/FactorNames.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/factors/FactorNamesForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/factors/FactorNamesForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/factors/FactorSources.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/factors/FactorSources.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/factors/FactorSourcesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/factors/FactorSourcesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/gus/Gus.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gus/Gus.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/gus/GusForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gus/GusForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/resources/Resources.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/resources/Resources.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/resources/Resourcesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/resources/Resourcesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Baseunits.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Baseunits.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Baseunitsform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Baseunitsform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Quantities.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Quantities.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Quantitiesform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Quantitiesform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Units.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Units.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/units/Unitsform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/units/Unitsform.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +17,8 @@
       <file pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/units/Quantitiesform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-970">
-              <caret line="172" column="44" selection-start-line="172" selection-start-column="44" selection-end-line="172" selection-end-column="44" />
+            <state relative-caret-position="2720">
+              <caret line="177" column="44" selection-start-line="177" selection-start-column="44" selection-end-line="177" selection-end-column="44" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -45,45 +27,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/units/Units.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-267">
-              <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/units/Unitsform.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1292">
-              <caret line="194" column="44" selection-start-line="194" selection-start-column="44" selection-end-line="194" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/view/Drawerexpansionpanel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/view/Drawerlistitem.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/view/Pagintable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
+            <state relative-caret-position="663">
               <caret line="49" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -95,7 +41,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/view/Snackbarform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="-273">
               <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
             </state>
           </provider>
@@ -104,13 +50,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/view/Snackbarformwrapper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
+            <state relative-caret-position="595">
               <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/view/Tableheadpagin.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
@@ -120,9 +66,54 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/factors/FactorSourcesform.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="339">
+              <caret line="437" column="32" selection-start-line="437" selection-start-column="32" selection-end-line="437" selection-end-column="75" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/categories/Categories.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/categories/Categoriesform.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3960">
+              <caret line="421" column="75" selection-start-line="421" selection-start-column="75" selection-end-line="421" selection-end-column="75" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/gus/GusForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/units/Quantities.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-341">
+            <state relative-caret-position="459">
               <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
             </state>
           </provider>
@@ -192,15 +183,12 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/src/components/charts/charts.js" />
         <option value="$PROJECT_DIR$/src/components/categories/Categories.js" />
-        <option value="$PROJECT_DIR$/src/components/categories/Categoriesform.js" />
         <option value="$PROJECT_DIR$/src/components/energyresources/EnergyResources.js" />
         <option value="$PROJECT_DIR$/src/components/energyresources/EnergyResourcesform.js" />
         <option value="$PROJECT_DIR$/src/components/factors/FactorNames.js" />
         <option value="$PROJECT_DIR$/src/components/factors/FactorNamesForm.js" />
         <option value="$PROJECT_DIR$/src/components/factors/FactorSources.js" />
-        <option value="$PROJECT_DIR$/src/components/factors/FactorSourcesform.js" />
         <option value="$PROJECT_DIR$/src/components/gus/Gus.js" />
-        <option value="$PROJECT_DIR$/src/components/gus/GusForm.js" />
         <option value="$PROJECT_DIR$/src/components/resources/Resources.js" />
         <option value="$PROJECT_DIR$/src/components/resources/Resourcesform.js" />
         <option value="$PROJECT_DIR$/src/components/units/Baseunits.js" />
@@ -209,6 +197,9 @@
         <option value="$PROJECT_DIR$/src/components/units/Quantitiesform.js" />
         <option value="$PROJECT_DIR$/src/components/units/Units.js" />
         <option value="$PROJECT_DIR$/src/components/units/Unitsform.js" />
+        <option value="$PROJECT_DIR$/src/components/factors/FactorSourcesform.js" />
+        <option value="$PROJECT_DIR$/src/components/categories/Categoriesform.js" />
+        <option value="$PROJECT_DIR$/src/components/gus/GusForm.js" />
       </list>
     </option>
   </component>
@@ -224,6 +215,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -326,8 +319,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -487,6 +478,9 @@
       <workItem from="1559474505924" duration="247000" />
       <workItem from="1559554984533" duration="289000" />
       <workItem from="1560186346258" duration="2135000" />
+      <workItem from="1560190919505" duration="9000" />
+      <workItem from="1560196977978" duration="36000" />
+      <workItem from="1561018553639" duration="644000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1551021324397</created>
@@ -499,12 +493,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="327691000" />
+    <option name="totallyTimeSpent" value="328380000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30268458" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3161074" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -675,23 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/categories/Categories.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/categories/Categoriesform.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1236">
-          <caret line="203" column="31" lean-forward="true" selection-start-line="203" selection-start-column="31" selection-end-line="203" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/charts/charts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -756,16 +734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/factors/FactorSourcesform.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-318">
-          <caret line="251" column="44" selection-start-line="251" selection-start-column="44" selection-end-line="251" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/files/Filesform.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
@@ -784,16 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-375">
           <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/gus/GusForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-69">
-          <caret line="182" column="44" selection-start-line="182" selection-start-column="44" selection-end-line="182" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -834,34 +792,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/units/Quantities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-341">
-          <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/units/Quantitiesform.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-970">
-          <caret line="172" column="44" selection-start-line="172" selection-start-column="44" selection-end-line="172" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/units/Units.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-267">
+        <state relative-caret-position="459">
           <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/units/Unitsform.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1292">
+        <state relative-caret-position="3077">
           <caret line="194" column="44" selection-start-line="194" selection-start-column="44" selection-end-line="194" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/units/Quantitiesform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2720">
+          <caret line="177" column="44" selection-start-line="177" selection-start-column="44" selection-end-line="177" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -881,7 +832,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/view/Pagintable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
+        <state relative-caret-position="663">
           <caret line="49" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
@@ -889,17 +840,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/view/Snackbarform.js">
+    <entry file="file://$PROJECT_DIR$/src/components/view/Snackbarformwrapper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        <state relative-caret-position="595">
+          <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/view/Snackbarformwrapper.js">
+    <entry file="file://$PROJECT_DIR$/src/components/units/Quantities.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
+        <state relative-caret-position="459">
+          <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/categories/Categories.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -907,6 +865,43 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/view/Snackbarform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-273">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/factors/FactorSourcesform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="437" column="32" selection-start-line="437" selection-start-column="32" selection-end-line="437" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/categories/Categoriesform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3960">
+          <caret line="421" column="75" selection-start-line="421" selection-start-column="75" selection-end-line="421" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/gus/GusForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

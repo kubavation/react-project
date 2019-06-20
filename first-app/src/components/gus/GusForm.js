@@ -164,7 +164,6 @@ class GusForm extends Component {
                     response: 'Pomyślnie dodano rekord.'
                 });
 
-                if(redirect)
                     setTimeout(() =>
                         this.props.history.push('/gus/list'), 800);
             }
@@ -209,7 +208,6 @@ class GusForm extends Component {
                     response: 'Pomyślnie wyedytowano rekord.'
                 });
 
-                if(redirect)
                     setTimeout(() =>
                         this.props.history.push('/gus/list'), 800);
             }
