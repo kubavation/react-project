@@ -86,8 +86,6 @@ class Categoriesform extends Component {
     constructor(props) {
         super(props);
 
-        console.log(props.match.params);
-
         if (props.match.params.id !== null && props.match.params.id !== undefined)
             this.getForEdit(props);
         else {
@@ -114,7 +112,7 @@ class Categoriesform extends Component {
     }
 
     getForEdit(props) {
-        console.log(props.match.params.id)
+
         fetch(process.env.REACT_APP_HOST + '/category/' + props.match.params.id)
         //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
