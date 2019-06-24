@@ -289,7 +289,7 @@ class Categoriesform extends Component {
             const {open, messageVariant, response} = this.state;
 
             let categoriesList;
-            if(categories != null) {
+            if(categories != null && parentCategories != null) {
 
             console.log(parentCategories)
              categoriesList = categories.map((category) => (
