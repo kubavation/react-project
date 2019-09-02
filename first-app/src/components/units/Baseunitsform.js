@@ -58,7 +58,6 @@ class BaseunitsForm extends Component {
         super(props);
 
         if (props.match.params.id !== null && props.match.params.id !== undefined) {
-            console.log(props);
             this.getForEdit(props);
         }
         else {
@@ -72,7 +71,9 @@ class BaseunitsForm extends Component {
                 messageVariant: '',
                 response: '',
                 fromForm: props.location.state !== undefined
-                    ? props.location.state.fromForm : false
+                    ? props.location.state.fromForm : false,
+                backTo: props.location.state !== undefined
+                    ? props.location.state.backTo: 0
             };
          }
 
@@ -155,7 +156,6 @@ class BaseunitsForm extends Component {
 
         const redirect = unit.id != null;
 
-        console.log(unit);
         fetch(process.env.REACT_APP_HOST + '/base_unit',{
             method: 'POST',
             headers: {
@@ -171,9 +171,14 @@ class BaseunitsForm extends Component {
             else {
                this.setState({namePl: '', nameEn: '', shortcut: '', open: true, messageVariant: 'success', response: 'Pomyślnie dodano rekord.'})
 
-             //  if(redirect)
-               setTimeout(() =>
-                   this.props.history.push('/units/baseunits/list'), 800);
+               if(this.state.backTo !== 0){
+                   setTimeout(() =>
+                       window.history.go(-1), 800);
+               } else {
+                   setTimeout(() =>
+                       this.props.history.push('/units/baseunits/list'), 800);
+               }
+
            }
         });
     }

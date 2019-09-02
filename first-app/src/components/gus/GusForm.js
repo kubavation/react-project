@@ -78,6 +78,7 @@ class GusForm extends Component {
                 response: '',
                 fromForm: props.location.state !== undefined
                     ? props.location.state.fromForm : false,
+                backTo: 0
             };
         }
 
@@ -267,7 +268,7 @@ class GusForm extends Component {
             const {userId, title, namePl, nameEn, baseUnit,source,gusId } = this.state;
             const {baseUnits} = this.state;
             const {vertical, horizontal, open, messageVariant, response} = this.state;
-            const {fromForm} = this.state;
+            const {fromForm, backTo} = this.state;
 
             let unitsItems;
 
@@ -396,7 +397,7 @@ class GusForm extends Component {
                             Jeżeli jednostki nie ma na liście<br/>
                             <Button style={{marginLeft: '2%', color: "#86C232"}} color="primary"
                                     className={classes.button} component={Link}
-                                    to={{pathname: '/units/units/create', state: {fromForm: true}}}>
+                                    to={{pathname: '/units/units/create', state: {fromForm: true, backTo: backTo-1}}}>
                                 Przejdź do formularza jednostki
                             </Button>
                             <br/>

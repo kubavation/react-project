@@ -62,7 +62,6 @@ class QuantitiesForm extends Component {
         super(props);
 
         if (props.match.params.id !== null && props.match.params.id !== undefined){
-            console.log(props);
             this.getForEdit(props);
         }
 
@@ -76,8 +75,11 @@ class QuantitiesForm extends Component {
                 response: '',
                 fromForm: props.location.state !== undefined
                     ? props.location.state.fromForm : false,
+                backTo: props.location.state !== undefined
+                    ? props.location.state.backTo: 0
             };
         }
+        console.log("VALUE = " + this.state.backTo);
 
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -129,7 +131,6 @@ class QuantitiesForm extends Component {
             id: qnt.baseUnit
         }
 
-        console.log(qntNew);
 
         const redirect = qnt.id != null;
         fetch(process.env.REACT_APP_HOST + '/quantity',{
@@ -156,9 +157,13 @@ class QuantitiesForm extends Component {
                     response: 'Pomyślnie dodano rekord.'
                 });
 
-              //  if(redirect)
+                if(this.state.backTo !== 0){
+                    setTimeout(() =>
+                        window.history.go(-1), 800);
+                } else {
                     setTimeout(() =>
                         this.props.history.push('/units/quantities/list'), 800);
+                }
             }
         });
     }
@@ -256,7 +261,7 @@ class QuantitiesForm extends Component {
             const {userId, title, namePl, nameEn, baseUnit } = this.state;
             const {baseUnits} = this.state;
             const {vertical, horizontal, open, messageVariant, response} = this.state;
-            const {fromForm} = this.state;
+            const {fromForm, backTo} = this.state;
 
             let unitsItems;
 
@@ -336,7 +341,7 @@ class QuantitiesForm extends Component {
                             Jeżeli jednostki nie ma na liście<br/>
                             <Button style={{marginLeft: '2%', color: "#86C232"}} color="primary"
                                 className={classes.button} component={Link}
-                                    to={{pathname: '/units/baseunits/create', state: {fromForm: true}}}>
+                                    to={{pathname: '/units/baseunits/create', state: {fromForm: true, backTo: backTo-1}}}>
                                 Przejdź do formularza jednostki bazowej
                             </Button>
                             <br/>

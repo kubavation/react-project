@@ -54,7 +54,6 @@ class Unitsform extends Component {
         super(props);
 
         if (props.match.params.id != null && props.match.params.id != undefined) {
-            console.log(props.match.params)
             this.getForEdit(props.match.params.id);
         }
         else {
@@ -75,7 +74,9 @@ class Unitsform extends Component {
                 vertical: 'top',
                 horizontal: 'center',
 
-                messageVariant: ''
+                messageVariant: '',
+                backTo: props.location.state !== undefined
+                    ? props.location.state.backTo: 0
             };
         }
 
@@ -156,9 +157,13 @@ class Unitsform extends Component {
                     messageVariant: 'success',
                     response: 'Pomyślnie dodano rekord.'
                 });
-
+                if(this.state.backTo !== 0){
+                    setTimeout(() =>
+                        window.history.go(-1), 800);
+                } else {
                     setTimeout(() =>
                         this.props.history.push('/units/units/list'), 800);
+                }
             }
         });
     }
@@ -293,6 +298,7 @@ class Unitsform extends Component {
         if (this.state != null) {
             const {namePl, nameEn, shortcut, quantities, baseUnit, ratio, quantity} = this.state;
             const {vertical, horizontal, open, messageVariant, response} = this.state;
+            const {backTo} = this.state;
 
             const quantitiesItems = quantities.map((qnt) => (
                 <MenuItem value={qnt.quantity_id}>{qnt.quantity_name_pl}</MenuItem>
@@ -382,7 +388,7 @@ class Unitsform extends Component {
                             Jeżeli wielkości nie ma na liście<br/>
                             <Button style={{marginLeft: '2%', color: '#86C232'}} className={classes.button}
                                     component={Link}
-                                    to={{pathname: '/units/quantities/create', state: {fromForm: true}}}>
+                                    to={{pathname: '/units/quantities/create', state: {fromForm: true, backTo: backTo-1}}}>
                                     Przejdź do formularza wielkości fiz/chem
                             </Button>
 
