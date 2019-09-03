@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 
 import TableHeadPagin from '../view/Tableheadpagin';
 import {Link} from "react-router-dom";
-import ListItem from "../appbars/Drawer";
+import {MdFileDownload} from "react-icons/md";
 
 
 class PaginTable extends React.Component {
@@ -52,8 +52,17 @@ class PaginTable extends React.Component {
         const itemComponents = items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(qnt => (
             <TableRow key={qnt.id}>
                 { Object.keys(qnt).map(key => {
-                if(key !== 'id')
-                     return <TableCell style={{fontSize: '20px'}}>{qnt[key]}</TableCell>})
+                if(key !== 'id' && key !== 'file_name') {
+                    if(key === 'file_id'){
+                        return <TableCell>
+                            <Button variant="flat" href={qnt[key]}>
+                                {qnt['file_name']} <MdFileDownload/>
+                            </Button>
+                        </TableCell>
+                    }
+                    return <TableCell style={{fontSize: '20px'}}>{qnt[key]}</TableCell>
+                }
+                })
                 }
                 <TableCell><Button variant="contained" style={{visibility:show}}
                                    component={Link} to={link + '/' + qnt.id}>Edytuj</Button></TableCell>
@@ -62,7 +71,7 @@ class PaginTable extends React.Component {
 
         return (
             <div>
-                <Table >
+                <Table>
                     <TableHeadPagin items={itemNames} />
                     <TableBody >
                         {itemComponents}

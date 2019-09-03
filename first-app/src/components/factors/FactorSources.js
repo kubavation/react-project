@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const itemNames = ['Data','Opis','DOI','Bibtex'] //date,desc,doi,bibtex,//?file
+const itemNames = ['Data','Opis','DOI','Bibtex','Plik'] //date,desc,doi,bibtex,//?file
 
 class FactorSources extends Component {
 
@@ -35,7 +35,6 @@ class FactorSources extends Component {
         fetch(process.env.REACT_APP_HOST + '/source')
             .then(response => response.json())
             .then(sources => {
-                console.log(sources);
                 let list = [];
                 sources.forEach( u => {
                     const temp  = {
@@ -44,7 +43,8 @@ class FactorSources extends Component {
                         doi: u.doi,
                         bibtex: u.bibtex,
                         id: u.source_id,
-
+                        file_id: process.env.REACT_APP_HOST + '/file/' + u.file_id + '/download',
+                        file_name: u.file_name
                     }
                     list.push(temp);
                 })
