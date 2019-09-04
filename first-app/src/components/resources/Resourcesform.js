@@ -74,6 +74,7 @@ class Resourcesform extends Component {
 
 
         if (props.match.params.id !== null && props.match.params.id !== undefined) {
+            console.log("GETIN FOR EDIT")
             this.getForEdit(props);
         }
         else {
@@ -108,12 +109,12 @@ class Resourcesform extends Component {
         this.unitChange = this.unitChange.bind(this);
     }
 
-    getForEdit(props) {
+        getForEdit(props) {
         console.log(props)
         fetch(process.env.REACT_APP_HOST + '/resource/' + props.match.params.id)
-        //fetch('https://jsonplaceholder.typicode.com/todos/2')
             .then(response => response.json())
             .then(res => {
+                console.log(res);
                 this.setState({
                     namePl: res.resource_name_pl,
                     nameEn: res.resource_name_eng,
@@ -121,6 +122,11 @@ class Resourcesform extends Component {
                     descEn: res.resource_description_eng,
                     id: res.resource_id,
                     //factorNames: res.factorNames,
+                    allFactorNames: this.fetchFactorNames(), // wszystkie
+                    factorNames: [], //wybrane
+                    createdFactor: '', //utworzony
+                    actualFactorNames: [],
+                    factorsRaw: res.factors_raw,
 
                     open: false,
                     vertical: 'top',
@@ -130,10 +136,34 @@ class Resourcesform extends Component {
             });
     }
 
+
     componentDidMount() {
         this.fetchFactorNames();
         this.fetchUnits();
+
+        //setTimeout(() => this.fetchForEdit(), 1000); //xD
     }
+
+    // fetchForEdit() {
+    //     const {factorsRaw} = this.state;
+    //     if(factorsRaw != null) {
+    //
+    //         console.log(factorsRaw[0])
+    //         let cos = {
+    //             error: factorsRaw[0].uncertainty,
+    //             factor_id: factorsRaw[0].factor_id,
+    //             unit: factorsRaw[0].resource_unit_1,
+    //             unit2: factorsRaw[0].resource_unit_2,
+    //             value: factorsRaw[0].factor
+    //         };
+    //
+    //         console.log(cos)
+    //         console.log("------------------------------")
+    //
+    //         this.setState({createdFactor : cos}, this.addFactor());
+    //         console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    //     }
+    // }
 
     fetchFactorNames() {
         fetch(process.env.REACT_APP_HOST + '/factor_name')
@@ -268,15 +298,6 @@ class Resourcesform extends Component {
         let createdFactor = this.state.createdFactor;
         console.log(createdFactor)
 
-        // createdFactor = {
-        //     factor_id: createdFactor.factor_id,
-        //     value: createdFactor.value,
-        //     error: createdFactor.error,
-        //     unit1: unit,
-        //     unit2: unit2
-        // }
-
-        console.log(createdFactor)
 
         factorNames.push(createdFactor);
 
@@ -383,17 +404,27 @@ class Resourcesform extends Component {
 
     render() {
         const { classes } = this.props;
-        const {  namePl, nameEn, descPl, descEn, allFactorNames, factorNames,createdFactor, actualFactorNames, units, unit, unit2 } = this.state;
+
+
+        if ( this.state != null ) {
+
+        let {  namePl, nameEn, descPl, descEn, allFactorNames, factorNames,createdFactor, actualFactorNames, units, unit, unit2 } = this.state;
         const { vertical, horizontal, open, messageVariant, response } = this.state;
 
 
-        const factorNamesItems = actualFactorNames.map(name => (
-            <MenuItem  value={name.factor_id}>{name.factor_name_pl}</MenuItem>
-        ));
+        let factorNamesItems;
+        if ( actualFactorNames !== undefined) {
+         factorNamesItems = actualFactorNames.map(name => (
+                <MenuItem value={name.factor_id}>{name.factor_name_pl}</MenuItem>
+            ));
+        }
 
-        const unitsItems = units.map(u => (
-            <MenuItem  value={u.id}>{u.shortcut}</MenuItem>
-        ));
+        let unitsItems;
+        if ( units !== undefined) {
+           unitsItems = units.map(u => (
+                <MenuItem value={u.id}>{u.shortcut}</MenuItem>
+            ));
+        }
 
 
         return (
@@ -613,7 +644,8 @@ class Resourcesform extends Component {
 
             </div>
 
-        )
+        )}
+        else return null;
 
     }
 
