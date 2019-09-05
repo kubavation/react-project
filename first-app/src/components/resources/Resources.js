@@ -105,6 +105,18 @@ class Resources extends Component {
     //     )
     // }
 
+    delete(id) {
+        console.log("ID : " + id);
+
+        fetch(process.env.REACT_APP_HOST + '/resource/ ' + id + '/delete' ,{
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            }
+        }).then(response => this.getResources());
+
+    }
+
     render() {
 
         const { classes } = this.props;
@@ -135,22 +147,10 @@ class Resources extends Component {
                     }
                 })
                 }
-                <TableCell><Button variant="contained" style={{visibility:show}}
-                                   component={Link} to={'create' + '/' + qnt.id}>Edytuj</Button></TableCell>
-                <TableCell>
-                    <Button aria-controls="simple-menu" aria-haspopup="true" >
-                        Open Menu
-                    </Button>
-                    <Menu
-                        id="simple-menu"
-                        keepMounted
-                        open={true}
-                    >
-                        <MenuItem >Profile</MenuItem>
-                        <MenuItem >My account</MenuItem>
-                        <MenuItem >Logout</MenuItem>
-                    </Menu>
-                </TableCell>
+                <TableCell><Button variant="contained"
+                                   onClick={() => this.delete(qnt.id)}
+                                   style={{visibility:show}}>Usuń</Button></TableCell>
+
             </TableRow>
         ));
 
