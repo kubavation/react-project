@@ -23,6 +23,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Modal } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
 
 const styles = theme => ({
     root: {
@@ -38,6 +40,7 @@ const styles = theme => ({
 
 
 const itemNames = ['Nazwa Polska','Nazwa Angielska','Opis Polski','Opis Angielski'] //namePl,nameEn,descPl,descEn
+const itemNamesWsp = ['Współczynnik', 'Wartość', 'Niepewność']
 
 class Resources extends Component {
 
@@ -48,11 +51,15 @@ class Resources extends Component {
             page: 0,
             rowsPerPage: 10,
             link: props.link,
-            edit: props.edit
+            edit: props.edit,
+            open: false,
+            factors: []
         }
 
         this.handleChangePage = this.handleChangePage.bind(this);
         this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.showDialog = this.showDialog.bind(this);
     }
 
     handleChangePage = (event, page) => {
@@ -76,7 +83,7 @@ class Resources extends Component {
                         descPl : u.resource_description_pl,
                         descEn : u.resource_description_eng,
                         id: u.resource_id,
-                        //factors: u.factors
+                        factors: u.factors
                     }
                     list.push(temp);
                 })
@@ -117,10 +124,32 @@ class Resources extends Component {
 
     }
 
+    setFactorsInDialog(id) {
+        const factors = this.findItemById(id);
+        console.log(factors);
+    }
+
+    findItemById(id) {
+        const {items} = this.state;
+        const factors = items.find(x => x.id === id).factors;
+        return factors;
+    }
+
+    handleClose() {
+        this.setState({open: false});
+    }
+
+    showDialog(id) {
+        const factors = this.findItemById(id);
+        this.setState({factors: factors}, () => this.setState({open: true}));
+    }
+
     render() {
 
         const { classes } = this.props;
         const items = this.state.items;
+
+        const {open} = this.state;
 
         const { page, rowsPerPage, link, edit } = this.state;
 
@@ -128,14 +157,22 @@ class Resources extends Component {
         if(edit != null)
             show = 'hidden'
 
-//                    <PaginTable items={items} itemNames={itemNames} link={"/resources/resources/create"} />
+        let {factors} = this.state;
 
-
+        if( factors != null )
+        factors = factors.map(f => (
+            <TableRow>
+                { Object.keys(f).map(key => {
+                        return <TableCell style={{fontSize: '20px'}}>{f[key]}</TableCell>
+                })
+                }
+            </TableRow>
+        ));
 
         const itemComponents = items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(qnt => (
             <TableRow key={qnt.id}>
                 { Object.keys(qnt).map(key => {
-                    if(key !== 'id' && key !== 'file_name') {
+                    if(key !== 'id' && key !== 'file_name' && key !== 'factors') {
                         if(key === 'file_id'){
                             return <TableCell>
                                 <Button variant="flat" href={qnt[key]}>
@@ -148,14 +185,28 @@ class Resources extends Component {
                 })
                 }
                 <TableCell><Button variant="contained"
+                                   onClick={() => this.showDialog(qnt.id)}
+                                   style={{visibility:show}}>Współczynniki</Button></TableCell>
+                <TableCell><Button variant="contained"
                                    onClick={() => this.delete(qnt.id)}
                                    style={{visibility:show}}>Usuń</Button></TableCell>
-
             </TableRow>
         ));
 
         return (
             <div>
+                <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={open}>
+                    <DialogTitle id="simple-dialog-title"
+                                 style={{textAlign: 'center'}}>List współczynników</DialogTitle>
+                    <Table>
+                        <TableHeadPagin items={itemNamesWsp} />
+                        <TableBody >
+                            {factors}
+                        </TableBody>
+                    </Table>
+
+                </Dialog>
+
                 <h1 style={{color:'#CCC', fontSize: 40}}>Lista surowców</h1>
                 <Paper className={classes.root} style={{backgroundColor:'#EEE',borderRadius:'25px'}}>
 
