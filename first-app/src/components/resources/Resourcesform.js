@@ -213,8 +213,8 @@ class Resourcesform extends Component {
         let factors = [];
         resource.factorNames.forEach(el => {
            let temp = {
-               resourceUnit1: el.unit,
-               resourceUnit2: el.unit2,
+               factorUnit: el.unit,
+               resourceUnit1: el.unit2,
                uncertainty: el.error,
                factorId: el.factor_id,
                factor: el.value
@@ -227,7 +227,7 @@ class Resourcesform extends Component {
             resourceNameEng: resource.nameEn,
             descriptionPl: resource.descPl,
             descriptionEng: resource.descEn,
-            factorNames: factors
+            factors: factors
         };
         console.log("przesylany json " );
         console.log(res);

@@ -79,7 +79,6 @@ class QuantitiesForm extends Component {
                     ? props.location.state.backTo: 0
             };
         }
-        console.log("VALUE = " + this.state.backTo);
 
 
         this.onSubmit = this.onSubmit.bind(this);
